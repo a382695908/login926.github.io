@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用 Fiddler 自定义百度云分享提取码 | Raintone</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Fiddler是一款经典的 Web 调试工具。其工作原理是建立本地代理服务器，由于通信时产生的数据包都会通过该代理，所以 Fiddler 可以用来监视并修改客户端与服务器的连接。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Fiddler 自定义百度云分享提取码">
+<meta property="og:url" content="http://login926.top/2016/07/03/Baidu_Fiddler/index.html">
+<meta property="og:site_name" content="Raintone">
+<meta property="og:description" content="Fiddler是一款经典的 Web 调试工具。其工作原理是建立本地代理服务器，由于通信时产生的数据包都会通过该代理，所以 Fiddler 可以用来监视并修改客户端与服务器的连接。">
+<meta property="og:image" content="https://ooo.0o0.ooo/2016/07/30/579d6930a8a7a.png">
+<meta property="og:image" content="http://7xibe6.com1.z0.glb.clouddn.com/%E7%99%BE%E5%BA%A6%E4%BA%91.png">
+<meta property="og:image" content="http://7xibe6.com1.z0.glb.clouddn.com/%E8%AF%A5%E5%8C%85%E5%9B%BE%E6%A0%87%E4%B8%BA%E7%BA%A2%E8%89%B2.png">
+<meta property="og:image" content="http://7xibe6.com1.z0.glb.clouddn.com/%E5%A6%82%E5%9B%BE%E6%89%80%E7%A4%BA.png">
+<meta property="og:image" content="http://7xibe6.com1.z0.glb.clouddn.com/%E6%8F%90%E5%8F%96%E7%A0%81%E4%B8%BA%E4%BB%BB%E6%84%8F%E7%9A%844%E4%BD%8D%E5%AD%97%E7%AC%A6.png">
+<meta property="og:image" content="http://7xibe6.com1.z0.glb.clouddn.com/%E6%94%BE%E8%A1%8CRequest.png">
+<meta property="og:image" content="http://7xibe6.com1.z0.glb.clouddn.com/%E5%88%86%E4%BA%AB%E6%88%90%E5%8A%9F.gif">
+<meta property="og:updated_time" content="2016-07-31T03:00:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用 Fiddler 自定义百度云分享提取码">
+<meta name="twitter:description" content="Fiddler是一款经典的 Web 调试工具。其工作原理是建立本地代理服务器，由于通信时产生的数据包都会通过该代理，所以 Fiddler 可以用来监视并修改客户端与服务器的连接。">
+<meta name="twitter:image" content="https://ooo.0o0.ooo/2016/07/30/579d6930a8a7a.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Raintone" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Raintone</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">余生请指教。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://login926.top"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Baidu_Fiddler" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/03/Baidu_Fiddler/" class="article-date">
+  <time datetime="2016-07-03T07:44:40.000Z" itemprop="datePublished">2016-07-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用 Fiddler 自定义百度云分享提取码
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p><img src="https://ooo.0o0.ooo/2016/07/30/579d6930a8a7a.png" alt="Fiddler"></p>
+<p><a href="https://www.telerik.com/download/fiddler" target="_blank" rel="external">Fiddler</a>是一款经典的 Web 调试工具。其工作原理是建立本地代理服务器，由于通信时产生的数据包都会通过该代理，所以 Fiddler 可以用来监视并修改客户端与服务器的连接。</p>
+ <a id="more"></a>
+<p><a href="http://yun.baidu.com/" target="_blank" rel="external">百度云</a>是百度公司推出的一款云服务产品。使用百度云可以轻松地与好友分享你的文件。百度云有一个私密分享功能，即一个百度云分享链接对应一个提取码，好友正确输入提取码之后才能提取文件。</p>
+<p>这里便是使用Fiddler，来自定义自己分享出去的文件的提取码。</p>
+<hr>
+<h1 id="Step1-下载与安装-Fiddler"><a href="#Step1-下载与安装-Fiddler" class="headerlink" title="Step1   下载与安装 Fiddler"></a>Step1   下载与安装 Fiddler</h1><p><strong><em>请先安装<a href="https://www.microsoft.com/net" target="_blank" rel="external">.NET框架</a>再安装<a href="https://www.telerik.com/download/fiddler" target="_blank" rel="external">Fiddler</a></em></strong></p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>系统</td>
+<td>Windows XP 至 Windows 10</td>
+</tr>
+<tr>
+<td>.NET框架</td>
+<td>Fiddler2 需要 .NET v2, Fiddler4 需要 .NET v4</td>
+</tr>
+<tr>
+<td>硬盘空间</td>
+<td>8MB</td>
+</tr>
+<tr>
+<td>处理器</td>
+<td>1GHz</td>
+</tr>
+<tr>
+<td>内存</td>
+<td>2G+</td>
+</tr>
+</tbody>
+</table>
+<h1 id="Step2-启动-Fiddler，并在浏览器中打开百度云"><a href="#Step2-启动-Fiddler，并在浏览器中打开百度云" class="headerlink" title="Step2  启动 Fiddler，并在浏览器中打开百度云"></a>Step2  启动 Fiddler，并在浏览器中打开百度云</h1><p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E7%99%BE%E5%BA%A6%E4%BA%91.png" alt="百度云"></p>
+<h1 id="Step3-在-Fiddler-中阻止-Request"><a href="#Step3-在-Fiddler-中阻止-Request" class="headerlink" title="Step3  在 Fiddler 中阻止 Request"></a>Step3  在 Fiddler 中阻止 Request</h1><p>切换到Fiddler界面，左下角输入命令</p>
+<pre><code>bpu http://pan.baidu.com/
+</code></pre><h1 id="Step4-在浏览器中分享文件"><a href="#Step4-在浏览器中分享文件" class="headerlink" title="Step4  在浏览器中分享文件"></a>Step4  在浏览器中分享文件</h1><p>切换到浏览器，分享文件，点击<code>创建私密链接</code><br>因为<code>Request</code>被阻止<br>此时百度云会一直提示<code>正在创建分享链接，请稍候</code></p>
+<h1 id="Step5-在-Fiddler-中修改提取码"><a href="#Step5-在-Fiddler-中修改提取码" class="headerlink" title="Step5  在 Fiddler 中修改提取码"></a>Step5  在 Fiddler 中修改提取码</h1><p>1.切换到Fiddler，在左侧找到被禁止的<code>Request</code>并选中</p>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E8%AF%A5%E5%8C%85%E5%9B%BE%E6%A0%87%E4%B8%BA%E7%BA%A2%E8%89%B2.png" alt="该包图标为红色"><br>2.右侧切换到<code>Inspectors</code> \ <code>WebForms</code>标签下</p>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E5%A6%82%E5%9B%BE%E6%89%80%E7%A4%BA.png" alt="如图所示"></p>
+<p>3.<code>pwd</code>项目中的<code>vm9x</code>即为刚才分享文件的提取码，由于 Fiddler 阻止了<code>Request</code>，百度云服务器目前并不知道该提取码，所以我们可以先修改提取码，再提交给服务器。</p>
+<p>提取码为任意的4位字符<br><strong><em>以下示例几个提取码</em></strong></p>
+<table>
+<thead>
+<tr>
+<th>提取码</th>
+<th>是否可以</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>abcd</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>abc1</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>初6</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>初A</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>初六</td>
+<td>✗</td>
+</tr>
+<tr>
+<td>初</td>
+<td>✗</td>
+</tr>
+</tbody>
+</table>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E6%8F%90%E5%8F%96%E7%A0%81%E4%B8%BA%E4%BB%BB%E6%84%8F%E7%9A%844%E4%BD%8D%E5%AD%97%E7%AC%A6.png" alt="提取码为任意的 4 位字符"></p>
+<p>4.修改完成后便可以将该 Request 放行<br>点击Fiddler工具栏中的<code>Go</code>即可</p>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E6%94%BE%E8%A1%8CRequest.png" alt="放行Request"></p>
+<h1 id="Step6-测试提取码是否修改成功"><a href="#Step6-测试提取码是否修改成功" class="headerlink" title="Step6  测试提取码是否修改成功"></a>Step6  测试提取码是否修改成功</h1><p>链接:<a href="http://pan.baidu.com/s/1hrYYGEo" target="_blank" rel="external">http://pan.baidu.com/s/1hrYYGEo</a> 密码:7喜</p>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E5%88%86%E4%BA%AB%E6%88%90%E5%8A%9F.gif" alt="分享成功"></p>
+<hr>
+<p>如果对 PHP 比较熟悉，也可以尝试使用 Github 上的一个百度云补档项目<a href="https://github.com/NijiharaTsubasa/BaiduPanAutoReshare" target="_blank" rel="external">BaiduPanAutoReshare</a>，同样可以修改提取码。</p>
+<p>如果对文章有疑问、建议或发现错误，欢迎留言。<br>微博<a href="http://weibo.com/login926" target="_blank" rel="external">@Login926</a><br>本文已同步发表至<a href="http://www.jianshu.com/p/cb33b8132b42" target="_blank" rel="external">简书</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://login926.top/2016/07/03/Baidu_Fiddler/" data-id="civ24t91l000444y1orfohba7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Fiddler/">Fiddler</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/抓包/">抓包</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/百度云/">百度云</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/07/03/Baidu_Burpsuite/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          使用 Burpsuite 自定义百度云提取码
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/27/Cola/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">嗯，送了罐可乐</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Burpsuite/">Burpsuite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Fiddler/">Fiddler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/KMS/">KMS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Windows/">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WindowsPhone/">WindowsPhone</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/下载/">下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/刷机/">刷机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/图片/">图片</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/我想和你一起去虐狗/">我想和你一起去虐狗</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/抓包/">抓包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/流媒体/">流媒体</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/生活/">生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/百度云/">百度云</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/纪念/">纪念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/音乐/">音乐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/鬼畜/">鬼畜</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Burpsuite/" style="font-size: 10px;">Burpsuite</a> <a href="/tags/Fiddler/" style="font-size: 10px;">Fiddler</a> <a href="/tags/KMS/" style="font-size: 10px;">KMS</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Web/" style="font-size: 15px;">Web</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/WindowsPhone/" style="font-size: 10px;">WindowsPhone</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/html/" style="font-size: 15px;">html</a> <a href="/tags/下载/" style="font-size: 15px;">下载</a> <a href="/tags/刷机/" style="font-size: 10px;">刷机</a> <a href="/tags/图片/" style="font-size: 10px;">图片</a> <a href="/tags/我想和你一起去虐狗/" style="font-size: 15px;">我想和你一起去虐狗</a> <a href="/tags/抓包/" style="font-size: 15px;">抓包</a> <a href="/tags/流媒体/" style="font-size: 15px;">流媒体</a> <a href="/tags/生活/" style="font-size: 20px;">生活</a> <a href="/tags/百度云/" style="font-size: 15px;">百度云</a> <a href="/tags/纪念/" style="font-size: 15px;">纪念</a> <a href="/tags/音乐/" style="font-size: 10px;">音乐</a> <a href="/tags/鬼畜/" style="font-size: 10px;">鬼畜</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/10/30/WeiboFalseV/">修改 html 代码制作一个虚假微博 V 头像</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/13/Java_Notes_1/">Java 学习手记 —— 使用 JDK 编写第一个 Java 程序</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/22/2048/">沉迷 2048 ，无法自拔</a>
+          </li>
+        
+          <li>
+            <a href="/2016/09/07/Englishguichu/">【厉害了，我的哥】我的英语听力为什么会这么鬼畜</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/27/baolisign/">贴吧暴力签到</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Login926<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
