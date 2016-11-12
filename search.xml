@@ -3,9 +3,9 @@
   
     
     <entry>
-      <title><![CDATA[Java 学习手记 —— 使用 JDK 编写第一个 Java 程序]]></title>
+      <title><![CDATA[Java 学习手记 —— IDE 的配置及试用]]></title>
       <url>%2F2016%2F11%2F11%2FJava_Notes_2%2F</url>
-      <content type="text"><![CDATA[]]></content>
+      <content type="text"><![CDATA[实践证明，一款优秀的 IDE 可以使得编程效率大大提高，目前 Java 主流的 IDE 有 Eclipse、MyEclipse、NetNetBeans 等。 下面以免费开源的 Eclipse 为例作演示。 Step 1 JDK 环境安装Eclise 使用之前需要配置 jdk 环境，最新的 Eclipse Neon 需要 jdk 1.8 环境。同样的，还是在甲骨文官方网站上下载 jkd 并进行安装：http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html Step 2 IDE 的下载及使用访问 Eclipse 网站，选择下载 JEE 版本的 Eclipse 即可：https://www.eclipse.org/downloads/eclipse-packages/Eclipse 有很多镜像下载点，其中有一个国内的 大连东软信息学院 镜像点，实测下载比较快。这里下载的 Eclipse 是绿色版的，下载完成后，解压即可运行。 开始编程吧双击 Eclipse 图标，启动 Eclipse选择一个工作目录此时会看到欢迎界面，可以不用管他，直接关掉，在左侧窗口右击，选择New→Java Project来新建一个 Java 项目项目名称任意，只要不是 Java 中的保留字即可展开 Java Project ，在 src 上右键，新建一个 ClassClass 名称任意，只要不是 Java 中的保留字即可注意最好勾选一下public static void main(String[] args)选项建立完成后就可以开始编写代码了：123456public class Hello &#123; public static void main(String[] args) &#123; System.out.println("Hello World");//从控制台输出 Hello World &#125;&#125; 编写完成后，点击Run → Run As → Java Application即可运行运行成功]]></content>
     </entry>
 
     
