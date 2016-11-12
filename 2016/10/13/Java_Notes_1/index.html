@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -97,7 +97,7 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/9a8049afgw1f8rpch843kj20s60b4taf.jpg">
 <meta property="og:image" content="http://ww3.sinaimg.cn/large/9a8049afgw1f8rpfgllqdj20b605474m.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/9a8049afgw1f8rpkp5ykzj20cb05z74v.jpg">
-<meta property="og:updated_time" content="2016-10-30T06:08:21.954Z">
+<meta property="og:updated_time" content="2016-11-11T01:41:31.642Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 学习手记 —— 使用 JDK 编写第一个 Java 程序">
 <meta name="twitter:description" content="大一学习的是计算机网络专业，要求学习 Java 语言，以后博客会开设一个专题，做一点学习 Java 的笔记。JDK：Java Development ToolKit，Java 开发工具包，学习 Java 必装。">
@@ -368,7 +368,7 @@
 <p>安装 JDK：<br><img src="http://ww3.sinaimg.cn/large/9a8049afgw1f8qyi9y4wpj20j50ezjtb.jpg" alt=""></p>
 <h1 id="Step2-JDK-的环境配置"><a href="#Step2-JDK-的环境配置" class="headerlink" title="Step2 JDK 的环境配置"></a>Step2 JDK 的环境配置</h1><p>使用 JDK 必须配置 <code>Path</code> 环境变量，以及 <code>classpath</code> 系统变量。<br>1.右击<code>此电脑</code>，选择<code>属性</code><br>2.左侧选择<code>高级系统设置</code><br>3.进入<code>环境变量</code><br>4.在<code>系统变量</code>重找到<code>Path</code>项目，点击编辑<br>5.将 JDK 目录添加进<code>Path</code>中，默认添加路径为<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">C:\<span class="title">Program</span> <span class="title">Files</span>\<span class="title">Java</span>\<span class="title">jdk1</span>.8.0<span class="title">_101</span>\<span class="title">bin</span></span></div></pre></td></tr></table></figure></p>
 <p><img src="http://ww4.sinaimg.cn/large/9a8049afgw1f8roph0ybqj20iv0ihgp5.jpg" alt=""><br>6.保存后返回<code>系统变量</code>设置界面<br>7.新建一个系统变量，变量名为<code>classpath</code>，变量值为任意目录，比如<code>D:\WorkSpace</code><br><img src="http://ww4.sinaimg.cn/large/9a8049afgw1f8roui0owij20nb0610tj.jpg" alt=""><br>（为方便后期操作，建议所有操作都在<code>D:\WorkSpace</code>目录中进行）</p>
-<h1 id="Step3-编写第一个-Java-程序并运行"><a href="#Step3-编写第一个-Java-程序并运行" class="headerlink" title="Step3 编写第一个 Java 程序并运行"></a>Step3 编写第一个 Java 程序并运行</h1><p>1.在<code>D:\WorkSpace</code>目录中新建一个文本文件，将后缀名修改为 <code>.java</code><br>2.修改文件名为<code>Hello</code>，并记住文件名，Java 编程中要求定义类，类名称必须与文件名<br>3.键入一段 Java 代码（//后面是注释部分，可以不用输入）<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Hello World"</span>);</div><div class="line"><span class="comment">//从控制台输出 Hello World</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="Step3-编写第一个-Java-程序并运行"><a href="#Step3-编写第一个-Java-程序并运行" class="headerlink" title="Step3 编写第一个 Java 程序并运行"></a>Step3 编写第一个 Java 程序并运行</h1><p>1.在<code>D:\WorkSpace</code>目录中新建一个文本文件，将后缀名修改为 <code>.java</code><br>2.修改文件名为<code>Hello</code>，并记住文件名，Java 编程中要求定义类，类名称必须与文件名同名<br>3.键入一段 Java 代码（//后面是注释部分，可以不用输入）<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Hello World"</span>);</div><div class="line"><span class="comment">//从控制台输出 Hello World</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p><img src="http://ww1.sinaimg.cn/large/9a8049afgw1f8rpch843kj20s60b4taf.jpg" alt=""><br>4.在<code>D:\WorkSpace</code>目录下启动<code>cmd</code><br>5.输入命令经行编译<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">javac Hello.java</div></pre></td></tr></table></figure></p>
 <p><img src="http://ww3.sinaimg.cn/large/9a8049afgw1f8rpfgllqdj20b605474m.jpg" alt=""><br>6.此时<code>D:\WorkSpace</code>目录下得到了<code>Hello.class</code>文件<br>7.切换回<code>cmd</code>界面，输入命令运行 Java 程序<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java Hello</div></pre></td></tr></table></figure></p>
 <p><img src="http://ww1.sinaimg.cn/large/9a8049afgw1f8rpkp5ykzj20cb05z74v.jpg" alt=""><br>8.运行成功</p>
@@ -391,6 +391,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag">#Java</a>
+          
+        </div>
       
 
       
@@ -498,7 +504,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -508,7 +514,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
