@@ -7,3 +7,32 @@ server is https://crashreporter.atom.io
 maximum 128 reports/day
 reporter is electron-crash-service
 [1844:7588:1224/102345:ERROR:crash_service.cc(295)] could not start dumper
+[3652:2708:1224/144032:VERBOSE1:crash_service_main.cc(76)] Session start. cmdline is [--reporter-url=https://crashreporter.atom.io --application-name=Atom --v=1]
+[3652:2708:1224/144032:VERBOSE1:crash_service.cc(142)] window handle is 001D07A0
+[3652:2708:1224/144032:VERBOSE1:crash_service.cc(284)] pipe name is \\.\pipe\Atom Crash Service
+dumps at 
+[3652:2708:1224/144032:VERBOSE1:crash_service.cc(288)] checkpoint is crash_checkpoint.txt
+server is https://crashreporter.atom.io
+maximum 128 reports/day
+reporter is electron-crash-service
+[3652:2708:1224/144032:VERBOSE1:crash_service_main.cc(92)] Ready to process crash requests
+[3652:8984:1224/144032:VERBOSE1:crash_service.cc(317)] client start. pid = 10012
+[3652:8984:1224/144033:VERBOSE1:crash_service.cc(317)] client start. pid = 8708
+[1880:2988:1224/144033:VERBOSE1:crash_service_main.cc(76)] Session start. cmdline is [--reporter-url=https://crashreporter.atom.io --application-name=Atom --v=1]
+[1880:2988:1224/144033:VERBOSE1:crash_service.cc(142)] window handle is 000D0714
+[1880:2988:1224/144033:VERBOSE1:crash_service.cc(284)] pipe name is \\.\pipe\Atom Crash Service
+dumps at 
+[1880:2988:1224/144033:VERBOSE1:crash_service.cc(288)] checkpoint is crash_checkpoint.txt
+server is https://crashreporter.atom.io
+maximum 128 reports/day
+reporter is electron-crash-service
+[1880:2988:1224/144033:ERROR:crash_service.cc(295)] could not start dumper
+[3652:9620:1224/144044:VERBOSE1:crash_service.cc(325)] client end. pid = 10012
+[3652:9620:1224/144044:VERBOSE1:crash_service.cc(325)] client end. pid = 8708
+[3652:9620:1224/144045:VERBOSE1:crash_service.cc(346)] zero clients. exiting
+[3652:2708:1224/144045:VERBOSE1:crash_service.cc(486)] session ending..
+[3652:2708:1224/144045:VERBOSE1:crash_service.cc(491)] clients connected :2
+clients terminated :2
+dumps serviced :0
+dumps reported :0
+[3652:2708:1224/144045:VERBOSE1:crash_service_main.cc(97)] Session end. return code is 0

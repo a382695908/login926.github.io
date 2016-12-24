@@ -29,3 +29,12 @@ clients terminated :3
 dumps serviced :0
 dumps reported :0
 [7176:1876:1224/121014:VERBOSE1:crash_service_main.cc(97)] Session end. return code is 0
+[10424:12736:1224/122945:VERBOSE1:crash_service_main.cc(76)] Session start. cmdline is [--reporter-url=https://crashreporter.atom.io --application-name=Atom --v=1]
+[10424:12736:1224/122945:VERBOSE1:crash_service.cc(142)] window handle is 00031078
+[10424:12736:1224/122945:VERBOSE1:crash_service.cc(284)] pipe name is \\.\pipe\Atom Crash Service
+dumps at 
+[10424:12736:1224/122945:VERBOSE1:crash_service.cc(288)] checkpoint is crash_checkpoint.txt
+server is https://crashreporter.atom.io
+maximum 128 reports/day
+reporter is electron-crash-service
+[10424:12736:1224/122945:ERROR:crash_service.cc(295)] could not start dumper
