@@ -16,3 +16,32 @@ server is https://crashreporter.atom.io
 maximum 128 reports/day
 reporter is electron-crash-service
 [6968:1448:1223/132321:ERROR:crash_service.cc(295)] could not start dumper
+[4620:8268:1224/120305:VERBOSE1:crash_service_main.cc(76)] Session start. cmdline is [--reporter-url=https://crashreporter.atom.io --application-name=Atom --v=1]
+[4620:8268:1224/120305:VERBOSE1:crash_service.cc(142)] window handle is 000D0720
+[4620:8268:1224/120305:VERBOSE1:crash_service.cc(284)] pipe name is \\.\pipe\Atom Crash Service
+dumps at 
+[4620:8268:1224/120305:VERBOSE1:crash_service.cc(288)] checkpoint is crash_checkpoint.txt
+server is https://crashreporter.atom.io
+maximum 128 reports/day
+reporter is electron-crash-service
+[4620:8268:1224/120305:VERBOSE1:crash_service_main.cc(92)] Ready to process crash requests
+[4620:1068:1224/120305:VERBOSE1:crash_service.cc(317)] client start. pid = 10588
+[4620:1068:1224/120306:VERBOSE1:crash_service.cc(317)] client start. pid = 12844
+[7964:10380:1224/120306:VERBOSE1:crash_service_main.cc(76)] Session start. cmdline is [--reporter-url=https://crashreporter.atom.io --application-name=Atom --v=1]
+[7964:10380:1224/120306:VERBOSE1:crash_service.cc(142)] window handle is 001407F0
+[7964:10380:1224/120306:VERBOSE1:crash_service.cc(284)] pipe name is \\.\pipe\Atom Crash Service
+dumps at 
+[7964:10380:1224/120306:VERBOSE1:crash_service.cc(288)] checkpoint is crash_checkpoint.txt
+server is https://crashreporter.atom.io
+maximum 128 reports/day
+reporter is electron-crash-service
+[7964:10380:1224/120306:ERROR:crash_service.cc(295)] could not start dumper
+[4620:7408:1224/120319:VERBOSE1:crash_service.cc(325)] client end. pid = 12844
+[4620:7408:1224/120319:VERBOSE1:crash_service.cc(325)] client end. pid = 10588
+[4620:7408:1224/120320:VERBOSE1:crash_service.cc(346)] zero clients. exiting
+[4620:8268:1224/120320:VERBOSE1:crash_service.cc(486)] session ending..
+[4620:8268:1224/120320:VERBOSE1:crash_service.cc(491)] clients connected :2
+clients terminated :2
+dumps serviced :0
+dumps reported :0
+[4620:8268:1224/120320:VERBOSE1:crash_service_main.cc(97)] Session end. return code is 0

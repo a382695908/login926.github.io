@@ -1,0 +1,31 @@
+[7176:1876:1224/120324:VERBOSE1:crash_service_main.cc(76)] Session start. cmdline is [--reporter-url=https://crashreporter.atom.io --application-name=Atom --v=1]
+[7176:1876:1224/120324:VERBOSE1:crash_service.cc(142)] window handle is 000809D6
+[7176:1876:1224/120324:VERBOSE1:crash_service.cc(284)] pipe name is \\.\pipe\Atom Crash Service
+dumps at 
+[7176:1876:1224/120324:VERBOSE1:crash_service.cc(288)] checkpoint is crash_checkpoint.txt
+server is https://crashreporter.atom.io
+maximum 128 reports/day
+reporter is electron-crash-service
+[7176:1876:1224/120324:VERBOSE1:crash_service_main.cc(92)] Ready to process crash requests
+[7176:2760:1224/120324:VERBOSE1:crash_service.cc(317)] client start. pid = 4660
+[7176:2760:1224/120324:VERBOSE1:crash_service.cc(317)] client start. pid = 11364
+[12604:2360:1224/120324:VERBOSE1:crash_service_main.cc(76)] Session start. cmdline is [--reporter-url=https://crashreporter.atom.io --application-name=Atom --v=1]
+[12604:2360:1224/120324:VERBOSE1:crash_service.cc(142)] window handle is 000E0860
+[12604:2360:1224/120324:VERBOSE1:crash_service.cc(284)] pipe name is \\.\pipe\Atom Crash Service
+dumps at 
+[12604:2360:1224/120324:VERBOSE1:crash_service.cc(288)] checkpoint is crash_checkpoint.txt
+server is https://crashreporter.atom.io
+maximum 128 reports/day
+reporter is electron-crash-service
+[12604:2360:1224/120324:ERROR:crash_service.cc(295)] could not start dumper
+[7176:2760:1224/120400:VERBOSE1:crash_service.cc(317)] client start. pid = 10028
+[7176:12200:1224/120401:VERBOSE1:crash_service.cc(325)] client end. pid = 10028
+[7176:12200:1224/121013:VERBOSE1:crash_service.cc(325)] client end. pid = 11364
+[7176:12200:1224/121013:VERBOSE1:crash_service.cc(325)] client end. pid = 4660
+[7176:12200:1224/121014:VERBOSE1:crash_service.cc(346)] zero clients. exiting
+[7176:1876:1224/121014:VERBOSE1:crash_service.cc(486)] session ending..
+[7176:1876:1224/121014:VERBOSE1:crash_service.cc(491)] clients connected :3
+clients terminated :3
+dumps serviced :0
+dumps reported :0
+[7176:1876:1224/121014:VERBOSE1:crash_service_main.cc(97)] Session end. return code is 0

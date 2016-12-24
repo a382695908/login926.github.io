@@ -345,7 +345,7 @@
 <p>妈蛋，忘了截图了， 放一张最高纪录吧，最后记得有个方块是 16384</p>
 <p><img src="http://ww3.sinaimg.cn/large/0060lm7Tgw1f82ebqc0eej30u01hcq5b.jpg" alt="截图"></p>
 <p>最后，Teamviewer 真心好用，上大学还没带电脑，用 WindowsPhone 能直接远控家里的电脑，不过改代码和部署博客什么的不方便，借了上铺舍友的电脑继续 Teamviewer 撸起来。</p>
-<p>越发感觉《方圆几里》说的就是我。<br><div id="aplayer0" class="aplayer" style="margin-bottom: 20px;"><pre class="aplayer-lrc-content">ti:方圆几里]
+<p>越发感觉《方圆几里》说的就是我。<br><div id="aplayer1" class="aplayer" style="margin-bottom: 20px;"><pre class="aplayer-lrc-content">ti:方圆几里]
 [ar:薛之谦]
 [t_time:(04:46)]
 [00:01.99] 薛之谦 - 方圆几里
@@ -393,7 +393,7 @@
 [03:55.62] 我的爱 扩散在方圆几里
 [03:59.82] 近的能 听见你的呼吸
 [04:04.60] 只要你转身 我就在这里
-[04:11.54]</pre></div><script>var aplayer0 = new APlayer({element: document.getElementById("aplayer0"),narrow: false,autoplay: false,showlrc: 2,music : {title: "方圆几里",author: "薛之谦",url: "http://p2.music.126.net/ZTkvIeCID5LAajbqFOmF3A==/3379898743856440.mp3",pic: "http://p3.music.126.net/i2YqeMpR2DPuj15M-B1skA==/5816416510959096.jpg"}});aplayer0.init();</script></p>
+[04:11.54]</pre></div><script>var aplayer1 = new APlayer({element: document.getElementById("aplayer1"),narrow: false,autoplay: false,showlrc: 2,music : {title: "方圆几里",author: "薛之谦",url: "http://p2.music.126.net/ZTkvIeCID5LAajbqFOmF3A==/3379898743856440.mp3",pic: "http://p3.music.126.net/i2YqeMpR2DPuj15M-B1skA==/5816416510959096.jpg"}});aplayer1.init();</script></p>
 
 	
 	
@@ -443,7 +443,7 @@
                 <i class="material-icons">arrow_back</i>
             </button>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
+            前滚翻
         </a>
     
 
@@ -453,7 +453,7 @@
     <!-- Next Nav -->
     
         <a href="/2016/09/07/Englishguichu/" id="post_nav-older" class="next-content">
-            旧篇
+            后滚翻
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
                 <i class="material-icons">arrow_forward</i>
@@ -508,8 +508,8 @@
                 </li>
             
                 <li>
-                    <a href="http://login926.top/about" target="_blank" title="关于">
-						<i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">user</i>
+                    <a href="/about" target="_blank" title="关于">
+						<i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">person_pin</i>
                         关于
                     </a>
                 </li>
@@ -526,16 +526,44 @@
     </li>
 
     <!-- I'm Feeling Lucky -->
-<!--
+
     <li class="dropdown">
-        <a href="" target="_self">
-            <i class="material-icons sidebar-material-icons">explore</i>
-             sidebar.imlucky
+        <a href="/board" target="_self">
+            <i class="material-icons sidebar-material-icons">question_answer</i>
+             留言板
         </a>
     </li>
--->
 
-	
+    <li class="dropdown">
+        <a href="/links" target="_self">
+            <i class="material-icons sidebar-material-icons">group</i>
+             小伙伴们
+        </a>
+    </li>
+
+    <li class="dropdown">
+        <a href="/tags" target="_self">
+            <i class="material-icons sidebar-material-icons">loyalty</i>
+             标签
+        </a>
+    </li>
+
+    <li class="dropdown">
+        <a href="/2048" target="_self">
+            <i class="material-icons sidebar-material-icons">call_to_action</i>
+             2048
+        </a>
+    </li>
+
+    <li class="dropdown">
+        <a href="/mind" target="_self">
+            <i class="material-icons sidebar-material-icons">favorite</i>
+             情愫
+        </a>
+    </li>
+
+
+
     <!-- Archives  -->
     <li class="dropdown">
         <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
@@ -549,15 +577,22 @@
         </ul>
     </li>
 
-    <!-- Divider -->
+    <!-- Divider
     <li class="divider"></li>
-
+ -->
 
     <!-- Pages  -->
+  <!--
 	
 		<li>
 			<a href="/2048" title="2048">
 				2048
+			</a>
+		</li>
+	
+		<li>
+			<a href="/links" title="小伙伴们">
+				小伙伴们
 			</a>
 		</li>
 	
@@ -568,7 +603,7 @@
 		</li>
 	
 		<li>
-			<a href="/cengfantu" title="蹭饭图">
+			<a href="/htmlcengfantu" title="蹭饭图">
 				蹭饭图
 			</a>
 		</li>
@@ -579,8 +614,9 @@
 			</a>
 		</li>
 	
-
+-->
     <!-- Article Numebr  -->
+    <!--
     <li>
         <a href="/archives">
              文章总数
@@ -588,28 +624,37 @@
         </a>
     </li>
 </ul>
+-->
+
 
 		<!-- Sidebar Divider -->
 		<div class="sidebar-divider"></div>
 
 		<!-- Sidebar Footer -->
-		<!-- 
+		<!--
 I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
 If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
 It will not impact the appearance and can give developers a lot of support :)
 
 很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
 如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
-它不会影响美观并可以给开发者很大的支持。 :) 
+它不会影响美观并可以给开发者很大的支持。 :)
 -->
 
 <!-- Theme Material -->
-<a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+<!--<a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
 	<div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-		主题 - Material
+		主题 原之质，物之渊
 		<span class="sidebar-badge badge-circle">i</span>
 	</div>
-</a>
+</a>-->
+
+<li class="dropdown">
+		<a href="https://material.vss.im/" target="_self">
+				<i class="material-icons sidebar-material-icons">send</i>
+				 原之质，物之渊
+		</a>
+</li>
 
 <!-- Help & Support -->
 <!--
@@ -633,8 +678,8 @@ It will not impact the appearance and can give developers a lot of support :)
 -->
 
 <!-- Abount Theme -->
-<!--
-<a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
+
+<!--<a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
     <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
          sidebar.about_theme
         <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
@@ -666,7 +711,7 @@ It will not impact the appearance and can give developers a lot of support :)
 				
 				<!--Footer-->
 <footer class="mdl-mini-footer" id="bottom">
-	
+
 	
 		<!-- Paradox Footer Left Section -->
 		<div class="mdl-mini-footer--left-section sns-list">
@@ -710,27 +755,28 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 		<!--Copyright-->
-		<div id="copyright">Copyright&nbsp;©&nbsp;<script type="text/javascript">var fd = new Date();document.write(fd.getFullYear());</script>&nbsp;Raintone</div>
-
+		<div id="copyright">CopyLeft&nbsp;©&nbsp;<script type="text/javascript">var fd = new Date();document.write(fd.getFullYear());</script>&nbsp;Raintone</div>
 		<!-- Paradox Footer Right Section -->
 
-		<!-- 
+		<!--
 		I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright.
 		It will not impact the appearance and can give developers a lot of support :)
 
 		很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
-		它不会影响美观并可以给开发者很大的支持。 :) 
+		它不会影响美观并可以给开发者很大的支持。 :)
 		-->
 
 		<div class="mdl-mini-footer--right-section">
 			<div>
 				<div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
 				<div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+				<div class="footer-develop-div">Base on <a href="https://github.com" target="_blank" class="footer-develop-a">Github</a></div>
 			</div>
 		</div>
 	
-    
+
 </footer>
+
                 
 				<!-- Import File -->
 <script src="/js/highlight.min.js"></script>
