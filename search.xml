@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title><![CDATA[Java 编写一个 黑车司机发车器]]></title>
+      <url>%2F2016%2F12%2F25%2FBlackCarDriver%2F</url>
+      <content type="text"><![CDATA[灵感来源于：晨旭的博客的虚假磁力链接生成器 既然是发的黑车，磁力链接那套就不必仔细研究了， 磁力链接其实类似于这样（下面的这个是真车）： 1magnet:?xt=urn:btih:3AEA94481B0A406C66083F14C6F42635C14562C2 说白了就是随机填充 40 个字母或数字，不过有一定几率会发出真车。 代码实现： 1234567891011121314151617181920212223242526 public class OldDrier &#123; public static void main(String[] args) &#123; java.util.Scanner input = new java.util.Scanner(System.in); System.out.println("黑车司机虚假磁力链接发车器"); System.out.print("输入需要发的黑车数量："); int ljs = input.nextInt(); for (int i=1;i&lt;=ljs;i++)&#123; System.out.println("magnet:?xt=urn:btih:"+CLSC()); //调用 CLSC 函数，获取 40 个随机生成的字符串（CLSC指 磁力生成） &#125; &#125; public static String CLSC()&#123; String cllj = ""; String randomchar; String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; for (int i=0;i&lt;40;i++)&#123; int RandomNumber = (int)(Math.random()*35); //随机生成一个范围在 [0,35] 的数字 randomchar = "" + chars.charAt(RandomNumber); //随机选择一个字符，字符位置由上一步随机数字决定 cllj = cllj+randomchar; //将随机字符附到 cllj 字符串上，重复 40 次 &#125; return cllj; &#125;&#125; 运行效果：1234567黑车司机虚假磁力链接发车器输入需要发的黑车数量：5magnet:?xt=urn:btih:RIFMRT6XKGNDB0CQSRVP4UMLEJINPF8J4I7SDJ8Qmagnet:?xt=urn:btih:LGQAICHHEMG0JMBZ6833JUIX3UPZ0TLZCGBCN3L7magnet:?xt=urn:btih:V4HXBUKLVN7I1QMI4KYC0ZIFBU1OWWK42BBX3ZUEmagnet:?xt=urn:btih:YD4I81U68DX2UNM467RU7KVHJ2VN4MZN0778NQZGmagnet:?xt=urn:btih:IM05TYYUOP6SW1QSDBFKXVB8LRGT6LP23OO347CM 扶额，上面的好像真的都是黑车。]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[博客现已开启 https 支持并加快了国内访问速度]]></title>
       <url>%2F2016%2F12%2F25%2FBloghttps%2F</url>
       <content type="text"><![CDATA[昨天和唐门换友链的时候，他说我博客打开太慢了，也是，毕竟用的 Github ，国内并不是一个最优选择 今天将博客同时部署于 Coding ，国内访问速度应该会有所提升（部分地区会出现 DNS 错误，请等待 DNS 服务器刷新），CodingPages 支持 https 访问。部分文章可能因为有 http 资源，所以小绿锁不会亮，不要在意这些细节。]]></content>
