@@ -1,0 +1,342 @@
+<head>
+<style class="cp-pen-styles">@import url(https://fonts.googleapis.com/css?family=Roboto:500,700);
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  margin: 20px;
+  color: #435757;
+  background: -webkit-linear-gradient(110deg, #d0b782 20%, #a0cecf 80%);
+  background: linear-gradient(-20deg, #d0b782 20%, #a0cecf 80%);
+  font: 500 1.2em/1.2 微软雅黑,'Roboto', sans-serif;
+}
+
+.container {
+  max-width: 450px;
+  margin: 0 auto;
+  border-top: 5px solid #435757;
+  background-color: rgba(255, 255, 255, .2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+h1 {
+  margin: 0;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, .4);
+  font-size: 1.8em;
+  text-align: center;
+}
+
+.items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 20px;
+  counter-reset: done-items undone-items;
+}
+
+h2 {
+  position: relative;
+  margin: 0;
+  padding: 10px 0;
+  font-size: 1.2em;
+}
+
+h2::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: -20px;
+  width: 5px;
+  background-color: #435757;
+}
+
+h2::after {
+  display: block;
+  float: right;
+  font-weight: normal;
+}
+
+.done {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+
+.done::after {
+  content: ' (' counter(done-items) ')';
+}
+
+.undone {
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
+}
+
+.undone::after {
+  content: ' (' counter(undone-items) ')';
+}
+
+/* hide inputs offscreen, but at the same vertical positions as the correpsonding labels, so that tabbing scrolls the viewport as expected */
+input {
+  display: block;
+  height: 53px;
+  margin: 0 0 -53px -9999px;
+  -webkit-box-ordinal-group: 5;
+      -ms-flex-order: 4;
+          order: 4;
+  outline: none;
+  counter-increment: undone-items;
+}
+
+input:checked {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+  counter-increment: done-items;
+}
+
+label {
+  display: block;
+  position: relative;
+  padding: 15px 0 15px 45px;
+  border-top: 1px dashed #fff;
+  -webkit-box-ordinal-group: 5;
+      -ms-flex-order: 4;
+          order: 4;
+  cursor: pointer;
+  -webkit-animation: undone .5s;
+          animation: undone .5s;
+}
+
+label::before {
+  content: '\f10c'; /* circle outline */
+  display: block;
+  position: absolute;
+  top: 11px;
+  left: 10px;
+  font: 1.5em 'FontAwesome';
+}
+
+label:hover, input:focus + label {
+  background-color: rgba(255, 255, 255, .2);
+}
+
+input:checked + label {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+  -webkit-animation: done .5s;
+          animation: done .5s;
+}
+
+input:checked + label::before {
+  content: '\f058'; /* circle checkmark */
+}
+
+@-webkit-keyframes done {
+  0% {
+    opacity: 0;
+    background-color: rgba(255, 255, 255, .4);
+    -webkit-transform: translateY(20px);
+            transform: translateY(20px);
+  }
+  50% {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, .4);
+  }
+}
+
+@keyframes done {
+  0% {
+    opacity: 0;
+    background-color: rgba(255, 255, 255, .4);
+    -webkit-transform: translateY(20px);
+            transform: translateY(20px);
+  }
+  50% {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, .4);
+  }
+}
+
+@-webkit-keyframes undone {
+  0% {
+    opacity: 0;
+    background-color: rgba(255, 255, 255, .4);
+    -webkit-transform: translateY(-20px);
+            transform: translateY(-20px);
+  }
+  50% {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, .4);
+  }
+}
+
+@keyframes undone {
+  0% {
+    opacity: 0;
+    background-color: rgba(255, 255, 255, .4);
+    -webkit-transform: translateY(-20px);
+            transform: translateY(-20px);
+  }
+  50% {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, .4);
+  }
+}</style></head>
+
+
+<body>
+<div class="container">
+  <h1>41621P</h1>
+  <div class="items">
+    <input id="item1" type="checkbox" checked>
+    <label for="item1">01  曾昌云
+</label>
+
+    <input id="item2" type="checkbox">
+    <label for="item2">02  郁国荣
+</label>
+
+    <input id="item3" type="checkbox">
+    <label for="item3">03  芦萌</label>
+
+    <input id="item4" type="checkbox">
+    <label for="item4">04  王亚莉</label>
+
+    <input id="item5" type="checkbox">
+    <label for="item5">05  郑艳丽</label>
+
+    <input id="item6" type="checkbox">
+    <label for="item6">06  蔡靓</label>
+
+    <input id="item7" type="checkbox">
+    <label for="item7">07  杨婷</label>
+
+    <input id="item8" type="checkbox">
+    <label for="item8">08  吴晓琴</label>
+
+    <input id="item9" type="checkbox">
+    <label for="item9">09  梁霜琴</label>
+
+    <input id="item10" type="checkbox">
+    <label for="item10">10  张楠</label>
+
+    <input id="item11" type="checkbox">
+    <label for="item11">11  张睿</label>
+
+    <input id="item12" type="checkbox">
+    <label for="item12">12  臧寿江</label>
+
+    <input id="item13" type="checkbox">
+    <label for="item13">13  付超</label>
+
+    <input id="item14" type="checkbox">
+    <label for="item14">14  张云</label>
+
+    <input id="item15" type="checkbox">
+    <label for="item15">15  徐斌斌</label>
+
+    <input id="item16" type="checkbox">
+    <label for="item16">16  姚福伟</label>
+
+    <input id="item17" type="checkbox">
+    <label for="item17">17  陈威</label>
+
+    <input id="item18" type="checkbox">
+    <label for="item18">18  吴明泽</label>
+
+    <input id="item19" type="checkbox">
+    <label for="item19">19  王平聪</label>
+
+    <input id="item20" type="checkbox">
+    <label for="item20">20  范鸣</label>
+
+    <input id="item21" type="checkbox">
+    <label for="item21">21  王乐</label>
+
+    <input id="item22" type="checkbox">
+    <label for="item22">22  周宇</label>
+
+    <input id="item23" type="checkbox">
+    <label for="item23">23  白洪荣</label>
+
+    <input id="item24" type="checkbox">
+    <label for="item24">24  丁艳辉</label>
+
+    <input id="item25" type="checkbox">
+    <label for="item25">25  余中华</label>
+
+    <input id="item26" type="checkbox">
+    <label for="item26">26  高鸿霖</label>
+
+    <input id="item27" type="checkbox">
+    <label for="item27">27  董亚萍</label>
+
+    <input id="item28" type="checkbox">
+    <label for="item28">28  郑童</label>
+
+    <input id="item29" type="checkbox">
+    <label for="item29">29  张惠寅</label>
+
+    <input id="item30" type="checkbox">
+    <label for="item30">30  周吉</label>
+
+    <input id="item31" type="checkbox">
+    <label for="item31">31  淡占鑫</label>
+
+    <input id="item32" type="checkbox">
+    <label for="item32">32  李天云</label>
+
+    <input id="item33" type="checkbox">
+    <label for="item33">33  李浩</label>
+
+    <input id="item34" type="checkbox">
+    <label for="item34">34  聂非非</label>
+
+    <input id="item35" type="checkbox">
+    <label for="item35">35  董化成</label>
+
+    <input id="item36" type="checkbox">
+    <label for="item36">36  董俊斌</label>
+
+    <input id="item37" type="checkbox">
+    <label for="item37">37  李树杰</label>
+
+    <input id="item38" type="checkbox">
+    <label for="item38">38  汤海</label>
+
+    <input id="item39" type="checkbox">
+    <label for="item39">39  孙杨洋</label>
+
+    <input id="item40" type="checkbox">
+    <label for="item40">40  夏杰</label>
+
+    <input id="item41" type="checkbox">
+    <label for="item41">41  肖博文</label>
+
+    <input id="item42" type="checkbox">
+    <label for="item42">42  袁作超</label>
+
+    <h2 class="done" aria-hidden="true">已到</h2>
+    <h2 class="undone" aria-hidden="true">未到</h2>
+  </div>
+</div>
+</body>
