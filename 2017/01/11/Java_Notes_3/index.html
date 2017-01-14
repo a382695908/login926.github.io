@@ -4,7 +4,7 @@
     <!-- Title -->
     
     <title>
-        嗯，送了罐可乐 | Raintone
+        Java 多维数组小实践 —— 选择题测验评分程序 | Raintone
     </title>
     
     <!-- Favicons -->
@@ -40,7 +40,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://login926.top">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="嗯，送了罐可乐 | Raintone">
+    <meta property="og:title" content="Java 多维数组小实践 —— 选择题测验评分程序 | Raintone">
     <meta property="og:description" content="↑ 智障青年">
     
      <!--[if lte IE 9]>
@@ -212,7 +212,7 @@
 	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
 		for="post-toc-trigger-btn">
 			
-			
+			<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#分析："><span class="post-toc-number">1.</span> <span class="post-toc-text">分析：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-程序总体分为三个部分："><span class="post-toc-number">1.0.0.1.</span> <span class="post-toc-text">1.程序总体分为三个部分：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-代码注意点："><span class="post-toc-number">1.0.0.2.</span> <span class="post-toc-text">2.代码注意点：</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">2.</span> <span class="post-toc-text">总结</span></a></li></ol>
 		
 <!--			<li class="mdl-menu__item">Some Action</li>-->
 	</ul>
@@ -221,8 +221,9 @@
 
 <!-- Layouts -->
 
-    <!-- Hidden Page -->
-	<div class="material-post_container">
+    <!-- Post Module -->
+    <div class="material-post_container">
+		
         <div class="material-post mdl-grid">
             <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
 
@@ -230,22 +231,11 @@
                 
 	<!-- Paradox Post Header -->
 	
-		
-			<!-- Random Thumbnail -->
-			<div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-				<script>
-    
-    var randomNum;
-    randomNum = Math.floor(Math.random() * 10 + 1);
-    
-    $(".post_thumbnail-random").css('background-image', 'url(' + '/img/random/' + randomNum + '.png' + ')');
-    
-</script>
-
-		
+		<!-- Custom Thumbnail -->
+		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(https://ooo.0o0.ooo/2016/12/25/585f464095428.jpg)">
 	
         <p class="article-headline-p">
-            嗯，送了罐可乐
+            Java 多维数组小实践 —— 选择题测验评分程序
         </p>
     </div>
 
@@ -263,7 +253,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Login926</strong>
-        <span>6月 27, 2016</span>
+        <span>1月 11, 2017</span>
     </div>
     
     <div class="section-spacer"></div>
@@ -283,7 +273,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/我想和你一起去虐狗/">我想和你一起去虐狗</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/生活/">生活</a>
+        <a class="post_tag-link" href="/tags/Java/">Java</a>
     </ul>
     
     <!-- Share -->
@@ -307,21 +297,21 @@
     
     
     <!-- Share Twitter -->
-    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=嗯，送了罐可乐&url=http://login926.top//2016/06/27/Cola/index.html&via=Login926" target="_blank">
+    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Java 多维数组小实践 —— 选择题测验评分程序&url=http://login926.top//2017/01/11/Java_Notes_3/index.html&via=Login926" target="_blank">
         <li class="mdl-menu__item">
             分享到 Twitter
         </li>
     </a>
     
     <!-- Share Google+ -->
-    <a class="post_share-link" href="https://plus.google.com/share?url=http://login926.top//2016/06/27/Cola/index.html" target="_blank">
+    <a class="post_share-link" href="https://plus.google.com/share?url=http://login926.top//2017/01/11/Java_Notes_3/index.html" target="_blank">
         <li class="mdl-menu__item">
             分享到 Google+
         </li>
     </a>
     
     <!-- Share Weibo -->
-    <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=嗯，送了罐可乐&url=http://login926.top//2016/06/27/Cola/index.html&pic=&searchPic=false&style=simple" target="_blank">
+    <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Java 多维数组小实践 —— 选择题测验评分程序&url=http://login926.top//2017/01/11/Java_Notes_3/index.html&pic=&searchPic=false&style=simple" target="_blank">
         <li class="mdl-menu__item">
             分享到微博
         </li>
@@ -330,15 +320,30 @@
 </div>
 				
 
-                <!-- Post Hidden -->
-				<div id="post-content">
-					<p>私密文章，不给你看</p>
-				</div>
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+	
+		<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>要求：编写一个程序，可以对多名学生的选择题答案与正确答案比对，并统计出正确个数。</p>
+<hr>
+<h1 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h1><h4 id="1-程序总体分为三个部分："><a href="#1-程序总体分为三个部分：" class="headerlink" title="1.程序总体分为三个部分："></a>1.程序总体分为三个部分：</h4><p>1.学生回答录入<br>2.正确答案录入<br>3.判断学生答案与正确答案并统计数据</p>
+<h4 id="2-代码注意点："><a href="#2-代码注意点：" class="headerlink" title="2.代码注意点："></a>2.代码注意点：</h4><p>1.选择题录入的都是 ABCD 等字符串，需要使用 String 数组<br>2.String 类型比较应当使用字符串中的  <code>.equals()</code>函数<br>3.多维数组中注意循环嵌套不能乱</p>
+<hr>
+<p>代码实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">import java.util.Scanner;</div><div class="line">public class LoginTest &#123;</div><div class="line">	public static void main (String[] args)&#123;</div><div class="line">		String[] rig = getRigAnswer();</div><div class="line">		String[][] stu = getStuAnswer();</div><div class="line">		for(int i =0;i&lt;stu.length;i++)&#123;</div><div class="line">			System.out.print(i+1);</div><div class="line">			System.out.println(&quot;号回答正确数：&quot;+getRightCount(stu,rig,i));</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">// 学生回答录入</div><div class="line">	public static String[][] getStuAnswer()&#123;</div><div class="line">			Scanner input = new Scanner(System.in);</div><div class="line">			String[][] m = new String[3][4];</div><div class="line">			for(int i =0;i&lt;m.length;i++)&#123;</div><div class="line">				System.out.print(i+1);</div><div class="line">				System.out.println(&quot;号作答&quot;);</div><div class="line">				for(int j = 0;j&lt;m[i].length;j++)&#123;</div><div class="line">					m[i][j] = input.next();</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			return m;</div><div class="line">	&#125;</div><div class="line">// 正确答案录入</div><div class="line">	public static String[] getRigAnswer()&#123;</div><div class="line">		String[] m = new String[4];</div><div class="line">		Scanner input = new Scanner(System.in);</div><div class="line">		System.out.println(&quot;现在输入正确回答：&quot;);</div><div class="line">		for (int i =0;i&lt;m.length;i++)&#123;</div><div class="line">			m[i] = input.next();</div><div class="line">		&#125;</div><div class="line">		return m;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">// 判断并计数</div><div class="line">	public static int getRightCount(String[][] stu,String[] rig,int i)&#123;</div><div class="line">// 调用三个参数：学生回答、正确回答、学生编号</div><div class="line">		int count = 0;</div><div class="line">			for(int j = 0;j&lt;stu[i].length;j++)&#123;</div><div class="line">				if (stu[i][j].equals(rig[j]))&#123;</div><div class="line">//使用 equals() 函数，如果使用 == 比较结果会出错</div><div class="line">					count++;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		return count;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>运行效果：<br><img src="http://upload-images.jianshu.io/upload_images/971576-a3b3968a6a3224fb.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<hr>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>第一次编写完成，出现了所有学生成绩一样的 bug ，后经调试发现，<code>getRightCount</code> 方法少调用了一个参数。</p>
+
+	
+	
+	
+	
+</div>
 				
 				
 
                 <!-- Post Comments -->
                 
+                    
     <!-- 使用多说评论 -->
     <link rel="stylesheet" href="/css/duoshuo.min.css">
 <style>
@@ -355,14 +360,15 @@
 <div id="comments">
     <!-- 多说评论框 start -->
         <div class="ds-thread" 
-            data-thread-key="2016/06/27/Cola/" 
-            data-url="http://login926.top/2016/06/27/Cola/"
-            data-title="嗯，送了罐可乐"></div>
+            data-thread-key="2017/01/11/Java_Notes_3/" 
+            data-url="http://login926.top/2017/01/11/Java_Notes_3/"
+            data-title="Java 多维数组小实践 —— 选择题测验评分程序"></div>
     <!-- 多说评论框 end -->
 </div>
 
 
 
+                
             </div>
 
             <!-- Post Prev & Next Nav -->
@@ -370,21 +376,13 @@
     
     <!-- Prev Nav -->
     
-        <a href="/2016/07/03/Baidu_Fiddler/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            前滚翻
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2016/06/23/Graduation/" id="post_nav-older" class="next-content">
+        <a href="/2016/12/31/2017NewYear/" id="post_nav-older" class="next-content">
             后滚翻
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
@@ -395,7 +393,6 @@
 </nav>
         </div>
     </div>
-
 
 				
 				

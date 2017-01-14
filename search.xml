@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title><![CDATA[Java 多维数组小实践 —— 选择题测验评分程序]]></title>
+      <url>%2F2017%2F01%2F11%2FJava_Notes_3%2F</url>
+      <content type="text"><![CDATA[要求：编写一个程序，可以对多名学生的选择题答案与正确答案比对，并统计出正确个数。 分析：1.程序总体分为三个部分：1.学生回答录入2.正确答案录入3.判断学生答案与正确答案并统计数据 2.代码注意点：1.选择题录入的都是 ABCD 等字符串，需要使用 String 数组2.String 类型比较应当使用字符串中的 .equals()函数3.多维数组中注意循环嵌套不能乱 代码实现：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849import java.util.Scanner;public class LoginTest &#123; public static void main (String[] args)&#123; String[] rig = getRigAnswer(); String[][] stu = getStuAnswer(); for(int i =0;i&lt;stu.length;i++)&#123; System.out.print(i+1); System.out.println(&quot;号回答正确数：&quot;+getRightCount(stu,rig,i)); &#125; &#125;// 学生回答录入 public static String[][] getStuAnswer()&#123; Scanner input = new Scanner(System.in); String[][] m = new String[3][4]; for(int i =0;i&lt;m.length;i++)&#123; System.out.print(i+1); System.out.println(&quot;号作答&quot;); for(int j = 0;j&lt;m[i].length;j++)&#123; m[i][j] = input.next(); &#125; &#125; return m; &#125;// 正确答案录入 public static String[] getRigAnswer()&#123; String[] m = new String[4]; Scanner input = new Scanner(System.in); System.out.println(&quot;现在输入正确回答：&quot;); for (int i =0;i&lt;m.length;i++)&#123; m[i] = input.next(); &#125; return m; &#125;// 判断并计数 public static int getRightCount(String[][] stu,String[] rig,int i)&#123;// 调用三个参数：学生回答、正确回答、学生编号 int count = 0; for(int j = 0;j&lt;stu[i].length;j++)&#123; if (stu[i][j].equals(rig[j]))&#123;//使用 equals() 函数，如果使用 == 比较结果会出错 count++; &#125; &#125; return count; &#125;&#125; 运行效果： 总结第一次编写完成，出现了所有学生成绩一样的 bug ，后经调试发现，getRightCount 方法少调用了一个参数。]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[2017]]></title>
       <url>%2F2016%2F12%2F31%2F2017NewYear%2F</url>
       <content type="text"><![CDATA[新年快乐！ 过去的一年中经历了高中到大学的转变，从无锡来到了南京，毕竟原打算去齐齐哈尔来着。回想起 15 的这个时候，应该还在做卷子吧。一切正是这样，是预想却也不是预想。做一点微小的总结吧： Aim Situation 高考达到 15 年二本线 310 分 Complete 去表白 Complete BMI &lt; 25 Close to 去谈恋爱 Fail 去二本院校就读 Fail 独立组装一台电脑 Complete 成为 Lumia 手机用户 Complete 最好的感觉，是有人懂你的欲言又止。]]></content>
