@@ -1,209 +1,983 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   
+  
     
     <entry>
       <title><![CDATA[Java 多维数组小实践 —— 选择题测验评分程序]]></title>
-      <url>%2F2017%2F01%2F11%2FJava_Notes_3%2F</url>
-      <content type="text"><![CDATA[要求：编写一个程序，可以对多名学生的选择题答案与正确答案比对，并统计出正确个数。 分析：1.程序总体分为三个部分：1.学生回答录入2.正确答案录入3.判断学生答案与正确答案并统计数据 2.代码注意点：1.选择题录入的都是 ABCD 等字符串，需要使用 String 数组2.String 类型比较应当使用字符串中的 .equals()函数3.多维数组中注意循环嵌套不能乱 代码实现：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849import java.util.Scanner;public class LoginTest &#123; public static void main (String[] args)&#123; String[] rig = getRigAnswer(); String[][] stu = getStuAnswer(); for(int i =0;i&lt;stu.length;i++)&#123; System.out.print(i+1); System.out.println(&quot;号回答正确数：&quot;+getRightCount(stu,rig,i)); &#125; &#125;// 学生回答录入 public static String[][] getStuAnswer()&#123; Scanner input = new Scanner(System.in); String[][] m = new String[3][4]; for(int i =0;i&lt;m.length;i++)&#123; System.out.print(i+1); System.out.println(&quot;号作答&quot;); for(int j = 0;j&lt;m[i].length;j++)&#123; m[i][j] = input.next(); &#125; &#125; return m; &#125;// 正确答案录入 public static String[] getRigAnswer()&#123; String[] m = new String[4]; Scanner input = new Scanner(System.in); System.out.println(&quot;现在输入正确回答：&quot;); for (int i =0;i&lt;m.length;i++)&#123; m[i] = input.next(); &#125; return m; &#125;// 判断并计数 public static int getRightCount(String[][] stu,String[] rig,int i)&#123;// 调用三个参数：学生回答、正确回答、学生编号 int count = 0; for(int j = 0;j&lt;stu[i].length;j++)&#123; if (stu[i][j].equals(rig[j]))&#123;//使用 equals() 函数，如果使用 == 比较结果会出错 count++; &#125; &#125; return count; &#125;&#125; 运行效果： 总结第一次编写完成，出现了所有学生成绩一样的 bug ，后经调试发现，getRightCount 方法少调用了一个参数。]]></content>
+      <url>http://login926.top/2017/01/11/Java_Notes_3/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>要求：编写一个程序，可以对多名学生的选择题答案与正确答案比对，并统计出正确个数。</p>
+<hr>
+<h1 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h1><h4 id="1-程序总体分为三个部分："><a href="#1-程序总体分为三个部分：" class="headerlink" title="1.程序总体分为三个部分："></a>1.程序总体分为三个部分：</h4><p>1.学生回答录入<br>2.正确答案录入<br>3.判断学生答案与正确答案并统计数据</p>
+<h4 id="2-代码注意点："><a href="#2-代码注意点：" class="headerlink" title="2.代码注意点："></a>2.代码注意点：</h4><p>1.选择题录入的都是 ABCD 等字符串，需要使用 String 数组<br>2.String 类型比较应当使用字符串中的  <code>.equals()</code>函数<br>3.多维数组中注意循环嵌套不能乱</p>
+<hr>
+<p>代码实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">import java.util.Scanner;</div><div class="line">public class LoginTest &#123;</div><div class="line">	public static void main (String[] args)&#123;</div><div class="line">		String[] rig = getRigAnswer();</div><div class="line">		String[][] stu = getStuAnswer();</div><div class="line">		for(int i =0;i&lt;stu.length;i++)&#123;</div><div class="line">			System.out.print(i+1);</div><div class="line">			System.out.println(&quot;号回答正确数：&quot;+getRightCount(stu,rig,i));</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">// 学生回答录入</div><div class="line">	public static String[][] getStuAnswer()&#123;</div><div class="line">			Scanner input = new Scanner(System.in);</div><div class="line">			String[][] m = new String[3][4];</div><div class="line">			for(int i =0;i&lt;m.length;i++)&#123;</div><div class="line">				System.out.print(i+1);</div><div class="line">				System.out.println(&quot;号作答&quot;);</div><div class="line">				for(int j = 0;j&lt;m[i].length;j++)&#123;</div><div class="line">					m[i][j] = input.next();</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			return m;</div><div class="line">	&#125;</div><div class="line">// 正确答案录入</div><div class="line">	public static String[] getRigAnswer()&#123;</div><div class="line">		String[] m = new String[4];</div><div class="line">		Scanner input = new Scanner(System.in);</div><div class="line">		System.out.println(&quot;现在输入正确回答：&quot;);</div><div class="line">		for (int i =0;i&lt;m.length;i++)&#123;</div><div class="line">			m[i] = input.next();</div><div class="line">		&#125;</div><div class="line">		return m;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">// 判断并计数</div><div class="line">	public static int getRightCount(String[][] stu,String[] rig,int i)&#123;</div><div class="line">// 调用三个参数：学生回答、正确回答、学生编号</div><div class="line">		int count = 0;</div><div class="line">			for(int j = 0;j&lt;stu[i].length;j++)&#123;</div><div class="line">				if (stu[i][j].equals(rig[j]))&#123;</div><div class="line">//使用 equals() 函数，如果使用 == 比较结果会出错</div><div class="line">					count++;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		return count;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>运行效果：<br><img src="http://upload-images.jianshu.io/upload_images/971576-a3b3968a6a3224fb.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<hr>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>第一次编写完成，出现了所有学生成绩一样的 bug ，后经调试发现，<code>getRightCount</code> 方法少调用了一个参数。</p>
+]]></content>
     </entry>
-
     
     <entry>
       <title><![CDATA[2017]]></title>
-      <url>%2F2016%2F12%2F31%2F2017NewYear%2F</url>
-      <content type="text"><![CDATA[新年快乐！ 过去的一年中经历了高中到大学的转变，从无锡来到了南京，毕竟原打算去齐齐哈尔来着。回想起 15 的这个时候，应该还在做卷子吧。一切正是这样，是预想却也不是预想。做一点微小的总结吧： Aim Situation 高考达到 15 年二本线 310 分 Complete 去表白 Complete BMI &lt; 25 Close to 去谈恋爱 Fail 去二本院校就读 Fail 独立组装一台电脑 Complete 成为 Lumia 手机用户 Complete 最好的感觉，是有人懂你的欲言又止。]]></content>
+      <url>http://login926.top/2016/12/31/2017NewYear/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>新年快乐！</p>
+<a id="more"></a>
+<p>过去的一年中经历了高中到大学的转变，从无锡来到了南京，毕竟原打算去齐齐哈尔来着。<br>回想起 15 的这个时候，应该还在做卷子吧。<br>一切正是这样，是预想却也不是预想。<br>做一点微小的总结吧：</p>
+<table>
+<thead>
+<tr>
+<th>Aim</th>
+<th>Situation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>高考达到 15 年二本线 310 分</td>
+<td>Complete</td>
+</tr>
+<tr>
+<td>去表白</td>
+<td>Complete</td>
+</tr>
+<tr>
+<td>BMI &lt; 25</td>
+<td>Close to</td>
+</tr>
+<tr>
+<td>去谈恋爱</td>
+<td>Fail</td>
+</tr>
+<tr>
+<td>去二本院校就读</td>
+<td>Fail</td>
+</tr>
+<tr>
+<td>独立组装一台电脑</td>
+<td>Complete</td>
+</tr>
+<tr>
+<td>成为 Lumia 手机用户</td>
+<td>Complete</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><em>最好的感觉，是有人懂你的欲言又止。</em></p>
+</blockquote>
+]]></content>
     </entry>
-
     
     <entry>
       <title><![CDATA[NA 对比图]]></title>
-      <url>%2F2016%2F12%2F29%2FNACompare%2F</url>
-      <content type="text"><![CDATA[不用谢我[滑稽]]]></content>
+      <url>http://login926.top/2016/12/29/NACompare/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>不用谢我[滑稽]<br><a id="more"></a><br><img src="https://ooo.0o0.ooo/2016/12/25/585f466dc0d24.jpg" alt=""></p>
+]]></content>
     </entry>
-
     
     <entry>
       <title><![CDATA[Java 编写一个 黑车司机发车器]]></title>
-      <url>%2F2016%2F12%2F25%2FBlackCarDriver%2F</url>
-      <content type="text"><![CDATA[灵感来源于：晨旭的博客的虚假磁力链接生成器 既然是发的黑车，磁力链接那套就不必仔细研究了， 磁力链接其实类似于这样（下面的这个是真车）： 1magnet:?xt=urn:btih:3AEA94481B0A406C66083F14C6F42635C14562C2 说白了就是随机填充 40 个字母或数字，不过有一定几率会发出真车。 代码实现： 123456789101112131415161718192021222324252627 public class OldDrier &#123; public static void main(String[] args) &#123; java.util.Scanner input = new java.util.Scanner(System.in); System.out.println("黑车司机虚假磁力链接发车器"); System.out.print("输入需要发的黑车数量："); int ljs = input.nextInt(); for (int i=1;i&lt;=ljs;i++)&#123; System.out.println("magnet:?xt=urn:btih:"+CLSC());/*调用 CLSC 函数，获取 40 个随机生成的字符串（CLSC指 磁力生成）*/ &#125; &#125; public static String CLSC()&#123; String cllj = ""; String randomchar; String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; for (int i=0;i&lt;40;i++)&#123; int RandomNumber = (int)(Math.random()*35);/*随机生成一个范围在 [0,35] 的数字*/ randomchar = "" + chars.charAt(RandomNumber);/*随机选择一个字符，字符位置由上一步随机数字决定*/ cllj = cllj+randomchar;/*将随机字符附到 cllj 字符串上，重复 40 次*/ &#125; return cllj; &#125;&#125; 运行效果：1234567黑车司机虚假磁力链接发车器输入需要发的黑车数量：5magnet:?xt=urn:btih:RIFMRT6XKGNDB0CQSRVP4UMLEJINPF8J4I7SDJ8Qmagnet:?xt=urn:btih:LGQAICHHEMG0JMBZ6833JUIX3UPZ0TLZCGBCN3L7magnet:?xt=urn:btih:V4HXBUKLVN7I1QMI4KYC0ZIFBU1OWWK42BBX3ZUEmagnet:?xt=urn:btih:YD4I81U68DX2UNM467RU7KVHJ2VN4MZN0778NQZGmagnet:?xt=urn:btih:IM05TYYUOP6SW1QSDBFKXVB8LRGT6LP23OO347CM 扶额，上面的好像真的都是黑车。]]></content>
+      <url>http://login926.top/2016/12/25/BlackCarDriver/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>灵感来源于：<a href="https://www.chenxublog.com/" target="_blank" rel="external">晨旭的博客</a>的<a href="https://www.chenxublog.com/2016/04/09/%E8%99%9A%E5%81%87%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5%E7%94%9F%E6%88%90%E5%99%A8.html" target="_blank" rel="external">虚假磁力链接生成器</a><br> <a id="more"></a></p>
+<p> 既然是发的黑车，磁力链接那套就不必仔细研究了，<br> 磁力链接其实类似于这样（下面的这个是真车）：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">magnet:?xt=urn:btih:3AEA94481B0A406C66083F14C6F42635C14562C2</div></pre></td></tr></table></figure></p>
+<p> 说白了就是随机填充 40 个字母或数字，不过有一定几率会发出真车。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="https://ooo.0o0.ooo/2016/12/25/585f760101362.png" height="300" width="300"></h2><p> 代码实现：<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OldDrier</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		java.util.Scanner input = <span class="keyword">new</span> java.util.Scanner(System.in);</div><div class="line">		System.out.println(<span class="string">"黑车司机虚假磁力链接发车器"</span>);</div><div class="line">		System.out.print(<span class="string">"输入需要发的黑车数量："</span>);</div><div class="line">		<span class="keyword">int</span> ljs = input.nextInt();</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=ljs;i++)&#123;</div><div class="line">			System.out.println(<span class="string">"magnet:?xt=urn:btih:"</span>+CLSC());</div><div class="line"><span class="comment">/*调用 CLSC 函数，获取 40 个随机生成的字符串（CLSC指 磁力生成）*/</span></div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">CLSC</span><span class="params">()</span></span>&#123;</div><div class="line">		String cllj = <span class="string">""</span>;</div><div class="line">		String randomchar;</div><div class="line">		String chars = <span class="string">"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"</span>;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">40</span>;i++)&#123;</div><div class="line">			<span class="keyword">int</span> RandomNumber = (<span class="keyword">int</span>)(Math.random()*<span class="number">35</span>);</div><div class="line"><span class="comment">/*随机生成一个范围在 [0,35] 的数字*/</span></div><div class="line">			randomchar = <span class="string">""</span> + chars.charAt(RandomNumber);</div><div class="line"><span class="comment">/*随机选择一个字符，字符位置由上一步随机数字决定*/</span></div><div class="line">			cllj = cllj+randomchar;</div><div class="line"><span class="comment">/*将随机字符附到 cllj 字符串上，重复 40 次*/</span></div><div class="line"></div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> cllj;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>运行效果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">黑车司机虚假磁力链接发车器</div><div class="line">输入需要发的黑车数量：5</div><div class="line">magnet:?xt=urn:btih:RIFMRT6XKGNDB0CQSRVP4UMLEJINPF8J4I7SDJ8Q</div><div class="line">magnet:?xt=urn:btih:LGQAICHHEMG0JMBZ6833JUIX3UPZ0TLZCGBCN3L7</div><div class="line">magnet:?xt=urn:btih:V4HXBUKLVN7I1QMI4KYC0ZIFBU1OWWK42BBX3ZUE</div><div class="line">magnet:?xt=urn:btih:YD4I81U68DX2UNM467RU7KVHJ2VN4MZN0778NQZG</div><div class="line">magnet:?xt=urn:btih:IM05TYYUOP6SW1QSDBFKXVB8LRGT6LP23OO347CM</div></pre></td></tr></table></figure></p>
+<p>扶额，上面的好像真的都是黑车。</p>
+]]></content>
     </entry>
-
     
     <entry>
       <title><![CDATA[博客现已开启 https 支持并加快了国内访问速度]]></title>
-      <url>%2F2016%2F12%2F25%2FBloghttps%2F</url>
-      <content type="text"><![CDATA[昨天和唐门换友链的时候，他说我博客打开太慢了，也是，毕竟用的 Github ，国内并不是一个最优选择 今天将博客同时部署于 Coding ，国内访问速度应该会有所提升（部分地区会出现 DNS 错误，请等待 DNS 服务器刷新），CodingPages 支持 https 访问。部分文章可能因为有 http 资源，所以小绿锁不会亮，不要在意这些细节。]]></content>
+      <url>http://login926.top/2016/12/25/Bloghttps/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>昨天和<a href="https://www.tiexo.cn/" target="_blank" rel="external">唐门</a>换友链的时候，他说我博客打开太慢了，也是，毕竟用的 Github ，国内并不是一个最优选择</p>
+ <a id="more"></a>
+<p>今天将博客同时部署于 Coding ，国内访问速度应该会有所提升（部分地区会出现 DNS 错误，请等待 DNS 服务器刷新），CodingPages 支持 https 访问。部分文章可能因为有 http 资源，所以小绿锁不会亮，不要在意这些细节。</p>
+]]></content>
     </entry>
-
     
     <entry>
       <title><![CDATA[Hexo 博客插入 B 站 html5 播放器]]></title>
-      <url>%2F2016%2F12%2F24%2FBilibilihtml5Player%2F</url>
-      <content type="text"><![CDATA[今年 8 月 15 号左右，B 站推出了 HTML5 播放器，自此，B 站成为国内首个原生支持全平台 HTML5 播放器的视频网站 Hexo 插 B 站的播放器很简单，在 md 文档中插个 iframe 标签就行，aid 和 cid 值需要手动填写，播放器大小可以自己调节： 1&lt;iframe src=&quot;http://www.bilibili.com/html/html5player.html?aid=3521416&amp;cid=6041635&quot; width=&quot;640&quot; height=&quot;480&quot; frameborder=&quot;0&quot; webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt; B 站每个视频都有对应的 aid 和 cid 值，在视频网页的源代码中可以找到，大概在 380 行左右就能看到。 插入成功后就是这样： 博客建了没多久，我一直找一个能对 Hexo 友好的 HTML5 播放器，期间尝试过 Vime、Youtube 等，但是由于不可描述的原因，在国内使用并不现实。后来找到了 DPlayeer 才算告一段落。但是 DPlayer 需要配合 七牛云 一类的外链才能获得最好的体验，对于个人来说，B 站的 HTML5 播放器可能是最好的个人博客播放器。 前些天知悉 B 站 HTML5 播放器核心组件 flv.js 作者每月收入仅 5k 的消息，也挺难过的吧。“Github 上的 star 都比他工资高”也确实太埋没人才了，期待他能找到待遇更好的工作吧。 时光不语, 静待花开]]></content>
-    </entry>
+      <url>http://login926.top/2016/12/24/Bilibilihtml5Player/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>今年 8 月 15 号左右，B 站推出了 HTML5 播放器，自此，B 站成为国内首个原生支持全平台 HTML5 播放器的视频网站</p>
+ <a id="more"></a>
+<p>Hexo 插 B 站的播放器很简单，在 md 文档中插个 iframe 标签就行，aid 和 cid 值需要手动填写，播放器大小可以自己调节：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;iframe src=&quot;http://www.bilibili.com/html/html5player.html?aid=3521416&amp;cid=6041635&quot; width=&quot;640&quot; height=&quot;480&quot; frameborder=&quot;0&quot; webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;</div></pre></td></tr></table></figure>
+<p>B 站每个视频都有对应的 aid 和 cid 值，在视频网页的源代码中可以找到，大概在 380 行左右就能看到。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="http://ww3.sinaimg.cn/large/9a8049afgw1fb1zsjwq71j20b602a0sr.jpg" alt=""></h2><p>插入成功后就是这样：</p>
+<iframe src="http://www.bilibili.com/html/html5player.html?aid=4770523&cid=7741448" width="640" height="480" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
 
+
+<p>博客建了没多久，我一直找一个能对 Hexo 友好的 HTML5 播放器，期间尝试过 Vime、Youtube 等，但是由于不可描述的原因，在国内使用并不现实。后来找到了 DPlayeer 才算告一段落。但是 DPlayer 需要配合 七牛云 一类的外链才能获得最好的体验，对于个人来说，B 站的 HTML5 播放器可能是<strong><em>最好的个人博客播放器</em></strong>。</p>
+<hr>
+<p>前些天知悉 B 站 HTML5 播放器核心组件 flv.js 作者每月收入仅 5k 的消息，也挺难过的吧。“Github 上的 star 都比他工资高”也确实太埋没人才了，期待他能找到待遇更好的工作吧。</p>
+<h3 id="时光不语-静待花开"><a href="#时光不语-静待花开" class="headerlink" title="时光不语, 静待花开"></a>时光不语, 静待花开</h3>]]></content>
+    </entry>
     
     <entry>
       <title><![CDATA[利用 Java 和 Python 分别编写一个计算机原码、反码以及补码计算器]]></title>
-      <url>%2F2016%2F12%2F18%2FComputerCode%2F</url>
-      <content type="text"><![CDATA[对于一个数, 计算机要使用一定的编码方式进行存储。原码, 反码, 补码是机器存储一个具体数字的编码方式。近期学习 Java 和编码知识，正好把两个结合起来。封面是酥饼大人哦，圣诞快乐 原码原码共 8 位，首位为符号位，正数首位为 0 ，负数首位为 1。原数字取绝对值后转换为二进制，用 0 补空，填入剩余七位，最后得到原码。所以取值范围为 [-127,127] 反码正数反码就是原码。负数反码是除符号位外原码取反，即 0 变 1 ，1 变 0 。 补码正数补码就是原码。负数补码在反码的基础上 +1 即可得到。 举几个例子： 十进制数 二进制数 原码 反码 补码 1 1 00000001 00000001 00000001 96 1100000 01100000 01100000 01100000 -3 -11 10000011 11111100 11111101 -107 -1101011 11101011 10010100 10010101 1.Java 实现java 中有现成的函数可以实现十进制转二进制，不过我编程的时候并没有使用，而是使用了循环来进行十进制转二进制，整个程序可以分为三大块，计算二进制和原码、计算反码和计算补码部分，分别使用三个函数可以使程序更为清晰。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102import java.util.Scanner;public class ComputerCode &#123; public static void main(String[] args) &#123; Scanner input = new Scanner(System.in); System.out.println("Java 十进制数原码、反码、补码计算器"); int dec = 0; //一个判断模块，判断输入是否符合要求 do&#123; System.out.println("请输入一个十进制数字（[-127 , 127]范围内）"); dec = input.nextInt(); &#125;while(dec&lt;-127||dec&gt;127); //计算二进制数和原码 int[] YuanM = Dec2Bin(dec); System.out.print(dec+"的二进制原码为:"); for (int i=0;i&lt;YuanM.length;i++)&#123; System.out.print(YuanM[i]); &#125; System.out.println(""); //计算反码 int[] FanM = Fan(YuanM,dec); System.out.print("二进制反码为:"); for (int i=0;i&lt;FanM.length;i++)&#123; System.out.print(FanM[i]); &#125; System.out.println(""); //计算补码 int[] BuM = Bu(YuanM,dec); System.out.print("二进制补码为:"); for (int i=0;i&lt;BuM.length;i++)&#123; System.out.print(BuM[i]); &#125; System.out.println(""); &#125; //计算二进制数和原码函数 public static int[] Dec2Bin(int dec)&#123; int[] Bin =new int[8]; //确定符号位 if (dec &gt;= 0)&#123; Bin[0]=0; &#125; else&#123; Bin[0]=1; //负数取绝对值 dec = dec*(-1); &#125; //用 for 循环完成十进制数字转换为二进制数字 for (int i=0;i&lt;Bin.length-1;i++)&#123; if (dec%2==1)&#123; Bin[7-i]=1; dec = dec/2; &#125; else if (dec%2==0) &#123; Bin[7-i]=0; dec = dec/2; &#125; &#125; return Bin; &#125; //计算反码函数 public static int[] Fan(int[] Yuan,int dec)&#123; //正数原样输出，负数取反 if (dec &lt; 0)&#123; for (int i=1;i&lt;Yuan.length;i++)&#123; if (Yuan[i]==1)&#123; Yuan[i] = 0; &#125; else Yuan[i] = 1; &#125; &#125; return Yuan; &#125; //计算补码函数 public static int[] Bu(int[] Fan,int dec)&#123; //正数原样输出，负数在反码上 +1 if (dec &lt; 0)&#123; //最后一位 +1 （是 +1，不是 +1s) Fan[7]=Fan[7]+1; for (int i=7;i&gt;0;i--)&#123; //判断 +1 后是否符合二进制书写规范，如果 +1 后出现 2 ，则当前位 -2 ，前一位 +1 if (Fan[i]==2)&#123; Fan[i]=Fan[i]-2; Fan[i-1]=Fan[i-1]+1; &#125; &#125; &#125; return Fan; &#125;&#125; 运行效果： 2.Python 实现Python 是在 Java 之前学的，其实有些遗忘，不过 Java 学习一段时间后，发现 Python 和 Java 有很多相似之处，同样是使用三个函数，Java 转 Python 难度并不大，Java 中的注释部分就不再 Python 中重新标注了。 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465#!/usr/bin/env python3# -*- coding: utf-8 -*-print("Python 十进制数原码、反码、补码计算器")decin=128while decin&lt;-127 or decin&gt;127: print ("请输入一个十进制数字（[-127 , 127]范围内）") decin = int(input())def Dec2Bin(dec): bin = [0,0,0,0,0,0,0,0] if dec &gt;= 0: bin[0] = 0 else : bin[0] = 1 dec = -dec i = 0 while i &lt; 7: if (dec%2)==1: bin[7-i] = 1 #这里需要转换一下数据类型，不然会出错，Java 中不需要转换 dec = int(dec/2) else: bin[7-i] = 0 dec = int(dec/2) i=i+1 return binprint(decin,"二进制原码为",end='')for x in Dec2Bin(dec=decin): print(x,end='')def Fan(Yuan,dec): if dec &gt;= 0: return Yuan else : i=1 while i&lt;8: if Yuan[i]==1: Yuan[i] = 0 else: Yuan[i] = 1 i=i+1 return Yuanprint() print("二进制反码为",end='')FanM = Fan(Yuan=Dec2Bin(dec=decin),dec = decin)for x in FanM: print(x,end='')def Bu(Fan,dec): if dec&lt;0: Fan[7]=Fan[7]+1 i = 7 while i&gt;0: if Fan[i]==2: Fan[i]=Fan[i]-2 Fan[i-1]=Fan[i-1]+1 i=i-1 return Fanprint()print("二进制补码为",end='')BuM = Bu(Fan=FanM,dec=decin)for x in BuM: print(x,end='') 小结高中同学刚开学就问我反码的事儿，我当时也是一脸懵逼，现在也算是入了点门。周六寻思着没事儿写了这个计算器，拿 Python 版本的编译了个 exe 给了高中同学，也算是做了一点微小工作（怎么突然就膜起来了呢？）。 前几天整理 《River Flows In You 全版本收集歌单》，想不到…想不到…想不到…一个歌曲作者竟然私信联系我发红包，吼开森。 var aplayer1 = new APlayer({element: document.getElementById("aplayer1"),narrow: false,autoplay: false,showlrc: 0,music : {title: "dodie",author: "River Flows In You (Crystal)",url: "http://p4.music.126.net/40YSKGtz-k4PUJ88yPxaJQ==/109951162824302189.jpg",pic: "http://p2.music.126.net/282EFuEsr8ALASKOax2BRA==/18769762999407029.mp3"}});aplayer1.init(); 圣诞节到了，送你一个苹果吧，希望不要拒收，反正你也不看我博客，你也不知道是谁送的。]]></content>
+      <url>http://login926.top/2016/12/18/ComputerCode/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>对于一个数, 计算机要使用一定的编码方式进行存储。原码, 反码, 补码是机器存储一个具体数字的编码方式。近期学习 Java 和编码知识，正好把两个结合起来。<br>封面是<a href="http://weibo.com/lovesupie" target="_blank" rel="external">酥饼大人</a>哦，圣诞快乐</p>
+<a id="more"></a>
+<h1 id="原码"><a href="#原码" class="headerlink" title="原码"></a>原码</h1><p>原码共 8 位，首位为符号位，正数首位为 0 ，负数首位为 1。<br>原数字取绝对值后转换为二进制，用 0 补空，填入剩余七位，最后得到原码。<br>所以取值范围为 [-127,127]</p>
+<h1 id="反码"><a href="#反码" class="headerlink" title="反码"></a>反码</h1><p>正数反码就是原码。<br>负数反码是除符号位外原码取反，即 0 变 1 ，1 变 0 。</p>
+<h1 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h1><p>正数补码就是原码。<br>负数补码在反码的基础上 +1 即可得到。</p>
+<h3 id="举几个例子："><a href="#举几个例子：" class="headerlink" title="举几个例子："></a>举几个例子：</h3><table>
+<thead>
+<tr>
+<th>十进制数</th>
+<th>二进制数</th>
+<th>原码</th>
+<th>反码</th>
+<th>补码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>00000001</td>
+<td>00000001</td>
+<td>00000001</td>
+</tr>
+<tr>
+<td>96</td>
+<td>1100000</td>
+<td>01100000</td>
+<td>01100000</td>
+<td>01100000</td>
+</tr>
+<tr>
+<td>-3</td>
+<td>-11</td>
+<td>10000011</td>
+<td>11111100</td>
+<td>11111101</td>
+</tr>
+<tr>
+<td>-107</td>
+<td>-1101011</td>
+<td>11101011</td>
+<td>10010100</td>
+<td>10010101</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h1 id="1-Java-实现"><a href="#1-Java-实现" class="headerlink" title="1.Java 实现"></a>1.Java 实现</h1><p>java 中有现成的函数可以实现十进制转二进制，不过我编程的时候并没有使用，而是使用了循环来进行十进制转二进制，整个程序可以分为三大块，计算二进制和原码、计算反码和计算补码部分，分别使用三个函数可以使程序更为清晰。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.Scanner;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ComputerCode</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Scanner input = <span class="keyword">new</span> Scanner(System.in);</div><div class="line">		System.out.println(<span class="string">"Java 十进制数原码、反码、补码计算器"</span>);</div><div class="line">		<span class="keyword">int</span> dec = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="comment">//一个判断模块，判断输入是否符合要求</span></div><div class="line">		<span class="keyword">do</span>&#123;</div><div class="line">		System.out.println(<span class="string">"请输入一个十进制数字（[-127 , 127]范围内）"</span>);</div><div class="line">		dec = input.nextInt();</div><div class="line">		&#125;<span class="keyword">while</span>(dec&lt;-<span class="number">127</span>||dec&gt;<span class="number">127</span>);</div><div class="line"></div><div class="line">    <span class="comment">//计算二进制数和原码</span></div><div class="line">		<span class="keyword">int</span>[] YuanM = Dec2Bin(dec);</div><div class="line">		System.out.print(dec+<span class="string">"的二进制原码为:"</span>);</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;YuanM.length;i++)&#123;</div><div class="line">			System.out.print(YuanM[i]);</div><div class="line">		&#125;</div><div class="line">		System.out.println(<span class="string">""</span>);</div><div class="line"></div><div class="line"></div><div class="line">    <span class="comment">//计算反码</span></div><div class="line">		<span class="keyword">int</span>[] FanM = Fan(YuanM,dec);</div><div class="line">		System.out.print(<span class="string">"二进制反码为:"</span>);</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;FanM.length;i++)&#123;</div><div class="line">			System.out.print(FanM[i]);</div><div class="line">		&#125;</div><div class="line">		System.out.println(<span class="string">""</span>);</div><div class="line"></div><div class="line">    <span class="comment">//计算补码</span></div><div class="line">		<span class="keyword">int</span>[] BuM = Bu(YuanM,dec);</div><div class="line">		System.out.print(<span class="string">"二进制补码为:"</span>);</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;BuM.length;i++)&#123;</div><div class="line">			System.out.print(BuM[i]);</div><div class="line">		&#125;</div><div class="line">		System.out.println(<span class="string">""</span>);</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">  <span class="comment">//计算二进制数和原码函数</span></div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] Dec2Bin(<span class="keyword">int</span> dec)&#123;</div><div class="line">		<span class="keyword">int</span>[] Bin =<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">8</span>];</div><div class="line">      <span class="comment">//确定符号位</span></div><div class="line">			<span class="keyword">if</span> (dec &gt;= <span class="number">0</span>)&#123;</div><div class="line">				Bin[<span class="number">0</span>]=<span class="number">0</span>;</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">else</span>&#123;</div><div class="line">				Bin[<span class="number">0</span>]=<span class="number">1</span>;</div><div class="line">        <span class="comment">//负数取绝对值</span></div><div class="line">				dec = dec*(-<span class="number">1</span>);</div><div class="line">			&#125;</div><div class="line"></div><div class="line">    <span class="comment">//用 for 循环完成十进制数字转换为二进制数字</span></div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;Bin.length-<span class="number">1</span>;i++)&#123;</div><div class="line">				<span class="keyword">if</span> (dec%<span class="number">2</span>==<span class="number">1</span>)&#123;</div><div class="line">					Bin[<span class="number">7</span>-i]=<span class="number">1</span>;</div><div class="line">					dec = dec/<span class="number">2</span>;</div><div class="line">				&#125;</div><div class="line">				<span class="keyword">else</span> <span class="keyword">if</span> (dec%<span class="number">2</span>==<span class="number">0</span>) &#123;</div><div class="line">					Bin[<span class="number">7</span>-i]=<span class="number">0</span>;</div><div class="line">					dec = dec/<span class="number">2</span>;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		<span class="keyword">return</span>	Bin;</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">  <span class="comment">//计算反码函数</span></div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] Fan(<span class="keyword">int</span>[] Yuan,<span class="keyword">int</span> dec)&#123;</div><div class="line">    <span class="comment">//正数原样输出，负数取反</span></div><div class="line">    <span class="keyword">if</span> (dec &lt; <span class="number">0</span>)&#123;</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;Yuan.length;i++)&#123;</div><div class="line">				<span class="keyword">if</span> (Yuan[i]==<span class="number">1</span>)&#123;</div><div class="line">					Yuan[i] = <span class="number">0</span>;</div><div class="line">				&#125;</div><div class="line">				<span class="keyword">else</span></div><div class="line">					Yuan[i] = <span class="number">1</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> Yuan;</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">  <span class="comment">//计算补码函数</span></div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] Bu(<span class="keyword">int</span>[] Fan,<span class="keyword">int</span> dec)&#123;</div><div class="line">    <span class="comment">//正数原样输出，负数在反码上 +1</span></div><div class="line">		<span class="keyword">if</span> (dec &lt; <span class="number">0</span>)&#123;</div><div class="line">      <span class="comment">//最后一位 +1 （是 +1，不是 +1s)</span></div><div class="line">			Fan[<span class="number">7</span>]=Fan[<span class="number">7</span>]+<span class="number">1</span>;</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">7</span>;i&gt;<span class="number">0</span>;i--)&#123;</div><div class="line">        <span class="comment">//判断 +1 后是否符合二进制书写规范，如果 +1 后出现 2 ，则当前位 -2 ，前一位 +1</span></div><div class="line">				<span class="keyword">if</span> (Fan[i]==<span class="number">2</span>)&#123;</div><div class="line">					Fan[i]=Fan[i]-<span class="number">2</span>;</div><div class="line">					Fan[i-<span class="number">1</span>]=Fan[i-<span class="number">1</span>]+<span class="number">1</span>;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> Fan;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行效果：<br><img src="https://ooo.0o0.ooo/2016/12/25/585f45a69c809.jpg" alt="Java"></p>
+<h1 id="2-Python-实现"><a href="#2-Python-实现" class="headerlink" title="2.Python 实现"></a>2.Python 实现</h1><p>Python 是在 Java 之前学的，其实有些遗忘，不过 Java 学习一段时间后，发现 Python 和 Java 有很多相似之处，同样是使用三个函数，Java 转 Python 难度并不大，Java 中的注释部分就不再 Python 中重新标注了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python3</span></div><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"></div><div class="line">print(<span class="string">"Python 十进制数原码、反码、补码计算器"</span>)</div><div class="line">decin=<span class="number">128</span></div><div class="line"><span class="keyword">while</span> decin&lt;<span class="number">-127</span> <span class="keyword">or</span> decin&gt;<span class="number">127</span>:</div><div class="line">    <span class="keyword">print</span> (<span class="string">"请输入一个十进制数字（[-127 , 127]范围内）"</span>)</div><div class="line">    decin = int(input())</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Dec2Bin</span><span class="params">(dec)</span>:</span></div><div class="line">    bin = [<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>]</div><div class="line">    <span class="keyword">if</span> dec &gt;= <span class="number">0</span>:</div><div class="line">        bin[<span class="number">0</span>] = <span class="number">0</span></div><div class="line">    <span class="keyword">else</span> :</div><div class="line">        bin[<span class="number">0</span>] = <span class="number">1</span></div><div class="line">        dec = -dec</div><div class="line">    i = <span class="number">0</span></div><div class="line">    <span class="keyword">while</span> i &lt; <span class="number">7</span>:</div><div class="line">        <span class="keyword">if</span> (dec%<span class="number">2</span>)==<span class="number">1</span>:</div><div class="line">            bin[<span class="number">7</span>-i] = <span class="number">1</span></div><div class="line">            <span class="comment">#这里需要转换一下数据类型，不然会出错，Java 中不需要转换</span></div><div class="line">            dec = int(dec/<span class="number">2</span>)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            bin[<span class="number">7</span>-i] = <span class="number">0</span></div><div class="line">            dec = int(dec/<span class="number">2</span>)</div><div class="line">        i=i+<span class="number">1</span></div><div class="line">    <span class="keyword">return</span> bin</div><div class="line">print(decin,<span class="string">"二进制原码为"</span>,end=<span class="string">''</span>)</div><div class="line"><span class="keyword">for</span> x <span class="keyword">in</span> Dec2Bin(dec=decin):</div><div class="line">    print(x,end=<span class="string">''</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Fan</span><span class="params">(Yuan,dec)</span>:</span></div><div class="line">        <span class="keyword">if</span> dec &gt;= <span class="number">0</span>:</div><div class="line">            <span class="keyword">return</span> Yuan</div><div class="line">        <span class="keyword">else</span> :</div><div class="line">            i=<span class="number">1</span></div><div class="line">            <span class="keyword">while</span> i&lt;<span class="number">8</span>:</div><div class="line">                <span class="keyword">if</span>  Yuan[i]==<span class="number">1</span>:</div><div class="line">                    Yuan[i] = <span class="number">0</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    Yuan[i] = <span class="number">1</span></div><div class="line">                i=i+<span class="number">1</span></div><div class="line">            <span class="keyword">return</span> Yuan</div><div class="line">print()        </div><div class="line">print(<span class="string">"二进制反码为"</span>,end=<span class="string">''</span>)</div><div class="line">FanM = Fan(Yuan=Dec2Bin(dec=decin),dec = decin)</div><div class="line"><span class="keyword">for</span> x <span class="keyword">in</span> FanM:</div><div class="line">    print(x,end=<span class="string">''</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Bu</span><span class="params">(Fan,dec)</span>:</span></div><div class="line">    <span class="keyword">if</span> dec&lt;<span class="number">0</span>:</div><div class="line">       Fan[<span class="number">7</span>]=Fan[<span class="number">7</span>]+<span class="number">1</span></div><div class="line">    i = <span class="number">7</span></div><div class="line">    <span class="keyword">while</span> i&gt;<span class="number">0</span>:</div><div class="line">       <span class="keyword">if</span> Fan[i]==<span class="number">2</span>:</div><div class="line">              Fan[i]=Fan[i]<span class="number">-2</span></div><div class="line">              Fan[i<span class="number">-1</span>]=Fan[i<span class="number">-1</span>]+<span class="number">1</span></div><div class="line">       i=i<span class="number">-1</span></div><div class="line">    <span class="keyword">return</span> Fan</div><div class="line"></div><div class="line">print()</div><div class="line">print(<span class="string">"二进制补码为"</span>,end=<span class="string">''</span>)</div><div class="line">BuM =  Bu(Fan=FanM,dec=decin)</div><div class="line"><span class="keyword">for</span> x <span class="keyword">in</span> BuM:</div><div class="line">    print(x,end=<span class="string">''</span>)</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>高中同学刚开学就问我反码的事儿，我当时也是一脸懵逼，现在也算是入了点门。周六寻思着没事儿写了这个计算器，拿 Python 版本的编译了个 exe 给了高中同学，也算是做了一点微小工作（怎么突然就膜起来了呢？）。</p>
+<p>前几天整理 《River Flows In You 全版本收集歌单》，想不到…想不到…想不到…一个歌曲作者竟然私信联系我发红包，吼开森。</p>
+<div id="aplayer1" class="aplayer" style="margin-bottom: 20px;"></div><script>var aplayer1 = new APlayer({element: document.getElementById("aplayer1"),narrow: false,autoplay: false,showlrc: 0,music : {title: "dodie",author: "River Flows In You (Crystal)",url: "http://p4.music.126.net/40YSKGtz-k4PUJ88yPxaJQ==/109951162824302189.jpg",pic: "http://p2.music.126.net/282EFuEsr8ALASKOax2BRA==/18769762999407029.mp3"}});aplayer1.init();</script>
+<p>圣诞节到了，送你一个苹果吧，希望不要拒收，反正你也不看我博客，你也不知道是谁送的。<br><img src="http://ww4.sinaimg.cn/large/9a8049afgw1fauyr7rfdhj20qo0qodp6.jpg" alt=""></p>
+]]></content>
     </entry>
-
     
     <entry>
       <title><![CDATA[Java 学习手记 —— IDE 的配置及试用]]></title>
-      <url>%2F2016%2F11%2F11%2FJava_Notes_2%2F</url>
-      <content type="text"><![CDATA[实践证明，一款优秀的 IDE 可以使得编程效率大大提高，目前 Java 主流的 IDE 有 Eclipse、MyEclipse、NetNetBeans 等。 下面以免费开源的 Eclipse 为例作演示。 Step 1 JDK 环境安装Eclise 使用之前需要配置 jdk 环境，最新的 Eclipse Neon 需要 jdk 1.8 环境。同样的，还是在甲骨文官方网站上下载 jkd 并进行安装：http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html Step 2 IDE 的下载及使用访问 Eclipse 网站，选择下载 JEE 版本的 Eclipse 即可：https://www.eclipse.org/downloads/eclipse-packages/Eclipse 有很多镜像下载点，其中有一个国内的 大连东软信息学院 镜像点，实测下载比较快。这里下载的 Eclipse 是绿色版的，下载完成后，解压即可运行。 开始编程吧双击 Eclipse 图标，启动 Eclipse选择一个工作目录此时会看到欢迎界面，可以不用管他，直接关掉，在左侧窗口右击，选择New→Java Project来新建一个 Java 项目项目名称任意，只要不是 Java 中的保留字即可展开 Java Project ，在 src 上右键，新建一个 ClassClass 名称任意，只要不是 Java 中的保留字即可注意最好勾选一下public static void main(String[] args)选项建立完成后就可以开始编写代码了：123456public class Hello &#123; public static void main(String[] args) &#123; System.out.println("Hello World");//从控制台输出 Hello World &#125;&#125; 编写完成后，点击Run → Run As → Java Application即可运行运行成功]]></content>
+      <url>http://login926.top/2016/11/11/Java_Notes_2/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>实践证明，一款优秀的 IDE 可以使得编程效率大大提高，目前 Java 主流的 IDE 有 Eclipse、MyEclipse、NetNetBeans 等。</p>
+<a id="more"></a>
+<p>下面以免费开源的 Eclipse 为例作演示。</p>
+<h1 id="Step-1-JDK-环境安装"><a href="#Step-1-JDK-环境安装" class="headerlink" title="Step 1  JDK 环境安装"></a>Step 1  JDK 环境安装</h1><p>Eclise 使用之前需要配置 jdk 环境，最新的 Eclipse Neon 需要 jdk 1.8 环境。<br>同样的，还是在甲骨文官方网站上下载 jkd 并进行安装：<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a><br><img src="http://ww3.sinaimg.cn/large/9a8049afgw1f8qyi9y4wpj20j50ezjtb.jpg" alt=""></p>
+<h1 id="Step-2-IDE-的下载及使用"><a href="#Step-2-IDE-的下载及使用" class="headerlink" title="Step 2 IDE 的下载及使用"></a>Step 2 IDE 的下载及使用</h1><p>访问 Eclipse 网站，选择下载 JEE 版本的 Eclipse 即可：<a href="https://www.eclipse.org/downloads/eclipse-packages/" target="_blank" rel="external">https://www.eclipse.org/downloads/eclipse-packages/</a><br><img src="http://ww3.sinaimg.cn/large/9a8049afgw1f9p65hvd87j20uf06bgmu.jpg" alt=""><br>Eclipse 有很多镜像下载点，其中有一个国内的 大连东软信息学院 镜像点，实测下载比较快。<br>这里下载的 Eclipse 是绿色版的，下载完成后，解压即可运行。</p>
+<h1 id="开始编程吧"><a href="#开始编程吧" class="headerlink" title="开始编程吧"></a>开始编程吧</h1><p>双击 Eclipse 图标，启动 Eclipse<br><img src="http://ww3.sinaimg.cn/large/9a8049afgw1f9p64z1rx2j20ec0a6jt3.jpg" alt=""><br>选择一个工作目录<br><img src="http://ww1.sinaimg.cn/large/9a8049afgw1f9p6lf1ff8j20m70cawgh.jpg" alt=""><br>此时会看到欢迎界面，可以不用管他，直接关掉，在左侧窗口右击，选择<code>New→Java Project</code>来新建一个 Java 项目<br><img src="http://ww2.sinaimg.cn/large/9a8049afgw1f9p6q15n5hj20i408c75t.jpg" alt=""><br>项目名称任意，只要不是 Java 中的保留字即可<br><img src="http://ww3.sinaimg.cn/large/9a8049afgw1f9p6vbvhsvj20ja0qftd6.jpg" alt=""><br>展开 Java Project ，在 src 上右键，新建一个 Class<br><img src="http://ww1.sinaimg.cn/large/9a8049afgw1f9p6xg4o88j20lm0csgov.jpg" alt=""><br>Class 名称任意，只要不是 Java 中的保留字即可<br><img src="http://ww3.sinaimg.cn/large/9a8049afgw1f9p6yv7m7hj20kq0mnaee.jpg" alt=""><br>注意最好勾选一下<code>public static void main(String[] args)</code>选项<br>建立完成后就可以开始编写代码了：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Hello World"</span>);</div><div class="line"><span class="comment">//从控制台输出 Hello World</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>编写完成后，点击<code>Run → Run As → Java Application</code>即可运行<br><img src="http://ww1.sinaimg.cn/large/9a8049afgw1f9p73vqly8j20oy06ejt5.jpg" alt=""><br>运行成功<br><img src="http://ww2.sinaimg.cn/large/9a8049afgw1f9p7532piwj21df0f00yn.jpg" alt=""></p>
+]]></content>
     </entry>
-
     
     <entry>
       <title><![CDATA[修改 html 代码制作一个虚假微博 V 头像]]></title>
-      <url>%2F2016%2F10%2F30%2FWeiboFalseV%2F</url>
-      <content type="text"><![CDATA[贴吧上有人求助怎么做微博假 V ，大多数吧友说可以用 PS 做，我自己也试了下，不过能力不够，做出来的总是有瑕疵。后来想到可以直接改代码截图啊，准保跟真的一毛一样。 推荐使用 Chrome 或 Firefox 浏览器完成以下操作。1.首先，打开浏览器，进入你自己的微博主页2.右击头像，选择复制图片地址3.随便找个大 V 的微博，进入他的主页4.右击头像，选择检查5.将大 V 的头像 URL 改成刚才你复制的自己的头像 URL6.在微博封面上右击，选择检查（微博封面指的是截图中做热气球俩孩子的那张图）默认会定位到1&lt;div class="shadow S_shadow" layout-shell="false"&gt; 这一行，这一行先不修改。再向上找到12&lt;div class="cover_wrap banner_transition" node-type="cover" style="background-image:url(XXX.jpg)" cover-type="2"&gt; &lt;/div&gt; 这一行将style=&quot;background-image:url(XXX.jpg)&quot;修改为style=&quot;background-color:white&quot; 7.再次回到1&lt;div class="shadow S_shadow" layout-shell="false"&gt; 这一行将class=&quot;shadow S_shadow&quot;修改为class=&quot;shadow S_shado&quot;（对，就是删掉一个字母，使得 css 不生效）8.随便找个截图软件截图吧 最近在搞学生会和微博方面的东西，抽空关注以下吧，蟹蟹：1.南信院计算机与软件学院公众号：2.南信院微博协会：http://weibo.com/njcitmba]]></content>
+      <url>http://login926.top/2016/10/30/WeiboFalseV/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p><a href="http://tieba.baidu.com/p/4811342530" target="_blank" rel="external">贴吧上有人求助怎么做微博假 V</a> ，大多数吧友说可以用 PS 做，我自己也试了下，不过能力不够，做出来的总是有瑕疵。后来想到可以直接改代码截图啊，准保跟真的一毛一样。<br><a id="more"></a></p>
+<h1 id="推荐使用-Chrome-或-Firefox-浏览器完成以下操作。"><a href="#推荐使用-Chrome-或-Firefox-浏览器完成以下操作。" class="headerlink" title="推荐使用 Chrome 或 Firefox 浏览器完成以下操作。"></a>推荐使用 Chrome 或 Firefox 浏览器完成以下操作。</h1><p>1.首先，打开浏览器，进入你自己的<a href="http://weibo.com/login926" target="_blank" rel="external">微博主页</a><br><img src="http://ww1.sinaimg.cn/large/9a8049afgw1f9a9f3r5n4j21hc0u0155.jpg" alt=""><br>2.右击头像，选择<code>复制图片地址</code><br>3.随便找个大 V 的微博，进入他的主页<br>4.右击头像，选择<code>检查</code><br><img src="http://ww2.sinaimg.cn/large/9a8049afgw1f9a9k522zhj20gr0b6q5b.jpg" alt=""><br>5.将大 V 的头像 URL 改成刚才你复制的自己的头像 URL<br><img src="http://ww3.sinaimg.cn/large/9a8049afgw1f9a9n49wrbj21hc0u01bl.jpg" alt=""><br>6.在微博封面上右击，选择<code>检查</code>（微博封面指的是截图中做热气球俩孩子的那张图）<br>默认会定位到<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shadow  S_shadow"</span> <span class="attr">layout-shell</span>=<span class="string">"false"</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>这一行，这一行先不修改。<br>再向上找到<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"cover_wrap banner_transition"</span> <span class="attr">node-type</span>=<span class="string">"cover"</span> <span class="attr">style</span>=<span class="string">"background-image:url(XXX.jpg)"</span> <span class="attr">cover-type</span>=<span class="string">"2"</span>&gt;</span></div><div class="line">				<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>这一行<br>将<code>style=&quot;background-image:url(XXX.jpg)&quot;</code>修改为<code>style=&quot;background-color:white&quot;</code><br><img src="http://ww2.sinaimg.cn/large/9a8049afgw1f9aak35wqyj21h80tvgxi.jpg" alt=""></p>
+<p>7.再次回到<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shadow  S_shadow"</span> <span class="attr">layout-shell</span>=<span class="string">"false"</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>这一行<br>将<code>class=&quot;shadow  S_shadow&quot;</code>修改为<code>class=&quot;shadow  S_shado&quot;</code>（对，就是删掉一个字母，使得 css 不生效）<br><img src="http://ww3.sinaimg.cn/large/9a8049afgw1f9aao4fpqzj21hc0u0wpq.jpg" alt=""><br>8.随便找个截图软件截图吧<br><img src="http://ww3.sinaimg.cn/large/9a8049afgw1f9aaummdulj20go0godh0.jpg" alt=""></p>
+<p>最近在搞学生会和微博方面的东西，抽空关注以下吧，蟹蟹：<br>1.南信院计算机与软件学院公众号：<br><img src="http://ww1.sinaimg.cn/large/9a8049afgw1f9ab5ax4ncj209k09kjrf.jpg" alt=""><br>2.南信院微博协会：<a href="http://weibo.com/njcitmba" target="_blank" rel="external">http://weibo.com/njcitmba</a></p>
+]]></content>
     </entry>
-
     
     <entry>
       <title><![CDATA[Java 学习手记 —— 使用 JDK 编写第一个 Java 程序]]></title>
-      <url>%2F2016%2F10%2F13%2FJava_Notes_1%2F</url>
-      <content type="text"><![CDATA[大一学习的是计算机网络专业，要求学习 Java 语言，以后博客会开设一个专题，做一点学习 Java 的笔记。JDK：Java Development ToolKit，Java 开发工具包，学习 Java 必装。 编写 Java 程序，实际上是对 .java 文件的编写，文件编写完成后使用编译器编译为二进制 .class 文件，再在 Java 虚拟机（Java Virtual Machine，简称 JVM）中运行 Java 程序。Java 特点为：一次编译，到处执行。 Step1 JDK 的安装:首先在甲骨文网站上下载JDK：http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html下载完成后执行安装即可 安装 JDK： Step2 JDK 的环境配置使用 JDK 必须配置 Path 环境变量，以及 classpath 系统变量。1.右击此电脑，选择属性2.左侧选择高级系统设置3.进入环境变量4.在系统变量重找到Path项目，点击编辑5.将 JDK 目录添加进Path中，默认添加路径为1C:\Program Files\Java\jdk1.8.0_101\bin 6.保存后返回系统变量设置界面7.新建一个系统变量，变量名为classpath，变量值为任意目录，比如D:\WorkSpace（为方便后期操作，建议所有操作都在D:\WorkSpace目录中进行） Step3 编写第一个 Java 程序并运行1.在D:\WorkSpace目录中新建一个文本文件，将后缀名修改为 .java2.修改文件名为Hello，并记住文件名，Java 编程中要求定义类，类名称必须与文件名同名3.键入一段 Java 代码（//后面是注释部分，可以不用输入）123456public class Hello &#123; public static void main(String[] args) &#123; System.out.println("Hello World");//从控制台输出 Hello World &#125;&#125; 4.在D:\WorkSpace目录下启动cmd5.输入命令经行编译1javac Hello.java 6.此时D:\WorkSpace目录下得到了Hello.class文件7.切换回cmd界面，输入命令运行 Java 程序1java Hello 8.运行成功]]></content>
+      <url>http://login926.top/2016/10/13/Java_Notes_1/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>大一学习的是计算机网络专业，要求学习 Java 语言，以后博客会开设一个专题，做一点学习 Java 的笔记。<br>JDK：Java Development ToolKit，Java 开发工具包，学习 Java 必装。</p>
+<a id="more"></a>
+<p>编写 Java 程序，实际上是对 <code>.java</code> 文件的编写，文件编写完成后使用编译器编译为二进制 <code>.class</code> 文件，再在 Java 虚拟机（Java Virtual Machine，简称 JVM）中运行 Java 程序。<br>Java 特点为：一次编译，到处执行。</p>
+<hr>
+<h1 id="Step1-JDK-的安装"><a href="#Step1-JDK-的安装" class="headerlink" title="Step1 JDK 的安装:"></a>Step1 JDK 的安装:</h1><p>首先在甲骨文网站上下载JDK：<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a><br>下载完成后执行安装即可</p>
+<p>安装 JDK：<br><img src="http://ww3.sinaimg.cn/large/9a8049afgw1f8qyi9y4wpj20j50ezjtb.jpg" alt=""></p>
+<h1 id="Step2-JDK-的环境配置"><a href="#Step2-JDK-的环境配置" class="headerlink" title="Step2 JDK 的环境配置"></a>Step2 JDK 的环境配置</h1><p>使用 JDK 必须配置 <code>Path</code> 环境变量，以及 <code>classpath</code> 系统变量。<br>1.右击<code>此电脑</code>，选择<code>属性</code><br>2.左侧选择<code>高级系统设置</code><br>3.进入<code>环境变量</code><br>4.在<code>系统变量</code>重找到<code>Path</code>项目，点击编辑<br>5.将 JDK 目录添加进<code>Path</code>中，默认添加路径为<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">C:\<span class="title">Program</span> <span class="title">Files</span>\<span class="title">Java</span>\<span class="title">jdk1</span>.8.0<span class="title">_101</span>\<span class="title">bin</span></span></div></pre></td></tr></table></figure></p>
+<p><img src="http://ww4.sinaimg.cn/large/9a8049afgw1f8roph0ybqj20iv0ihgp5.jpg" alt=""><br>6.保存后返回<code>系统变量</code>设置界面<br>7.新建一个系统变量，变量名为<code>classpath</code>，变量值为任意目录，比如<code>D:\WorkSpace</code><br><img src="http://ww4.sinaimg.cn/large/9a8049afgw1f8roui0owij20nb0610tj.jpg" alt=""><br>（为方便后期操作，建议所有操作都在<code>D:\WorkSpace</code>目录中进行）</p>
+<h1 id="Step3-编写第一个-Java-程序并运行"><a href="#Step3-编写第一个-Java-程序并运行" class="headerlink" title="Step3 编写第一个 Java 程序并运行"></a>Step3 编写第一个 Java 程序并运行</h1><p>1.在<code>D:\WorkSpace</code>目录中新建一个文本文件，将后缀名修改为 <code>.java</code><br>2.修改文件名为<code>Hello</code>，并记住文件名，Java 编程中要求定义类，类名称必须与文件名同名<br>3.键入一段 Java 代码（//后面是注释部分，可以不用输入）<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Hello World"</span>);</div><div class="line"><span class="comment">//从控制台输出 Hello World</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="http://ww1.sinaimg.cn/large/9a8049afgw1f8rpch843kj20s60b4taf.jpg" alt=""><br>4.在<code>D:\WorkSpace</code>目录下启动<code>cmd</code><br>5.输入命令经行编译<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">javac Hello.java</div></pre></td></tr></table></figure></p>
+<p><img src="http://ww3.sinaimg.cn/large/9a8049afgw1f8rpfgllqdj20b605474m.jpg" alt=""><br>6.此时<code>D:\WorkSpace</code>目录下得到了<code>Hello.class</code>文件<br>7.切换回<code>cmd</code>界面，输入命令运行 Java 程序<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java Hello</div></pre></td></tr></table></figure></p>
+<p><img src="http://ww1.sinaimg.cn/large/9a8049afgw1f8rpkp5ykzj20cb05z74v.jpg" alt=""><br>8.运行成功</p>
+]]></content>
     </entry>
-
     
     <entry>
       <title><![CDATA[沉迷 2048 ，无法自拔]]></title>
-      <url>%2F2016%2F09%2F22%2F2048%2F</url>
-      <content type="text"><![CDATA[![2048](https://ooo.0o0.ooo/2016/12/25/585f446f0b356.jpg 闲着没事儿，在博客上放了个 html5 游戏 2048。 试玩地址：https://login926.github.io/20482048 源码：https://github.com/gabrielecirulli/2048 部署原理：下载 2048 源码，在本地修改好网页后，按照《在 Hexo 博客中跳过渲染，创建自定义网页》这篇文章将网页上传至博客即可。 军训因为高血压免训，每天只能跑图书管，从此沉迷学习，无法自拔😂，显然是不可能的，于是就在手机上玩 2048 。最早接触 2048 还是三年前小众软件上的推荐，不过玩了三年至今传统模式下还没成功过，前几天玩了次 6x6 模式的，一局足足打了三天，最后手滑输了，合影留念。 妈蛋，忘了截图了， 放一张最高纪录吧，最后记得有个方块是 16384 最后，Teamviewer 真心好用，上大学还没带电脑，用 WindowsPhone 能直接远控家里的电脑，不过改代码和部署博客什么的不方便，借了上铺舍友的电脑继续 Teamviewer 撸起来。 越发感觉《方圆几里》说的就是我。ti:方圆几里] [ar:薛之谦] [t_time:(04:46)] [00:01.99] 薛之谦 - 方圆几里 [00:03.08] 词：薛之谦 曲：薛之谦 [00:04.86] 唱：薛之谦 [00:06.76] [00:16.29] [00:17.73] 感觉很诚恳 是好事 [00:26.12] 不需要发誓 那么幼稚 [00:33.66] 本以为可以 就这样随你 [00:42.48] 反正我也无处可去 [00:46.61] [00:50.71] 我怕太负责任的人 [00:58.86] 因为他随时会牺牲 [01:06.45] 爱不爱都可以 我怎样都依你 [01:13.78] 连借口 我都帮你寻 [01:18.86] [01:21.08] 与其在你不要的世界里 [01:25.21] 不如痛快把你忘记 [01:29.50] 这道理谁都懂 说容易 爱透了还要嘴硬 [01:37.78] 我宁愿 留在你方圆几里 [01:41.50] 我的心 要不回就送你 [01:45.94] 因为我爱你 和你没关系 [01:51.17] [02:10.95] 感觉会压抑 的样子 [02:20.20] 勉强 也没什么意思 [02:27.81] 我不算很自私 也越来越懂事 [02:35.30] 爱你只是我的事 [02:40.23] [02:42.35] 与其在你不要的世界里 [02:46.53] 不如痛快把你忘记 [02:51.01] 这道理谁都懂 说容易 爱透了还要嘴硬 [02:58.58] 我宁愿 留在你方圆几里 [03:02.82] 至少能感受你的悲喜 [03:07.29] 在你需要我的时候 就能陪你 [03:12.95] [03:15.25] 我在你 不要的世界里 [03:19.02] 何苦不找个人来代替 [03:23.35] 可惜我 谁劝都不停 [03:31.06] 我宁愿 留在你方圆几里 [03:35.33] 我的心 要不回就送你 [03:41.39] 爱不爱都可以 我怎样都依你 [03:48.24] 因为我爱你 和你没关系 [03:53.22] [03:55.62] 我的爱 扩散在方圆几里 [03:59.82] 近的能 听见你的呼吸 [04:04.60] 只要你转身 我就在这里 [04:11.54]var aplayer0 = new APlayer({element: document.getElementById("aplayer0"),narrow: false,autoplay: false,showlrc: 2,music : {title: "方圆几里",author: "薛之谦",url: "http://p2.music.126.net/ZTkvIeCID5LAajbqFOmF3A==/3379898743856440.mp3",pic: "http://p3.music.126.net/i2YqeMpR2DPuj15M-B1skA==/5816416510959096.jpg"}});aplayer0.init();]]></content>
+      <url>http://login926.top/2016/09/22/2048/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>![2048](<a href="https://ooo.0o0.ooo/2016/12/25/585f446f0b356.jpg" target="_blank" rel="external">https://ooo.0o0.ooo/2016/12/25/585f446f0b356.jpg</a></p>
+<p>闲着没事儿，在博客上放了个 html5  游戏 2048。</p>
+<a id="more"></a>
+<blockquote>
+<p>试玩地址：<a href="https://login926.github.io/2048" target="_blank" rel="external">https://login926.github.io/2048</a><br>2048 源码：<a href="https://github.com/gabrielecirulli/2048" target="_blank" rel="external">https://github.com/gabrielecirulli/2048</a></p>
+</blockquote>
+<p>部署原理：下载 2048 源码，在本地修改好网页后，按照<a href="https://login926.github.io/2016/08/17/Hexo-skip-Generated/" target="_blank" rel="external">《在 Hexo 博客中跳过渲染，创建自定义网页》</a>这篇文章将网页上传至博客即可。</p>
+<p>军训因为高血压免训，每天只能跑图书管，从此沉迷学习，无法自拔😂，显然是不可能的，于是就在手机上玩 2048 。最早接触 2048 还是三年前小众软件上的推荐，不过玩了三年至今传统模式下还没成功过，前几天玩了次 6x6 模式的，一局足足打了三天，最后手滑输了，合影留念。</p>
+<p>妈蛋，忘了截图了， 放一张最高纪录吧，最后记得有个方块是 16384</p>
+<p><img src="https://ooo.0o0.ooo/2016/12/25/585f449793c44.jpg" alt="截图"></p>
+<p>最后，Teamviewer 真心好用，上大学还没带电脑，用 WindowsPhone 能直接远控家里的电脑，不过改代码和部署博客什么的不方便，借了上铺舍友的电脑继续 Teamviewer 撸起来。</p>
+<p>越发感觉《方圆几里》说的就是我。<br><div id="aplayer0" class="aplayer" style="margin-bottom: 20px;"><pre class="aplayer-lrc-content">ti:方圆几里]
+[ar:薛之谦]
+[t_time:(04:46)]
+[00:01.99] 薛之谦 - 方圆几里
+[00:03.08] 词：薛之谦 曲：薛之谦
+[00:04.86] 唱：薛之谦
+[00:06.76]
+[00:16.29]
+[00:17.73] 感觉很诚恳 是好事
+[00:26.12] 不需要发誓 那么幼稚
+[00:33.66] 本以为可以 就这样随你
+[00:42.48] 反正我也无处可去
+[00:46.61]
+[00:50.71] 我怕太负责任的人
+[00:58.86] 因为他随时会牺牲
+[01:06.45] 爱不爱都可以 我怎样都依你
+[01:13.78] 连借口 我都帮你寻
+[01:18.86]
+[01:21.08] 与其在你不要的世界里
+[01:25.21] 不如痛快把你忘记
+[01:29.50] 这道理谁都懂 说容易 爱透了还要嘴硬
+[01:37.78] 我宁愿 留在你方圆几里
+[01:41.50] 我的心 要不回就送你
+[01:45.94] 因为我爱你 和你没关系
+[01:51.17]
+[02:10.95] 感觉会压抑 的样子
+[02:20.20] 勉强 也没什么意思
+[02:27.81] 我不算很自私 也越来越懂事
+[02:35.30] 爱你只是我的事
+[02:40.23]
+[02:42.35] 与其在你不要的世界里
+[02:46.53] 不如痛快把你忘记
+[02:51.01] 这道理谁都懂 说容易 爱透了还要嘴硬
+[02:58.58] 我宁愿 留在你方圆几里
+[03:02.82] 至少能感受你的悲喜
+[03:07.29] 在你需要我的时候 就能陪你
+[03:12.95]
+[03:15.25] 我在你 不要的世界里
+[03:19.02] 何苦不找个人来代替
+[03:23.35] 可惜我 谁劝都不停
+[03:31.06] 我宁愿 留在你方圆几里
+[03:35.33] 我的心 要不回就送你
+[03:41.39] 爱不爱都可以 我怎样都依你
+[03:48.24] 因为我爱你 和你没关系
+[03:53.22]
+[03:55.62] 我的爱 扩散在方圆几里
+[03:59.82] 近的能 听见你的呼吸
+[04:04.60] 只要你转身 我就在这里
+[04:11.54]</pre></div><script>var aplayer0 = new APlayer({element: document.getElementById("aplayer0"),narrow: false,autoplay: false,showlrc: 2,music : {title: "方圆几里",author: "薛之谦",url: "http://p2.music.126.net/ZTkvIeCID5LAajbqFOmF3A==/3379898743856440.mp3",pic: "http://p3.music.126.net/i2YqeMpR2DPuj15M-B1skA==/5816416510959096.jpg"}});aplayer0.init();</script></p>
+]]></content>
     </entry>
-
     
     <entry>
       <title><![CDATA[【厉害了，我的哥】我的英语听力为什么会这么鬼畜]]></title>
-      <url>%2F2016%2F09%2F07%2FEnglishguichu%2F</url>
-      <content type="text"><![CDATA[哈哈哈，继续来鬼畜，这次是高考英语听力。 B站链接：http://www.bilibili.com/video/av6187064/ 好颓废啊，妈蛋。]]></content>
+      <url>http://login926.top/2016/09/07/Englishguichu/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p><img src="https://ooo.0o0.ooo/2016/12/25/585f4625df8da.jpg" alt=""></p>
+ <a id="more"></a>
+<p> 哈哈哈，继续来鬼畜，这次是高考英语听力。<br> B站链接：<a href="http://www.bilibili.com/video/av6187064/" target="_blank" rel="external">http://www.bilibili.com/video/av6187064/</a></p>
+<p> 好颓废啊，妈蛋。</p>
+]]></content>
     </entry>
-
     
     <entry>
       <title><![CDATA[贴吧暴力签到]]></title>
-      <url>%2F2016%2F08%2F27%2Fbaolisign%2F</url>
-      <content type="text"><![CDATA[今天 Chrome 吧没法签到了！这破吧药丸了！ 找了个 Python 贴吧签到的轮子：http://www.cnblogs.com/meelo/p/4268894.html加了个 while 循环把它变成了暴力签到工具不过运行了一会儿并没有签到成功什么玩意儿 123456789101112131415161718192021222324# -*- coding: utf-8 -*-print("Chrome 吧暴力签到工具")import urllibimport urllib2n = 1while n &gt; 0: url = 'http://tieba.baidu.com/sign/add' tieba = 'chrome' headers = &#123; "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36", "Cookie": "BDUSS=不给你看", &#125; data = &#123; "ie": 'utf-8', "kw": tieba, &#125; postData = urllib.urlencode(data) request = urllib2.Request(url, postData, headers=headers)print('心情不好，没有 print')]]></content>
+      <url>http://login926.top/2016/08/27/baolisign/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>今天 Chrome 吧没法签到了！<br>这破吧药丸了！</p>
+<a id="more"></a>
+<p>找了个 Python 贴吧签到的轮子：<a href="http://www.cnblogs.com/meelo/p/4268894.html" target="_blank" rel="external">http://www.cnblogs.com/meelo/p/4268894.html</a><br>加了个 <code>while</code> 循环把它变成了暴力签到工具<br>不过运行了一会儿并没有签到成功<br>什么玩意儿</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line">print(<span class="string">"Chrome 吧暴力签到工具"</span>)</div><div class="line"></div><div class="line"><span class="keyword">import</span> urllib</div><div class="line"><span class="keyword">import</span> urllib2</div><div class="line"></div><div class="line">n = <span class="number">1</span></div><div class="line"><span class="keyword">while</span> n &gt; <span class="number">0</span>:</div><div class="line">    url = <span class="string">'http://tieba.baidu.com/sign/add'</span></div><div class="line">    tieba = <span class="string">'chrome'</span></div><div class="line"></div><div class="line">    headers = &#123;</div><div class="line">        <span class="string">"User-Agent"</span>: <span class="string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"</span>,</div><div class="line">        <span class="string">"Cookie"</span>: <span class="string">"BDUSS=不给你看"</span>,</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    data = &#123;</div><div class="line">        <span class="string">"ie"</span>: <span class="string">'utf-8'</span>,</div><div class="line">        <span class="string">"kw"</span>: tieba,</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    postData = urllib.urlencode(data)</div><div class="line">    request = urllib2.Request(url, postData, headers=headers)</div><div class="line">print(<span class="string">'心情不好，没有 print'</span>)</div></pre></td></tr></table></figure>
+]]></content>
     </entry>
-
     
     <entry>
       <title><![CDATA[妈的智障]]></title>
-      <url>%2F2016%2F08%2F26%2Fmdzz%2F</url>
-      <content type="text"><![CDATA[你他妈有手机号为什么不去打你他妈怎么礼物都送不出去]]></content>
+      <url>http://login926.top/2016/08/26/mdzz/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>你他妈有手机号为什么不去打<br><img src="http://ww1.sinaimg.cn/large/9a8049afjw1f77gvqpx27j20u01hc40b.jpg" alt=""><br>你他妈怎么礼物都送不出去</p>
+]]></content>
     </entry>
-
     
     <entry>
       <title><![CDATA[古墓丽影：鬼畜]]></title>
-      <url>%2F2016%2F08%2F23%2FTomb%2F</url>
-      <content type="text"><![CDATA[用 AE 和 会声会影 搞了个鬼畜视频。Bilibili：http://www.bilibili.com/video/av5965429/优酷：http://v.youku.com/v_show/id_XMTY5NjExMDI2NA==.html]]></content>
-    </entry>
+      <url>http://login926.top/2016/08/23/Tomb/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><iframe src="http://www.bilibili.com/html/html5player.html?cid=9685838&aid=5965429" width="640" height="480" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
 
+
+<a id="more"></a>
+<p>用 AE 和 会声会影 搞了个鬼畜视频。<br>Bilibili：<a href="http://www.bilibili.com/video/av5965429/" target="_blank" rel="external">http://www.bilibili.com/video/av5965429/</a><br>优酷：<a href="http://v.youku.com/v_show/id_XMTY5NjExMDI2NA==.html" target="_blank" rel="external">http://v.youku.com/v_show/id_XMTY5NjExMDI2NA==.html</a></p>
+]]></content>
+    </entry>
     
     <entry>
       <title><![CDATA[在 Hexo 博客中跳过渲染，创建自定义网页]]></title>
-      <url>%2F2016%2F08%2F17%2FHexo_Skip_Generated%2F</url>
-      <content type="text"><![CDATA[Hexo 博客中所见文章都是经由渲染的静态网页，而静态网页的样式都直接由 Hexo 的主题控制，所以 Hexo 博客大部分都呈现出一种高度的统一化与规范化。不过 Hexo 提供了跳过渲染功能，使得我们可以直接在博客中放入自定义网页。比如在博客中放入蹭饭图、自定义 404.html 、自定义 About 页面等。 1. 创建自定义网页网页可以是自己编写的，也可以是别人现成的源码。网页编写完成后，在Hexo\source目录下创建一个文件夹（文件夹名称任意，比如我创建的是cengfantu这个文件夹，部署完成后，访问http://login926.github.io/cengfantu/即可看到效果，依此类推）将 html 文件放置于此文件夹，并重命名为 index.html 。 2. 跳过渲染跳过渲染有下述两种方法，我更倾向于第一种方法。 1.在html文件中添加跳过渲染指令用编辑器打开放入\Hexo\source\创建的文件夹中的 index.html 文件，在开头添加如下代码即可 123---layout: false--- 添加该指令后，执行 hexo g命令时便会跳过该 index.html文件，使得index.html不受当前 hexo 主题影响，完全是一个独立的网页，如果网页引用了 css 或 js ，这些 css 和 js 必须使用外链，如下图所示如果引用图片，可以在网页目录下建立 img 文件夹，可以直接引用图片，不必再去创建外链 2.在_config.yml文件中设置skip_render 本节参考:http://e12e.com/2016/06/05/hexo跳过指定文件的渲染/ 使用编辑器打开 Hexo 目录下的_config.yml文件，找到skip_render skip_render一般有以下四种常用参数： 跳过source目录下的 test.html: skip_render: test.html 跳过source目录下 test 文件夹内所有文件：skip_render: test/* 跳过source目录下 test 文件夹内所有文件包括子文件夹以及子文件夹内的文件：skip_render: test/** 跳过多个路径：123skip_render: - test.html - test/* _config.yml对格式要求严格，注意填写参数时的格式，添加完成后便不会渲染指定文件/文件夹。 如果网页引用了 css 或 js ，并将整个网页目录设置为跳过渲染，则不必再为 css 和 js 创建外链，可以直接引用3. 完成执行hexo g和hexo deploy命令后便可以在博客上看到自己创建的网页，如果网页有特殊用途，可以在博客首页增加一个入口。 文章已同步发表至简书]]></content>
+      <url>http://login926.top/2016/08/17/Hexo_Skip_Generated/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>Hexo 博客中所见文章都是经由渲染的静态网页，而静态网页的样式都直接由 Hexo 的主题控制，所以 Hexo 博客大部分都呈现出一种高度的统一化与规范化。不过 Hexo 提供了跳过渲染功能，使得我们可以直接在博客中放入自定义网页。<br>比如在博客中放入<a href="http://login926.github.io/cengfantu/" target="_blank" rel="external">蹭饭图</a>、自定义 404.html 、自定义 About 页面等。</p>
+ <a id="more"></a>
+<p><img src="https://ooo.0o0.ooo/2016/08/16/57b2bbecb87d5.png" alt="蹭饭图"></p>
+<hr>
+<h1 id="1-创建自定义网页"><a href="#1-创建自定义网页" class="headerlink" title="1. 创建自定义网页"></a>1. 创建自定义网页</h1><p>网页可以是自己编写的，也可以是别人现成的源码。<br>网页编写完成后，在<code>Hexo\source</code>目录下创建一个文件夹（文件夹名称任意，比如我创建的是<code>cengfantu</code>这个文件夹，部署完成后，访问<code>http://login926.github.io/cengfantu/</code>即可看到效果，依此类推）<br>将 html 文件放置于此文件夹，并重命名为 <code>index.html</code> 。</p>
+<hr>
+<h1 id="2-跳过渲染"><a href="#2-跳过渲染" class="headerlink" title="2. 跳过渲染"></a>2. 跳过渲染</h1><p>跳过渲染有下述两种方法，我更倾向于第一种方法。</p>
+<h3 id="1-在html文件中添加跳过渲染指令"><a href="#1-在html文件中添加跳过渲染指令" class="headerlink" title="1.在html文件中添加跳过渲染指令"></a>1.在<code>html</code>文件中添加跳过渲染指令</h3><p>用编辑器打开放入<code>\Hexo\source\创建的文件夹</code>中的 <code>index.html</code> 文件，在开头添加如下代码即可</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line"><span class="section">layout: false</span></div><div class="line">---</div></pre></td></tr></table></figure>
+<p>添加该指令后，执行 <code>hexo g</code>命令时便会跳过该 <code>index.html</code>文件，使得<code>index.html</code>不受当前 hexo 主题影响，完全是一个独立的网页，如果网页引用了 css 或 js ，这些 css 和 js 必须使用外链，如下图所示<br><img src="http://ww2.sinaimg.cn/large/9a8049afjw1f6x24ql24wj20vt06o0w6.jpg" alt="外链"><br>如果引用图片，可以在网页目录下建立 img 文件夹，可以直接引用图片，不必再去创建外链</p>
+<h3 id="2-在-config-yml文件中设置skip-render"><a href="#2-在-config-yml文件中设置skip-render" class="headerlink" title="2.在_config.yml文件中设置skip_render"></a>2.在<code>_config.yml</code>文件中设置<code>skip_render</code></h3><blockquote>
+<p>本节参考:<a href="http://e12e.com/2016/06/05/hexo跳过指定文件的渲染/" target="_blank" rel="external">http://e12e.com/2016/06/05/hexo跳过指定文件的渲染/</a></p>
+</blockquote>
+<p>使用编辑器打开 Hexo 目录下的<code>_config.yml</code>文件，找到<code>skip_render</code></p>
+<p><code>skip_render</code>一般有以下四种常用参数：</p>
+<ol>
+<li>跳过<code>source</code>目录下的 <code>test.html</code>: <code>skip_render: test.html</code></li>
+<li>跳过<code>source</code>目录下 <code>test</code> 文件夹内所有文件：<code>skip_render: test/*</code></li>
+<li>跳过<code>source</code>目录下 <code>test</code> 文件夹内所有文件包括子文件夹以及子文件夹内的文件：<code>skip_render: test/**</code></li>
+<li>跳过多个路径：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">skip_render:</div><div class="line">    - test.html</div><div class="line">    - test/*</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><code>_config.yml</code>对格式要求严格，注意填写参数时的格式，添加完成后便不会渲染指定文件/文件夹。</p>
+<h2 id="如果网页引用了-css-或-js-，并将整个网页目录设置为跳过渲染，则不必再为-css-和-js-创建外链，可以直接引用"><a href="#如果网页引用了-css-或-js-，并将整个网页目录设置为跳过渲染，则不必再为-css-和-js-创建外链，可以直接引用" class="headerlink" title="如果网页引用了 css 或 js ，并将整个网页目录设置为跳过渲染，则不必再为 css 和 js 创建外链，可以直接引用"></a>如果网页引用了 css 或 js ，并将整个网页目录设置为跳过渲染，则不必再为 css 和 js 创建外链，可以直接引用</h2><h1 id="3-完成"><a href="#3-完成" class="headerlink" title="3. 完成"></a>3. 完成</h1><p>执行<code>hexo g</code>和<code>hexo deploy</code>命令后便可以在博客上看到自己创建的网页，如果网页有特殊用途，可以在博客首页增加一个入口。<br><img src="http://ww1.sinaimg.cn/large/9a8049afjw1f6x3mtfloaj20bn0gxt9t.jpg" alt="入口"></p>
+<hr>
+<p>文章已同步发表至<a href="http://www.jianshu.com/p/f89428fce8d5" target="_blank" rel="external">简书</a></p>
+]]></content>
     </entry>
-
     
     <entry>
       <title><![CDATA[蹭饭图]]></title>
-      <url>%2F2016%2F08%2F16%2Fcengfantu%2F</url>
-      <content type="text"><![CDATA[哈哈哈哈，花了大半天时间，凭借着渣渣的前端知识做了个线上版的蹭饭图，点左侧导航栏就能看到了 这是别人的蹭饭图：不如弄个线上版来搞个大新闻。 http://login926.top/htmlcengfantu/ 目前 https 下还是有点问题，暂时先用 http 顶着。江苏省部分由于人太多，已经超出了框架，凑合着看吧。 简直有病好么！☺☺☺简单的总结一下制作过程：找了两个现成的轮子： jQuery 中国地图插件：http://www.html5tricks.com/jquery-china-map.htmlPhoton：https://html5up.net/photon 然后把第一个轮子用 iframe 标签套到第二个轮子里然后改改代码级完成啦。 但是，这么简单的事情却用了半天。]]></content>
+      <url>http://login926.top/2016/08/16/cengfantu/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>哈哈哈哈，花了大半天时间，凭借着渣渣的前端知识做了个线上版的蹭饭图，点左侧导航栏就能看到了<br> <a id="more"></a><br> 这是别人的蹭饭图：<br><img src="https://ooo.0o0.ooo/2016/12/25/585f453f17a20.jpg" alt="这是别人的蹭饭图"><br>不如弄个线上版来搞个大新闻。</p>
+<p><a href="http://login926.top/htmlcengfantu/">http://login926.top/htmlcengfantu/</a></p>
+<p>目前 https 下还是有点问题，暂时先用 http 顶着。<br>江苏省部分由于人太多，已经超出了框架，凑合着看吧。</p>
+<h2 id="简直有病好么！☺☺☺"><a href="#简直有病好么！☺☺☺" class="headerlink" title="简直有病好么！☺☺☺"></a>简直有病好么！☺☺☺</h2><p>简单的总结一下制作过程：<br>找了两个现成的轮子：</p>
+<blockquote>
+<p>jQuery 中国地图插件：<a href="http://www.html5tricks.com/jquery-china-map.html" target="_blank" rel="external">http://www.html5tricks.com/jquery-china-map.html</a><br>Photon：<a href="https://html5up.net/photon" target="_blank" rel="external">https://html5up.net/photon</a></p>
+</blockquote>
+<p>然后把第一个轮子用 iframe 标签套到第二个轮子里<br>然后改改代码级完成啦。</p>
+<p>但是，这么简单的事情却用了半天。</p>
+]]></content>
     </entry>
-
     
     <entry>
       <title><![CDATA[鬼畜云音乐，哦不，网易云音乐]]></title>
-      <url>%2F2016%2F08%2F12%2F163Music%2F</url>
-      <content type="text"><![CDATA[今天正式成为了网易云音乐 9 级用户，歌单《River Flows In You 全版本收集》 收藏数突破 1000 ，播放数达到 1.6 W，所有很有必要水一贴来纪念一下。 歌单献上： 13 年的时候还在用 QQ 音乐，觉得 QQ 里别人能看到自己在听啥啥 ，实际上谁特么在意你听什么。13年四月份，网易云音乐正式推出，映像特别深的是 网易云 的一大亮点就是高品质 320kBps 完全免费，当时 QQ 音乐听高品质可是要收费的，抱着试（gen）试（feng）的心态去下载了网易云音乐，果然是良心软件，至此踏入网易云音乐的深坑。 网易云目前是全平台支持，甚至推出了可能是最良心的 UWP 应用————网易云音乐 UWP ，Linux 端也没落下，也推出了 deb包。Linux 下同样可以使用基于 Python2.7 的网易云音乐命令行版本 musicbox （项目的 Wiki 里介绍了网易云音乐的深坑 API） 项目地址：https://github.com/darknessomi/musicbox Ubuntu里测试成功运行，在 Windows 10 的 bash 里试了下，不过好像失败了，原谅我比较蠢。 网易云音乐崛起后，也出现了一些问题，包括某些歌曲下架的问题，不过还好，歌曲下架，资源未下架，下架歌曲可以使用 go-music 下载。 项目地址：https://github.com/loadfield/go-music在线演示：http://music.mc-x.com/song 网易云音乐有个等级制度，累计听歌量以及登陆天数边可以升级，登陆天数这个没法加快。而累计听歌量有点坑，同一歌曲无论听多少遍，都值计算一次，所以有时登陆天数达到要求，而听歌量达不到就有点尴尬了，不过可以动点小脑经，先把网易云音乐静音，夜深人静的时候去播放一些儿歌，因为一般网易云音乐不会推送儿歌，所以大部分儿歌是没播放过的，而儿歌长度比较短，一般在一分半到三分钟的样子。好吧，我承认，Lv 8 的时候就是放儿歌升到 Lv 9 的。 最后就是网易云神秘的加密方法，Fiddler 中抓取出来，所有的数据都是由 params 这一个参数控制，哗啦啦一大片 params，网易云音乐这个坑真深。]]></content>
-    </entry>
+      <url>http://login926.top/2016/08/12/163Music/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>今天正式成为了网易云音乐 9 级用户，<a href="http://music.163.com/#/m/playlist?id=82908712&amp;userid=9920729" target="_blank" rel="external">歌单《River Flows In You 全版本收集》</a> 收藏数突破 1000 ，播放数达到 1.6 W，所有很有必要水一贴来纪念一下。<br><img src="https://ooo.0o0.ooo/2016/08/12/57ad7844c046f.png" alt=""></p>
+ <a id="more"></a>
+<p>歌单献上：</p>
+<iframe src="https://music.daoapp.io/iframe?playlist=82908712&qssl=1&autoplay=0&max_width=640px" width="640px" height="400px" frameborder="0" marginwidth="0" marginheight="0"></iframe>
 
+<p></p>
+<p>13 年的时候还在用 QQ 音乐，觉得 QQ 里别人能看到自己在听啥啥 ，实际上谁特么在意你听什么。13年四月份，网易云音乐正式推出，映像特别深的是 网易云 的一大亮点就是高品质 320kBps 完全免费，当时 QQ 音乐听高品质可是要收费的，抱着试（gen）试（feng）的心态去下载了网易云音乐，果然是良心软件，至此踏入网易云音乐的深坑。</p>
+<p>网易云目前是全平台支持，甚至推出了可能是最良心的 UWP 应用————网易云音乐 UWP ，Linux 端也没落下，也推出了 deb包。Linux 下同样可以使用基于 Python2.7 的网易云音乐命令行版本 musicbox （项目的 Wiki 里介绍了网易云音乐的深坑 API）</p>
+<blockquote>
+<p>项目地址：<a href="https://github.com/darknessomi/musicbox" target="_blank" rel="external">https://github.com/darknessomi/musicbox</a></p>
+</blockquote>
+<p>Ubuntu里测试成功运行，在 Windows 10 的 bash 里试了下，不过好像失败了，原谅我比较蠢。<br><img src="https://ooo.0o0.ooo/2016/12/25/585f4415ecdef.jpg" alt=""></p>
+<p>网易云音乐崛起后，也出现了一些问题，包括某些歌曲下架的问题，不过还好，歌曲下架，资源未下架，下架歌曲可以使用 go-music 下载。</p>
+<blockquote>
+<p>项目地址：<a href="https://github.com/loadfield/go-music" target="_blank" rel="external">https://github.com/loadfield/go-music</a><br>在线演示：<a href="http://music.mc-x.com/song" target="_blank" rel="external">http://music.mc-x.com/song</a></p>
+</blockquote>
+<p>网易云音乐有个等级制度，累计听歌量以及登陆天数边可以升级，登陆天数这个没法加快。而累计听歌量有点坑，同一歌曲无论听多少遍，都值计算一次，所以有时登陆天数达到要求，而听歌量达不到就有点尴尬了，不过可以动点小脑经，先把网易云音乐静音，夜深人静的时候去播放一些儿歌，因为一般网易云音乐不会推送儿歌，所以大部分儿歌是没播放过的，而儿歌长度比较短，一般在一分半到三分钟的样子。好吧，我承认，Lv 8 的时候就是放儿歌升到 Lv 9 的。</p>
+<p>最后就是网易云神秘的加密方法，Fiddler 中抓取出来，所有的数据都是由 params 这一个参数控制，哗啦啦一大片 params，网易云音乐这个坑真深。</p>
+]]></content>
+    </entry>
     
     <entry>
       <title><![CDATA[Newifi 自建 KMS 服务器激活 Windows]]></title>
-      <url>%2F2016%2F08%2F03%2FKMS%2F</url>
-      <content type="text"><![CDATA[大量授权密钥（英语：Volume License Key，简称VLK）是软件公司使用的一个词汇，用户购买批量授权，便会获得一产品密钥，该密钥可安装于多部电脑。来源：维基百科：大量授权密钥 所以我们可以通过自建 KMS 服务器来实现 Windows 以及 Microsoft 软件激活。相比于流行的本地 KMS 软件，在路由器上建立 KMS 服务器可以更易于管理，也不必担心激活时被植入恶意软件或修改主页。 1.准备好路由器并刷入 OpenWrt 系统Newifi 这款路由器支持刷入 OpenWrt 系统如果不清楚自己的路由器是否能够刷 OpenWrt 系统，请尝试在搜索引擎中输入 路由器型号 Openwrt 关键字进行搜索。如果路由器支持刷入 OpenWrt 系统，我建议去刷集成 KMS 服务的固件。如果找到不到 集成 KMS 的固件，可以参考这篇文章通过 opkg 安装 KMS 服务。 Newifi 刷机教程可以参考 Newifi 论坛，建议刷入这款固件集成了 KMS 服务。（感谢贴吧网友幼幼保护协会在这个帖子中的分享） 2. 进入路由器后台开启 KMS 服务进入服务-KMS 服务器，勾选开启 3. 激活 Windows1.以管理员身份运行 cmd2.输入命令1234slmgr /skms 192.168.99.1//设置 KMS 服务器，192.168.99.1 为路由器地址slmgr /atoslmgr.vbs -dlv 4. 激活 Office自建 KMS 服务器支持激活 Office VOL （批量版），不支持激活 Office Retail （零售版）。1.以管理员身份运行 cmd2.输入命令12345cd C:\Program Files\Microsoft Office\Office16//进入 Office 目录，各个版本可能不同。CSCRIPT OSPP.VBS /SETHST:192.168.99.1//设置 KMS 服务器，192.168.99.1 为路由器地址CSCRIPT OSPP.VBS /act Microsoft 在今天推送了周年更新，更新的名称会是 Windows 10 功能更新 Version 1607，版本号是 Build 14393.10。这次更新带来了原生基于 Ubuntu Linux 的命令行、Edge 浏览器改进、Cortana 优化、Ink 墨迹书写/屏幕涂鸦、面部识别登录、XBox 游戏跨平台支持等新功能。 不过使用下来也发现了一些小问题： 迅雷极速版频繁崩溃（更新至 v1.0.34.360 版本可以解决） MacType 无法自启动 个性化中的颜色竟然没有草绿色 Cortana 增加了查找手机功能，但是整个过程时间太长]]></content>
+      <url>http://login926.top/2016/08/03/KMS/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p><img src="" alt="KMS"></p>
+<blockquote>
+<p>大量授权密钥（英语：Volume License Key，简称VLK）是软件公司使用的一个词汇，用户购买批量授权，便会获得一产品密钥，该密钥可安装于多部电脑。<br>来源：维基百科：<a href="https://zh.wikipedia.org/wiki/%E5%A4%A7%E9%87%8F%E6%8E%88%E6%AC%8A%E9%87%91%E9%91%B0" target="_blank" rel="external">大量授权密钥</a></p>
+</blockquote>
+<a id="more"></a>
+<p>所以我们可以通过自建 KMS 服务器来实现 Windows 以及 Microsoft 软件激活。相比于流行的本地 KMS 软件，在路由器上建立 KMS 服务器可以更易于管理，也不必担心激活时被植入恶意软件或修改主页。</p>
+<hr>
+<h1 id="1-准备好路由器并刷入-OpenWrt-系统"><a href="#1-准备好路由器并刷入-OpenWrt-系统" class="headerlink" title="1.准备好路由器并刷入 OpenWrt 系统"></a>1.准备好路由器并刷入 OpenWrt 系统</h1><p>Newifi 这款路由器支持刷入 OpenWrt 系统<br>如果不清楚自己的路由器是否能够刷 OpenWrt 系统，请尝试在搜索引擎中输入</p>
+<blockquote>
+<p>路由器型号 Openwrt</p>
+</blockquote>
+<p>关键字进行搜索。<br>如果路由器支持刷入 OpenWrt 系统，我建议去刷集成 KMS 服务的固件。<br>如果找到不到 集成 KMS 的固件，可以参考<a href="https://morz.org/archives/2016-08-10/%E8%B7%AF%E7%94%B1%E4%B8%8A%E6%90%9E%E8%87%AA%E5%8A%A8%E6%BF%80%E6%B4%BB%E7%9A%84KMS%E6%9C%8D%E5%8A%A1%E5%99%A8.html" target="_blank" rel="external">这篇文章</a>通过 opkg 安装 KMS 服务。</p>
+<p>Newifi 刷机教程可以参考 <a href="http://bbs.newifi.com/forumall.php" target="_blank" rel="external">Newifi 论坛</a>，建议刷入<a href="https://pan.baidu.com/s/1o7BmbF0" target="_blank" rel="external">这款固件</a>集成了 KMS 服务。（感谢贴吧网友<a href="">幼幼保护协会</a>在<a href="http://tieba.baidu.com/p/4675991033" target="_blank" rel="external">这个帖子中</a>的分享）</p>
+<h1 id="2-进入路由器后台开启-KMS-服务"><a href="#2-进入路由器后台开启-KMS-服务" class="headerlink" title="2. 进入路由器后台开启 KMS 服务"></a>2. 进入路由器后台开启 KMS 服务</h1><p>进入<code>服务</code>-<code>KMS 服务器</code>，勾选<code>开启</code><br><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E5%BC%80%E5%90%AF%20KMS.png" alt="开启 KMS"></p>
+<h1 id="3-激活-Windows"><a href="#3-激活-Windows" class="headerlink" title="3. 激活 Windows"></a>3. 激活 Windows</h1><p>1.以管理员身份运行 <code>cmd</code><br>2.输入命令<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">slmgr /skms <span class="number">192</span>.<span class="number">168</span>.<span class="number">99</span>.<span class="number">1</span></div><div class="line">//设置 KMS 服务器，<span class="number">192</span>.<span class="number">168</span>.<span class="number">99</span>.<span class="number">1</span> 为路由器地址</div><div class="line">slmgr /ato</div><div class="line">slmgr.vbs -dlv</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E6%BF%80%E6%B4%BB%E6%88%90%E5%8A%9F.png" alt="Windows 激活成功"></p>
+<h1 id="4-激活-Office"><a href="#4-激活-Office" class="headerlink" title="4. 激活 Office"></a>4. 激活 Office</h1><p>自建 KMS 服务器支持激活 Office VOL （批量版），不支持激活 Office Retail （零售版）。<br>1.以管理员身份运行 <code>cmd</code><br>2.输入命令<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> C:\Program Files\Microsoft Office\Office16</div><div class="line">//进入 Office 目录，各个版本可能不同。</div><div class="line">CSCRIPT OSPP.VBS /SETHST:<span class="number">192</span>.<span class="number">168</span>.<span class="number">99</span>.<span class="number">1</span></div><div class="line">//设置 KMS 服务器，<span class="number">192</span>.<span class="number">168</span>.<span class="number">99</span>.<span class="number">1</span> 为路由器地址</div><div class="line">CSCRIPT OSPP.VBS /act</div></pre></td></tr></table></figure></p>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/Office%E6%BF%80%E6%B4%BB%E6%88%90%E5%8A%9F.png" alt="Office 激活成功"></p>
+<hr>
+<p>Microsoft 在今天推送了周年更新，更新的名称会是 Windows 10 功能更新 Version 1607，版本号是 Build 14393.10。<br>这次更新带来了原生基于 Ubuntu Linux 的命令行、Edge 浏览器改进、Cortana 优化、Ink 墨迹书写/屏幕涂鸦、面部识别登录、XBox 游戏跨平台支持等新功能。</p>
+<p>不过使用下来也发现了一些小问题：</p>
+<ol>
+<li>迅雷极速版频繁崩溃（更新至 v1.0.34.360 版本可以解决）</li>
+<li>MacType 无法自启动</li>
+<li>个性化中的颜色竟然没有草绿色</li>
+<li>Cortana 增加了查找手机功能，但是整个过程时间太长</li>
+</ol>
+]]></content>
     </entry>
-
     
     <entry>
       <title><![CDATA[Hexo博客中插入音乐/视频]]></title>
-      <url>%2F2016%2F07%2F20%2FHexoMedia%2F</url>
-      <content type="text"><![CDATA[博客中插入音乐/视频，可以让博客的逼格瞬间提高。作为优秀的静态博客，Hexo 当然也少不了这些高大上的功能。 个人 Hexo 博客：login926.github.io Markdown 通用音乐/视频插入方法Markdown 作为轻量级的标记语言，兼容 html 语法，所以可以直接在 Markdown 文档中使用 html 语法。 vedio标签举例：123&lt;video width="480" height="320" controls&gt;&lt;source src="movie.mp4"&gt;&lt;/video&gt; 其中src=后面的值需要替换为自己的音乐/视频链接。 效果： embed标签举例：1&lt;embed src="http://player.youku.com/player.php/Type/Folder/Fid/27690810/Ob/1/sid/XMTY1MTI3NjMyNA==/v.swf" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" allowFullScreen="true" mode="transparent" type="application/x-shockwave-flash"&gt;&lt;/embed&gt; iframe标签举例：1&lt;iframe height=498 width=510 src="http://player.youku.com/embed/XMTY1MTI3NjMyNA==" frameborder=0 allowfullscreen&gt;&lt;/iframe&gt; javascript标签举例1&lt;script type="text/javascript" src="http://www.xiami.com/widget/player-single?uid=32329501&amp;sid=1776238762&amp;mode=js"&gt;&lt;/script&gt; 除vedio标签外，大部分音乐/视频网站都可以直接生成播放器代码，直接粘贴到 Markdown 文档中即可。不过上述有些标签不支持 https 。 通过 Hexo 插件插入音乐/视频这里需要使用两个播放器插件 hexo-tag-aplayer:https://github.com/grzhan/hexo-tag-aplayer#upstream-issue hexo-tag-dplayer:https://github.com/NextMoe/hexo-tag-dplayer 两款插件基于 DIYgod 编写的 html5 播放器 APlayer 和 DPlayer 开发。 首先安装两款插件 打开 Git Shell，切换到 Hexo 目录下，运行如下两条命令 123npm install hexo-tag-dplayer --savenpm install hexo-tag-aplayer --save 安装到最后 npm 可能会报错，忽视即可。 安装成功后，在 Markdown 文档中添加 APlayer 和 DPlayer 标签即可 比如添加如下代码使用 APlayer 和 DPlayer： 123&#123;% aplayer "Caffeine" "Jeff Williams" "http://7xq131.com1.z0.glb.clouddn.com/Preparation.mp3" "autoplay" %&#125;&#123;% dplayer "url=http://devtest.qiniudn.com/若能绽放光芒.mp4" "api=http://dplayer.daoapp.io" "pic=http://devtest.qiniudn.com/若能绽放光芒.png" "id=9E2E3368B56CDBB4" "loop=yes" "theme=#FADFA3" "autoplay=false" "token=tokendemo" %&#125; APlayer 和 DPlayer 具体参数设置可以参考 Github 项目主页，不过默认参数足够用了。 最终效果： ti:晴天] [ar:刘瑞琦] [t_time:(04:46)] [00:00.00] 晴天 [00:06.03] 词曲：周杰伦 [00:12.93] 演唱：刘瑞琦 [00:19.83] 原唱：周杰伦 [00:29.50] 故事的小黄花 从出生那年就飘着 [00:36.63] 童年的荡秋千 随记忆一直晃到现在 [00:43.64] rui sou sou xi dou xi la [00:46.62] sou la xi xi xi xi la xi la sou [00:50.46] 吹着前奏望着天空 我想起花瓣试着掉落 [00:57.44] 为你翘课的那一天 花落的那一天 [01:01.33] 教室的那一间 我怎么看不见 [01:04.88] 消失的下雨天 我好想再淋一遍 [01:10.64] 没想到失去的勇气 我还留着 [01:16.66] 好想再问一遍 你会等待还是离开 [01:25.56] 刮风这天 我试过握着你手 [01:31.34] 但偏偏 雨渐渐 大到我看你不见 [01:39.56] 还要多久 我才能在你身边 [01:46.19] 等到放晴的那天 也许我会比较好一点 [01:53.68] 从前从前 有个人爱你很久 [01:59.34] 但偏偏 风渐渐 把距离吹得好远 [02:07.48] 好不容易 又能再多爱一天 [02:14.26] 但故事的最后你好像还是说了 拜拜 [02:36.16] 为你翘课的那一天 花落的那一天 [02:40.21] 教室的那一间 我怎么看不见 [02:43.78] 消失的下雨天 我好想再淋一遍 [02:49.48] 没想到失去的勇气 我还留着 [02:55.72] 好想再问一遍 你会等待还是离开 [03:04.42] 刮风这天 我试过握着你手 [03:10.15] 但偏偏 雨渐渐 大到我看你不见 [03:18.50] 还要多久 我才能在你身边 [03:25.18] 等到放晴的那天 也许我会比较好一点 [03:32.62] 从前从前 有个人爱你很久 [03:38.35] 但偏偏 风渐渐 把距离吹得好远 [03:46.46] 好不容易 又能再多爱一天 [03:53.18] 但故事的最后你好像还是说了 拜拜 [04:01.33] 为你翘课的那一天 花落的那一天 教室的那一间var aplayer2 = new APlayer({element: document.getElementById("aplayer2"),narrow: false,autoplay: false,showlrc: 2,music : {title: "晴天",author: "刘瑞琦",url: "http://p2.music.126.net/oxP2XaJFDscDuGhGnO7beA==/7768049650386454.mp3",pic: "http://p4.music.126.net/obZy1mbYWFJtbyr26Q6Smg==/7749357952693832.jpg"}});aplayer2.init(); var dplayer0 = new DPlayer({"element":document.getElementById("dplayer0"),"autoplay":false,"theme":"#FADFA3","loop":true,"video":{"url":"http://mvvideo2.meitudata.com/56ea1220d2ca92407.mp4"},"danmaku":{"api":"http://dplayer.daoapp.io","id":"9E2E3368B56CDBB4","token":"tokendemo"}}); APlayer 与 DPlayer 均支持https。 上述两种方法各有优缺点，选择一种适合自己的方法，打造属于自己的个性 Hexo 博客吧。]]></content>
-    </entry>
+      <url>http://login926.top/2016/07/20/HexoMedia/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>博客中插入音乐/视频，可以让博客的逼格瞬间提高。作为优秀的静态博客，Hexo 当然也少不了这些高大上的功能。</p>
+<blockquote>
+<p>个人 Hexo 博客：login926.github.io</p>
+</blockquote>
+<a id="more"></a>
+<hr>
+<h1 id="Markdown-通用音乐-视频插入方法"><a href="#Markdown-通用音乐-视频插入方法" class="headerlink" title="Markdown 通用音乐/视频插入方法"></a>Markdown 通用音乐/视频插入方法</h1><p>Markdown 作为轻量级的标记语言，兼容 html 语法，所以可以直接在 Markdown 文档中使用 html 语法。</p>
+<h3 id="vedio标签举例："><a href="#vedio标签举例：" class="headerlink" title="vedio标签举例："></a><code>vedio</code>标签举例：</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">width</span>=<span class="string">"480"</span> <span class="attr">height</span>=<span class="string">"320"</span> <span class="attr">controls</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">"movie.mp4"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>其中<code>src=</code>后面的值需要替换为自己的音乐/视频链接。</p>
+<p>效果：</p>
+<video width="480" height="320" controls><source src="http://mvvideo2.meitudata.com/56ea1220d2ca92407.mp4"></video>
 
+<h3 id="embed标签举例："><a href="#embed标签举例：" class="headerlink" title="embed标签举例："></a><code>embed</code>标签举例：</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">embed</span> <span class="attr">src</span>=<span class="string">"http://player.youku.com/player.php/Type/Folder/Fid/27690810/Ob/1/sid/XMTY1MTI3NjMyNA==/v.swf"</span> <span class="attr">quality</span>=<span class="string">"high"</span> <span class="attr">width</span>=<span class="string">"480"</span> <span class="attr">height</span>=<span class="string">"400"</span> <span class="attr">align</span>=<span class="string">"middle"</span> <span class="attr">allowScriptAccess</span>=<span class="string">"always"</span> <span class="attr">allowFullScreen</span>=<span class="string">"true"</span> <span class="attr">mode</span>=<span class="string">"transparent"</span> <span class="attr">type</span>=<span class="string">"application/x-shockwave-flash"</span>&gt;</span><span class="tag">&lt;/<span class="name">embed</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="iframe标签举例："><a href="#iframe标签举例：" class="headerlink" title="iframe标签举例："></a><code>iframe</code>标签举例：</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">height</span>=<span class="string">498</span> <span class="attr">width</span>=<span class="string">510</span> <span class="attr">src</span>=<span class="string">"http://player.youku.com/embed/XMTY1MTI3NjMyNA=="</span> <span class="attr">frameborder</span>=<span class="string">0</span> <span class="attr">allowfullscreen</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="javascript标签举例"><a href="#javascript标签举例" class="headerlink" title="javascript标签举例"></a><code>javascript</code>标签举例</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"http://www.xiami.com/widget/player-single?uid=32329501&amp;sid=1776238762&amp;mode=js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<p>除<code>vedio</code>标签外，大部分音乐/视频网站都可以直接生成播放器代码，直接粘贴到 Markdown 文档中即可。<br>不过上述有些标签不支持 https 。</p>
+<hr>
+<h1 id="通过-Hexo-插件插入音乐-视频"><a href="#通过-Hexo-插件插入音乐-视频" class="headerlink" title="通过 Hexo 插件插入音乐/视频"></a>通过 Hexo 插件插入音乐/视频</h1><p>这里需要使用两个播放器插件</p>
+<blockquote>
+<p>hexo-tag-aplayer:<a href="https://github.com/grzhan/hexo-tag-aplayer#upstream-issue" target="_blank" rel="external">https://github.com/grzhan/hexo-tag-aplayer#upstream-issue</a></p>
+<p>hexo-tag-dplayer:<a href="https://github.com/NextMoe/hexo-tag-dplayer" target="_blank" rel="external">https://github.com/NextMoe/hexo-tag-dplayer</a></p>
+</blockquote>
+<p>两款插件基于 <a href="https://github.com/DIYgod" target="_blank" rel="external">DIYgod</a> 编写的 html5 播放器 <a href="https://github.com/DIYgod/APlayer" target="_blank" rel="external">APlayer</a> 和 <a href="https://github.com/DIYgod/DPlayer" target="_blank" rel="external">DPlayer</a> 开发。</p>
+<p>首先安装两款插件</p>
+<p>打开 Git Shell，切换到 Hexo 目录下，运行如下两条命令</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">npm install hexo-tag-dplayer --save</div><div class="line"></div><div class="line">npm install hexo-tag-aplayer --save</div></pre></td></tr></table></figure>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/Gitshell%E4%B8%AD%E5%AE%89%E8%A3%85.png" alt="Git Shell 中安装"></p>
+<p>安装到最后 npm 可能会报错，忽视即可。</p>
+<p>安装成功后，在 Markdown 文档中添加 APlayer 和 DPlayer 标签即可</p>
+<p>比如添加如下代码使用 APlayer 和 DPlayer：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;% aplayer "Caffeine" "Jeff Williams" "http://7xq131.com1.z0.glb.clouddn.com/Preparation.mp3" "autoplay" %&#125;</div><div class="line"></div><div class="line">&#123;% dplayer "url=http://devtest.qiniudn.com/若能绽放光芒.mp4" "api=http://dplayer.daoapp.io" "pic=http://devtest.qiniudn.com/若能绽放光芒.png" "id=9E2E3368B56CDBB4" "loop=yes" "theme=#FADFA3" "autoplay=false" "token=tokendemo" %&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/Markdown%20%E6%8F%92%E5%85%A5APlayer%20%E5%92%8C%20DPlayer%20%E6%A0%87%E7%AD%BE.png" alt="添加 APlayer 和 DPlayer 标签"></p>
+<p>APlayer 和 DPlayer 具体参数设置可以参考 Github 项目主页，不过默认参数足够用了。</p>
+<p>最终效果：</p>
+<div id="aplayer2" class="aplayer" style="margin-bottom: 20px;"><pre class="aplayer-lrc-content">ti:晴天]
+[ar:刘瑞琦]
+[t_time:(04:46)]
+[00:00.00] 晴天
+[00:06.03] 词曲：周杰伦
+[00:12.93] 演唱：刘瑞琦
+[00:19.83] 原唱：周杰伦
+[00:29.50] 故事的小黄花 从出生那年就飘着
+[00:36.63] 童年的荡秋千 随记忆一直晃到现在
+[00:43.64] rui sou sou xi dou xi la
+[00:46.62] sou la xi xi xi xi la xi la sou
+[00:50.46] 吹着前奏望着天空 我想起花瓣试着掉落
+[00:57.44] 为你翘课的那一天 花落的那一天
+[01:01.33] 教室的那一间 我怎么看不见
+[01:04.88] 消失的下雨天 我好想再淋一遍
+[01:10.64] 没想到失去的勇气 我还留着
+[01:16.66] 好想再问一遍 你会等待还是离开
+[01:25.56] 刮风这天 我试过握着你手
+[01:31.34] 但偏偏 雨渐渐 大到我看你不见
+[01:39.56] 还要多久 我才能在你身边
+[01:46.19] 等到放晴的那天 也许我会比较好一点
+[01:53.68] 从前从前 有个人爱你很久
+[01:59.34] 但偏偏 风渐渐 把距离吹得好远
+[02:07.48] 好不容易 又能再多爱一天
+[02:14.26] 但故事的最后你好像还是说了 拜拜
+[02:36.16] 为你翘课的那一天 花落的那一天
+[02:40.21] 教室的那一间 我怎么看不见
+[02:43.78] 消失的下雨天 我好想再淋一遍
+[02:49.48] 没想到失去的勇气 我还留着
+[02:55.72] 好想再问一遍 你会等待还是离开
+[03:04.42] 刮风这天 我试过握着你手
+[03:10.15] 但偏偏 雨渐渐 大到我看你不见
+[03:18.50] 还要多久 我才能在你身边
+[03:25.18] 等到放晴的那天 也许我会比较好一点
+[03:32.62] 从前从前 有个人爱你很久
+[03:38.35] 但偏偏 风渐渐 把距离吹得好远
+[03:46.46] 好不容易 又能再多爱一天
+[03:53.18] 但故事的最后你好像还是说了 拜拜
+[04:01.33] 为你翘课的那一天 花落的那一天 教室的那一间</pre></div><script>var aplayer2 = new APlayer({element: document.getElementById("aplayer2"),narrow: false,autoplay: false,showlrc: 2,music : {title: "晴天",author: "刘瑞琦",url: "http://p2.music.126.net/oxP2XaJFDscDuGhGnO7beA==/7768049650386454.mp3",pic: "http://p4.music.126.net/obZy1mbYWFJtbyr26Q6Smg==/7749357952693832.jpg"}});aplayer2.init();</script>
+<div id="dplayer0" class="dplayer" style="margin-bottom: 20px;"></div><script>var dplayer0 = new DPlayer({"element":document.getElementById("dplayer0"),"autoplay":false,"theme":"#FADFA3","loop":true,"video":{"url":"http://mvvideo2.meitudata.com/56ea1220d2ca92407.mp4"},"danmaku":{"api":"http://dplayer.daoapp.io","id":"9E2E3368B56CDBB4","token":"tokendemo"}});</script>
+<p>APlayer 与 DPlayer 均支持https。</p>
+<hr>
+<p>上述两种方法各有优缺点，选择一种适合自己的方法，打造属于自己的个性 Hexo 博客吧。</p>
+]]></content>
+    </entry>
     
     <entry>
       <title><![CDATA[WindowsPhone 刷机那些事儿]]></title>
-      <url>%2F2016%2F07%2F18%2FWindowsPhone%2F</url>
-      <content type="text"><![CDATA[折腾手机，免不了要去刷机云云。作为流行的 Android 和 iOS 系统，其刷机教程冗长，光是装驱动这一块就能使一大部分人望而生畏了，整个流程下来都可以写一篇论文了，有些教程甚至比装 Windows 还要繁琐。而作为 1% 的 WindowsPhone 刷机真的太简单了，手机连上电脑点几下鼠标就刷完机了，比装 Windows 都要简单。 Step1 备份重要数据打开 WindowsPhone ，进入设置—更新和安全—备份—高级选项选择需要备份的数据，微软说备份的时间大概在 15 分钟左右，如果没有重(xiao)要(huang)数(pian)据(er)的话，备份这一步可以直接跳过。 Step2 安装刷机工具 —— Windows Device Recovery Tool先来看看 Windows Device Recovery Tool 有啥用 你可以在电脑上下载 Windows Device Recovery Tool 并将其用于修复手机上的软件问题。它可以安装经批准可用于你的手机的最新版本的 Windows 和删除其他所有内容，包括应用、游戏、文本、呼叫历史记录、音乐和照片。在使用此工具之前，请查看重新启动或重置手机是否能修复该问题。 来源：Windows Device Recovery Tool： 常见问题 安装要求: 一根用于将手机连接到电脑的 USB 电缆。 运行 Windows 7、Windows 8、Windows 8.1 或 Windows 10 的电脑。 至少 4 GB 的电脑可用存储空间。 电脑能够正常访问微软服务器。 下载地址：http://go.microsoft.com/fwlink/p/?LinkId=522381 下载完成后双击运行，一路点下一步完成安装。 Step3 开始刷机 使用 USB 线连接手机，Windows Device Recovery Tool会自动识别手机 选择当前的手机，Windows Device Recovery Tool 开始联网查找固件 点击重新安装软件，接下来是一系列刷机前的准备，随后进入固件下载界面 下载完成后就进入了安装步骤 安装完成 Step4 配置手机手机刷机完成后，需要进行一系列设置，比如登录微软账号云云，不过一开始是英文界面，但是你连 WindowsPhone 都敢用了，还会怕 English ？ 好吧，我成功把 Windows 10 刷成了 Windows 8。 Step4 升级 Windows 10在商店中搜索并安装“升级顾问”，大部分新机型都可以成功升级至 Windows 10 。 PS： 使用预览版系统预览版系统对于更新狂魔来说再爽不过了，但如何能收到推送呢？ 加入 Windows Insider，可以在这里提交申请 进入应用商店，搜索Windows Insider 安装完成后打开 Windows Insider 选择升级通道 通道 功能 风险 更新频率 Insider Fast 第一时间获得系统新版本和功能更新 较高 快 Insider Slow 获得早期系统版本和功能更新 一般 一般 Insider Release Preview 更早获得 Current Branch 更新、微软应用程序和驱动 低 慢 选择完成后设备会重启，重启后进入手机更新，此时便会收到推送 更新完成 相较于 Android 和 iOS系统 WindowsPhone 刷机教程真的是简洁明了，不像外面那些妖艳的刷机教程。这也正是 WindowsPhone 的优点之一。 1% 代表的不是辣鸡，更多的是一种小众的优质。 文章同步发表致简书]]></content>
+      <url>http://login926.top/2016/07/18/WindowsPhone/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>折腾手机，免不了要去刷机云云。作为流行的 Android 和 iOS 系统，其刷机教程冗长，光是装驱动这一块就能使一大部分人望而生畏了，整个流程下来都可以写一篇论文了，有些教程甚至比装 Windows 还要繁琐。而作为 1% 的 WindowsPhone 刷机真的太简单了，手机连上电脑点几下鼠标就刷完机了，比装 Windows 都要简单。</p>
+<a id="more"></a>
+<hr>
+<h1 id="Step1-备份重要数据"><a href="#Step1-备份重要数据" class="headerlink" title="Step1  备份重要数据"></a>Step1  备份重要数据</h1><p>打开 WindowsPhone ，进入<code>设置</code>—<code>更新和安全</code>—<code>备份</code>—<code>高级选项</code><br>选择需要备份的数据，微软说备份的时间大概在 15 分钟左右，如果没有重(xiao)要(huang)数(pian)据(er)的话，备份这一步可以直接跳过。<br><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E5%A4%87%E4%BB%BD.png" alt="备份"></p>
+<h1 id="Step2-安装刷机工具-——-Windows-Device-Recovery-Tool"><a href="#Step2-安装刷机工具-——-Windows-Device-Recovery-Tool" class="headerlink" title="Step2  安装刷机工具 —— Windows Device Recovery Tool"></a>Step2  安装刷机工具 —— Windows Device Recovery Tool</h1><p>先来看看 Windows Device Recovery Tool 有啥用</p>
+<blockquote>
+<p>你可以在电脑上下载 Windows Device Recovery Tool 并将其用于修复手机上的软件问题。它可以安装经批准可用于你的手机的最新版本的 Windows 和删除其他所有内容，包括应用、游戏、文本、呼叫历史记录、音乐和照片。在使用此工具之前，请查看重新启动或重置手机是否能修复该问题。</p>
+<p>来源：<a href="https://support.microsoft.com/zh-cn/help/12379/windows-10-mobile-device-recovery-tool-faq" target="_blank" rel="external">Windows Device Recovery Tool： 常见问题</a></p>
+</blockquote>
+<p>安装要求:</p>
+<ol>
+<li>一根用于将手机连接到电脑的 USB 电缆。</li>
+<li>运行 Windows 7、Windows 8、Windows 8.1 或 Windows 10 的电脑。</li>
+<li>至少 4 GB 的电脑可用存储空间。</li>
+<li>电脑能够正常访问微软服务器。</li>
+</ol>
+<p>下载地址：<a href="http://go.microsoft.com/fwlink/p/?LinkId=522381" target="_blank" rel="external">http://go.microsoft.com/fwlink/p/?LinkId=522381</a></p>
+<p>下载完成后双击运行，一路点<code>下一步</code>完成安装。<br><img src="http://7xibe6.com1.z0.glb.clouddn.com/Windows%20Device%20Recovery%20Tool%203-7-18601%20%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F.png" alt="安装"></p>
+<h1 id="Step3-开始刷机"><a href="#Step3-开始刷机" class="headerlink" title="Step3  开始刷机"></a>Step3  开始刷机</h1><ol>
+<li>使用 USB 线连接手机，Windows Device Recovery Tool会自动识别手机<br><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E8%AF%86%E5%88%AB.png" alt="识别"></li>
+<li>选择当前的手机，Windows Device Recovery Tool 开始联网查找固件<br><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E5%9B%BA%E4%BB%B6.png" alt="固件"></li>
+<li>点击<code>重新安装软件</code>，接下来是一系列刷机前的准备，随后进入固件下载界面<br><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E5%9B%BA%E4%BB%B6%E4%B8%8B%E8%BD%BD.png" alt="固件下载"></li>
+<li>下载完成后就进入了安装步骤<br><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E5%9B%BA%E4%BB%B6%E5%AE%89%E8%A3%85.png" alt="固件安装"></li>
+<li>安装完成<br><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90.png" alt="安装完成"></li>
+</ol>
+<h1 id="Step4-配置手机"><a href="#Step4-配置手机" class="headerlink" title="Step4  配置手机"></a>Step4  配置手机</h1><p>手机刷机完成后，需要进行一系列设置，比如登录微软账号云云，不过一开始是英文界面，但是你连 WindowsPhone 都敢用了，还会怕 English ？</p>
+<p>好吧，我成功把 Windows 10 刷成了 Windows 8。<br><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E5%BC%80%E5%A7%8B.png" alt="开始"></p>
+<h1 id="Step4-升级-Windows-10"><a href="#Step4-升级-Windows-10" class="headerlink" title="Step4  升级 Windows 10"></a>Step4  升级 Windows 10</h1><p>在商店中搜索并安装“升级顾问”，大部分新机型都可以成功升级至 Windows 10 。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="http://ww2.sinaimg.cn/large/006CL5mGgw1fapew509tej30u01hcn69.jpg" alt="开始"></h2><h1 id="PS：-使用预览版系统"><a href="#PS：-使用预览版系统" class="headerlink" title="PS： 使用预览版系统"></a>PS： 使用预览版系统</h1><p>预览版系统对于更新狂魔来说再爽不过了，但如何能收到推送呢？</p>
+<ol>
+<li>加入 Windows Insider，可以在这里<a href="https://insider.windows.com/" target="_blank" rel="external">提交申请</a></li>
+<li>进入<code>应用商店</code>，搜索<code>Windows Insider</code><br><img src="http://7xibe6.com1.z0.glb.clouddn.com/WindowsInsider.png" alt="Windows Insider"></li>
+<li>安装完成后打开 Windows Insider<br><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E7%82%B9%E5%87%BB%E5%BC%80%E5%A7%8B.png" alt="点击开始"></li>
+<li>选择升级通道</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">通道</th>
+<th style="text-align:center">功能</th>
+<th>风险</th>
+<th style="text-align:center">更新频率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Insider Fast</td>
+<td style="text-align:center">第一时间获得系统新版本和功能更新</td>
+<td>较高</td>
+<td style="text-align:center">快</td>
+</tr>
+<tr>
+<td style="text-align:center">Insider Slow</td>
+<td style="text-align:center">获得早期系统版本和功能更新</td>
+<td>一般</td>
+<td style="text-align:center">一般</td>
+</tr>
+<tr>
+<td style="text-align:center">Insider Release Preview</td>
+<td style="text-align:center">更早获得 Current Branch 更新、微软应用程序和驱动</td>
+<td>低</td>
+<td style="text-align:center">慢</td>
+</tr>
+</tbody>
+</table>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E9%80%89%E6%8B%A9%E9%80%9A%E9%81%93.png" alt="选择通道"></p>
+<ol>
+<li><p>选择完成后设备会重启，重启后进入<code>手机更新</code>，此时便会收到推送<br><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E6%89%8B%E6%9C%BA%E6%9B%B4%E6%96%B0.png" alt="手机更新"></p>
+</li>
+<li><p>更新完成<br><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E6%9B%B4%E6%96%B0%E5%AE%8C%E6%88%90.png" alt="更新完成"></p>
+</li>
+</ol>
+<hr>
+<p>相较于 Android 和 iOS系统 WindowsPhone 刷机教程真的是简洁明了，不像外面那些妖艳的刷机教程。这也正是 WindowsPhone 的优点之一。</p>
+<p>1% 代表的不是辣鸡，更多的是一种小众的优质。</p>
+<p>文章同步发表致<a href="http://www.jianshu.com/p/296b8ce1f533" target="_blank" rel="external">简书</a></p>
+]]></content>
     </entry>
-
     
     <entry>
       <title><![CDATA[浅谈 WebP 图片格式]]></title>
-      <url>%2F2016%2F07%2F13%2FWebP%2F</url>
-      <content type="text"><![CDATA[QQ 空间中时常会有好友发一些照片，有时看到了决计保存图片留作纪念，但 QQ 空间中的图片想保存下来好像并不简单。 文件名处显示为psb，保存类型为所有文件。如果直接点击保存，保存下来的是一个无扩展名的图片，普通图片浏览器也无法打开，当打开方式选择Chrome时，我们才能真正看到这张图片。这到底是什么？这真的是图片吗？为什么只能在 Chrome 中正常显示？ 0x01 借助工具确定图片格式既然保存下来看不到图片格式，不如直接抓包。1.在 Chrome 中定位图片真实地址2.打开 Fiddler4 抓包软件3.Chrome 中清除缓存并在新标签中打开图片4.切换到 Fiddler 4中，已经看到捕获了图片 可以看到，图片格式显示为： WebP原来保存的图片为 WebP 格式，只需要通过一些 WebP 转换器就可以转换为普通图片文件格式了。 0x02 为什么要使用 WebP 格式？图片保存下来却无法正常打开，普通人肯定一肚子火：好好的 jpg 格式不去用，搞什么 WebP 格式，图片都不能保存？ 不如看看鹅厂工程师是如何看待 WebP 的： WebP 的优势体现在它具有更优的图像数据压缩算法，能带来更小的图片体积，而且拥有肉眼识别无差异的图像质量；同时具备了无损和有损的压缩模式、Alpha 透明以及动画的特性，在 JPEG 和 PNG 上的转化效果都非常优秀、稳定和统一。 内容来源： WebP 探寻之路 - 腾讯 ISUX – 社交用户体验设计 那么究竟什么是 WebP ？ WebP（发音weppy），是一种同时提供了有损压缩与无损压缩的图片文件格式，派生自视频编码格式VP8，是由Google在购买On2 Technologies后发展出来，以BSD授权条款发布。 WebP最初在2010年发布，目标是减少文件大小，但达到和JPEG格式相同的图片质量，希望能够减少图片档在网络上的发送时间。2011年11月8日，Google开始让WebP支持无损压缩和透明色的功能，而在2012年8月16日的参考实做libwebp 0.2.0中正式支持。根据Google较早的测试，WebP的无损压缩比网络上找到的PNG档少了45％的文件大小，即使这些PNG档在使用pngcrush和PNGOUT处理过，WebP还是可以减少28％的文件大小。 内容来源：WebP - 维基百科 相较于其他图片格式 WebP 有什么优势？ 图片来源：web前端图片极限优化策略图片来源：前端里 图片来源：CSDN 据此可以得出一些结论： PNG 转 WebP 的压缩率要高于 PNG 原图压缩率，同样支持有损与无损压缩 转换后的 WebP 体积大幅减少，图片质量也得到保障（同时肉眼几乎无法看出差异） 转换后的 WebP 支持 Alpha 透明和 24-bit 颜色数，不存在 PNG8 色彩不够丰富和在浏览器中可能会出现毛边的问题 内容来源：WebP相对于PNG、JPG有什么优势？ - 知乎 这么好的技术肯定要去用啊，不过 WebP 兼容性似乎并不理想： 根据对目前国内浏览器占比与 WebP 的兼容性分析，大约有 50% 以上的国内用户可以直接体验到 WebP，如果你的网站以图片为主，或者你的产品基于 Chromium 内核，建议体验尝试。假如你打算在 App 中使用 WebP，除了 Android4.0 以上提供的原生支持外，其他版本以及 iOS 都可以直接使用官方提供的解析库（Android 、iOS ）。 内容来源： WebP 探寻之路 - 腾讯 ISUX – 社交用户体验设计 这么一说，WebP 只能在 Chromium 浏览器中使用，那如何在其他浏览器中使用呢？来看看前鹅厂工程师的解决方案： 这么好的技术肯定希望能尽快用起来.然后当时只有chrome浏览器支持,IE完全不支持,怎么办呢? IE的用户比例还是大头啊,当时google给的解决方案是把图片通过Flash来显示,一个页面只有一张图片还有,像空间动态一屏都是图片如果要同时加载上十个flash肯定卡死,后来怎么解决呢,我们还是通过flash去加载webp图片,不过在flash里面再把图片转成jpg格式,然后再转成base64传到页面,不过IE8 base64编码不能超过32k,怎么破?直接在flash把图片分割,传回页面后再用多个Img标签把图片合起来.至此,已经实现webp对IE8+的支持.哦,对了,做这个事情还是在13年初. 内容来源：QQ空间的前端技术水平如何？ - 知乎 可见，针对不同浏览器，腾讯并不是一股脑的把 WebP 图片往上堆，由于目前大部分 QQ 空间用户使用的都是 Chromium 内核浏览器，非常利于QQ 空间的 WebP 图片的普及。 0x03 开发者如何使用 WebP 图片技术？1.智图目前比较推荐的是使用腾讯的智图，ISUX 对此有专门介绍智图同时提供了 Gulp 插件的 API Gulp 插件的安装方法参阅智图项目中的 README.md 2. iSparta开源项目，已经发布在在 Github 上 3.imageView2 本节参考了:https://www.tiexo.cn/qiniu-imageview2/ 七牛云提供了 imageView2 这个接口来讲普通图片转换为 WebP 格式。将图片上传至七牛云后，复制外链，在外链后添加 ?imageMogr2/format/webp即可下面是一张测试图片，在 Chromium 内核浏览器中可以正常显示 0x03 普通用户如何转换 WebP 格式为普通格式？推荐使用在线文件转换网站 CloudConvert 以 QQ 空间中的 WebP 图片为例1.保存图片，图片文件名为 psb ，无扩展名2.手动添加扩展名 .webp3.打开 CloudConvert 上传 webp 文件4.选择输出格式5.点击转换，转换完成后下载即可。 文章中参考的内容如有侵权，请联系我进行删除文章已同步发表至简书。]]></content>
+      <url>http://login926.top/2016/07/13/WebP/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>QQ 空间中时常会有好友发一些照片，有时看到了决计保存图片留作纪念，但 QQ 空间中的图片想保存下来好像并不简单。</p>
+<a id="more"></a>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/QQ%20%E5%9B%BE%E7%89%87%E7%A9%BA%E9%97%B4%E4%BF%9D%E5%AD%98.png" alt="QQ 图片空间保存"><br>文件名处显示为<code>psb</code>，保存类型为<code>所有文件</code>。<br>如果直接点击<code>保存</code>，保存下来的是一个无扩展名的图片，普通图片浏览器也无法打开，当打开方式选择<code>Chrome</code>时，我们才能真正看到这张图片。这到底是什么？这真的是图片吗？为什么只能在 Chrome 中正常显示？</p>
+<hr>
+<h1 id="0x01-借助工具确定图片格式"><a href="#0x01-借助工具确定图片格式" class="headerlink" title="0x01 借助工具确定图片格式"></a>0x01 借助工具确定图片格式</h1><p>既然保存下来看不到图片格式，不如直接抓包。<br>1.在 Chrome 中定位图片真实地址<br><img src="http://7xibe6.com1.z0.glb.clouddn.com/Chrome%20%E5%AE%9A%E4%BD%8D%E5%9B%BE%E7%89%87.png" alt="Chrome 中定位图片"><br>2.打开 Fiddler4 抓包软件<br>3.Chrome 中清除缓存并在新标签中打开图片<br>4.切换到 Fiddler 4中，已经看到捕获了图片<br><img src="http://ww2.sinaimg.cn/large/9a8049afgw1f5sbu0j0fuj218g0p0anj.jpg" alt="捕获图片"></p>
+<p>可以看到，图片格式显示为： WebP<br>原来保存的图片为 WebP 格式，只需要通过一些 WebP 转换器就可以转换为普通图片文件格式了。</p>
+<hr>
+<h1 id="0x02-为什么要使用-WebP-格式？"><a href="#0x02-为什么要使用-WebP-格式？" class="headerlink" title="0x02 为什么要使用 WebP 格式？"></a>0x02 为什么要使用 WebP 格式？</h1><p>图片保存下来却无法正常打开，普通人肯定一肚子火：好好的 jpg 格式不去用，搞什么 WebP 格式，图片都不能保存？</p>
+<p>不如看看鹅厂工程师是如何看待 WebP 的：</p>
+<blockquote>
+<p>WebP 的优势体现在它具有更优的图像数据压缩算法，能带来更小的图片体积，而且拥有肉眼识别无差异的图像质量；同时具备了无损和有损的压缩模式、Alpha 透明以及动画的特性，在 JPEG 和 PNG 上的转化效果都非常优秀、稳定和统一。</p>
+<p>内容来源：<a href="http://isux.tencent.com/introduction-of-webp.html" target="_blank" rel="external"> WebP 探寻之路 - 腾讯 ISUX – 社交用户体验设计</a></p>
+</blockquote>
+<p>那么究竟什么是 WebP ？</p>
+<blockquote>
+<p><strong>WebP</strong>（发音<em>weppy</em>），是一种同时提供了<a href="https://zh.wikipedia.org/wiki/%E6%9C%89%E6%8D%9F%E5%8E%8B%E7%BC%A9" target="_blank" rel="external">有损压缩</a>与<a href="https://zh.wikipedia.org/wiki/%E6%97%A0%E6%8D%9F%E5%8E%8B%E7%BC%A9" target="_blank" rel="external">无损压缩</a>的图片文件格式，派生自视频编码格式<a href="https://zh.wikipedia.org/wiki/VP8" target="_blank" rel="external">VP8</a>，是由<a href="https://zh.wikipedia.org/wiki/Google" target="_blank" rel="external">Google</a>在购买<a href="https://zh.wikipedia.org/wiki/On2_Technologies" target="_blank" rel="external">On2 Technologies</a>后发展出来，以<a href="https://zh.wikipedia.org/wiki/BSD%E6%8E%88%E6%AC%8A%E6%A2%9D%E6%AC%BE" target="_blank" rel="external">BSD授权条款</a>发布。</p>
+<p>WebP最初在2010年发布，目标是减少文件大小，但达到和<a href="https://zh.wikipedia.org/wiki/JPEG" target="_blank" rel="external">JPEG</a>格式相同的图片质量，希望能够减少图片档在网络上的发送时间。<br>2011年11月8日，Google开始让WebP支持无损压缩和透明色的功能，而在2012年8月16日的参考实做libwebp 0.2.0中正式支持<br>。根据Google较早的测试，WebP的无损压缩比网络上找到的PNG档少了45％的文件大小，即使这些PNG档在使用<a href="https://zh.wikipedia.org/w/index.php?title=Pngcrush&amp;action=edit&amp;redlink=1" target="_blank" rel="external">pngcrush</a>和<a href="https://zh.wikipedia.org/w/index.php?title=PNGOUT&amp;action=edit&amp;redlink=1" target="_blank" rel="external">PNGOUT</a>处理过，WebP还是可以减少28％的文件大小。</p>
+<p>内容来源：<a href="https://zh.wikipedia.org/wiki/WebP" target="_blank" rel="external">WebP - 维基百科</a></p>
+</blockquote>
+<p>相较于其他图片格式 WebP 有什么优势？</p>
+<p><img src="http://ww2.sinaimg.cn/large/0060lm7Tgw1f5se2iysfwj30jg08ygoo.jpg" alt="与其他图片对比"><br>图片来源：<a href="http://www.chinaz.com/web/2016/0107/492780.shtml" target="_blank" rel="external">web前端图片极限优化策略</a><br><img src="http://ww4.sinaimg.cn/large/9a8049afjw1f5sdp4qes4j20m607labx.jpg" alt="与PNG 比较"><br>图片来源：<a href="http://www.yyyweb.com/3305.html" target="_blank" rel="external">前端里</a><br><img src="http://ww4.sinaimg.cn/large/9a8049afgw1f5sdt3dt15j20lq0fwab5.jpg" alt="加载时间比较"></p>
+<p>图片来源：<a href="http://blog.csdn.net/xcysuccess3/article/details/38845625" target="_blank" rel="external">CSDN</a></p>
+<p>据此可以得出一些结论：</p>
+<blockquote>
+<p>PNG 转 WebP 的压缩率要高于 PNG 原图压缩率，同样支持有损与无损压缩</p>
+<p>转换后的 WebP 体积大幅减少，图片质量也得到保障（同时肉眼几乎无法看出差异）</p>
+<p>转换后的 WebP 支持 Alpha 透明和 24-bit 颜色数，不存在 PNG8 色彩不够丰富和在浏览器中可能会出现毛边的问题</p>
+<p>内容来源：<a href="https://www.zhihu.com/question/27201061/answer/35637827" target="_blank" rel="external">WebP相对于PNG、JPG有什么优势？ - 知乎</a></p>
+</blockquote>
+<p>这么好的技术肯定要去用啊，不过 WebP 兼容性似乎并不理想：</p>
+<blockquote>
+<p>根据对目前国内浏览器占比与 WebP 的<a href="http://caniuse.com/#search=webp" target="_blank" rel="external">兼容性</a>分析，大约有 50% 以上的国内用户可以直接体验到 WebP，如果你的网站以图片为主，或者你的产品基于 Chromium 内核，建议体验尝试。假如你打算在 App 中使用 WebP，除了 Android4.0 以上提供的原生支持外，其他版本以及 iOS 都可以直接使用官方提供的解析库（<a href="https://github.com/alexey-pelykh/webp-android-backport" target="_blank" rel="external">Android</a> 、<a href="https://github.com/carsonmcdonald/WebP-iOS-example" target="_blank" rel="external">iOS</a> ）。</p>
+<p>内容来源：<a href="http://isux.tencent.com/introduction-of-webp.html" target="_blank" rel="external"> WebP 探寻之路 - 腾讯 ISUX – 社交用户体验设计</a></p>
+</blockquote>
+<p>这么一说，WebP 只能在 Chromium 浏览器中使用，那如何在其他浏览器中使用呢？来看看前鹅厂工程师的解决方案：</p>
+<blockquote>
+<p>这么好的技术肯定希望能尽快用起来.然后当时只有chrome浏览器支持,IE完全不支持,怎么办呢? IE的用户比例还是大头啊,当时google给的解决方案是把图片通过Flash来显示,一个页面只有一张图片还有,像空间动态一屏都是图片如果要同时加载上十个flash肯定卡死,后来怎么解决呢,我们还是通过flash去加载webp图片,不过在flash里面再把图片转成jpg格式,然后再转成base64传到页面,不过IE8 base64编码不能超过32k,怎么破?直接在flash把图片分割,传回页面后再用多个Img标签把图片合起来.至此,已经实现webp对IE8+的支持.哦,对了,做这个事情还是在13年初.</p>
+<p>内容来源：<a href="https://www.zhihu.com/question/37905339" target="_blank" rel="external">QQ空间的前端技术水平如何？ - 知乎</a></p>
+</blockquote>
+<p>可见，针对不同浏览器，腾讯并不是一股脑的把 WebP 图片往上堆，由于目前大部分 QQ 空间用户使用的都是 Chromium 内核浏览器，非常利于QQ 空间的 WebP 图片的普及。</p>
+<hr>
+<h1 id="0x03-开发者如何使用-WebP-图片技术？"><a href="#0x03-开发者如何使用-WebP-图片技术？" class="headerlink" title="0x03 开发者如何使用 WebP 图片技术？"></a>0x03 开发者如何使用 WebP 图片技术？</h1><h2 id="1-智图"><a href="#1-智图" class="headerlink" title="1.智图"></a>1.智图</h2><p>目前比较推荐的是使用腾讯的<a href="http://zhitu.isux.us/" target="_blank" rel="external">智图</a>，ISUX 对此有<a href="http://isux.tencent.com/zhitu.html" target="_blank" rel="external">专门介绍</a><br>智图同时提供了 <a href="https://github.com/targetkiller/gulp-imageisux" target="_blank" rel="external">Gulp 插件的 API</a><br><img src="http://ww3.sinaimg.cn/large/9a8049afgw1f5sd6mstgaj218g0ml7d2.jpg" alt="智图"></p>
+<p>Gulp 插件的安装方法参阅<a href="https://github.com/targetkiller/gulp-imageisux" target="_blank" rel="external">智图项目</a>中的 <strong>README.md</strong></p>
+<h2 id="2-iSparta"><a href="#2-iSparta" class="headerlink" title="2. iSparta"></a>2. iSparta</h2><p>开源项目，已经发布在在 <a href="https://github.com/iSparta/iSparta" target="_blank" rel="external">Github</a> 上<br><img src="http://ww4.sinaimg.cn/large/9a8049afjw1f5se7ywvruj20m80gogmo.jpg" alt="iSparta"></p>
+<h2 id="3-imageView2"><a href="#3-imageView2" class="headerlink" title="3.imageView2"></a>3.imageView2</h2><blockquote>
+<p>本节参考了:<a href="https://www.tiexo.cn/qiniu-imageview2/" target="_blank" rel="external">https://www.tiexo.cn/qiniu-imageview2/</a></p>
+</blockquote>
+<p>七牛云提供了 imageView2 这个接口来讲普通图片转换为 WebP 格式。<br>将图片上传至七牛云后，复制外链，在外链后添加 <code>?imageMogr2/format/webp</code>即可<br>下面是一张测试图片，在 Chromium 内核浏览器中可以正常显示<br><img src="http://7xibe6.com1.z0.glb.clouddn.com/Nvidia-GeForce-GTX-Wallpaper.png?imageMogr2/format/webp" alt="测试图片"></p>
+<h1 id="0x03-普通用户如何转换-WebP-格式为普通格式？"><a href="#0x03-普通用户如何转换-WebP-格式为普通格式？" class="headerlink" title="0x03 普通用户如何转换 WebP 格式为普通格式？"></a>0x03 普通用户如何转换 WebP 格式为普通格式？</h1><p>推荐使用在线文件转换网站<a href="https://cloudconvert.org/" target="_blank" rel="external"> CloudConvert </a><br>以 QQ 空间中的 WebP 图片为例<br>1.保存图片，图片文件名为 psb ，无扩展名<br>2.手动添加扩展名 <code>.webp</code><br>3.打开<a href="https://cloudconvert.org/" target="_blank" rel="external"> CloudConvert </a>上传 webp 文件<br>4.选择输出格式<br><img src="http://ww2.sinaimg.cn/large/9a8049afjw1f5seild3k3j218g0mjte6.jpg" alt="选择输出格式"><br>5.点击转换，转换完成后下载即可。</p>
+<hr>
+<p>文章中参考的内容如有侵权，请联系我进行删除<br>文章已同步发表至<a href="http://www.jianshu.com/p/e3df77df7d67" target="_blank" rel="external">简书</a>。</p>
+]]></content>
     </entry>
-
     
     <entry>
       <title><![CDATA[网络流媒体下载的 10 种方法（以下载 Echo 音乐为例）]]></title>
-      <url>%2F2016%2F07%2F06%2FWebMedia%2F</url>
-      <content type="text"><![CDATA[Echo是一款基于声音/音乐内容的社交媒体型产品。最早接触Echo，是同学分享的一首 3D 音乐，不过第一次使用便发现， Echo 似乎并不支持音乐下载。 其实Echo 上的音乐都是常规的流媒体，下载并不困难。文章介绍了网页版 Echo 以及 Echo 客户端中音乐下载的几种方法。 如果对流媒体下载很感兴趣，文章中的内容可能对你有所启发。 0x01 在 PC 上使用 Chrome 浏览器下载Chrome 支持浏览器扩展与开发者模式，所以我们可以使用浏览器中的嗅探扩展或开发者模式实现 Echo 音乐下载（Chrome 使用 Chromium 内核，下面的方法在其他 Chromium 内核浏览器中同样适用） 1.使用浏览器扩展1.进入 ChromeWebStore 并添加 Chrono 扩展2.打开 Echo 网页版，播放需要下载的音乐3.点击 Chrono 图标，进入 Chrono 嗅探管理界面，选中 mp3 文件下载即可。 2.使用 Chrome 开发者模式1.按 F12 键打开开发者模式2.进入Network标签下3.打开 Echo 网页版并播放需要下载的音乐4.找到Type为Media的文件 5.右键，选择Open link in new Tab6.新标签页中会展示一个 Html5 播放器，右键选择视频另存为即可 3.使用 Chrome 审查元素1.按 F12 进入审查元素2.依次展开如下图项目，找到真实地址 3.复制地址访问4.新标签页中会展示一个 Html5 播放器，右键选择视频另存为即可 4.Chrome 配合 IDM 下载1.安装 Internet Download Manager （IDM）2.打开 IDM，进入 IDM 设置3.添加 Chrome 浏览器集成4.启动 Chrome ，提示添加了 IDM Integration Module 扩展5.打开 Echo 回声网页版，播放需要下载的音乐6.开始播放后浏览器中便会跳出下载浮动条 7.点击下载即可 0x02 借助 Python 下载1.Python3在 Python3 可以使用 You-Get 下载 Echo 音乐，You-Get 具体使用方法请参考之前写的一篇《You-Get——基于 Python3 的媒体下载工具》，这里直接给下载命令。同样的，类似 You-Get ，还有 youtube-dl 。 以金玟岐的《吃掉我》为例 1you-get http://www.app-echo.com/sound/560030 2.Python2可以使用Github上的一个项目：Echo download，Python 版本为 2.7 作者：cizelGithub：https://github.com/cizel/echo-download 以金玟岐的《吃掉我》为例 1python echo.py http://www.app-echo.com/sound/560030 0x03 在 Android 设备上使用 Xposed 模块下载 在 Android 设备上获取 Root 权限 选择对应版本的 Xposed 框架进行安装（建议在酷安网上下载） 安装 Xposed One Tap Video Download这个 Xposed 模块 进入 Xposed 模块管理，激活 Xposed One Tap Video Download 重启设备 在后台开启 Xposed One Tap Video Download 打开手机浏览器，访问网页版 Echo ，播放音乐（Xposed One Tap Video Download 暂时无法下载 Echo Android 客户端中的音乐） 此时通知栏会弹出提示，点击下载即可 0x04 使用抓包软件下载1.网页版 Echo 抓取演示以 Fiddler 4 为例，其他抓包软件类似。1.打开 Fiddler 42.打开 Echo 网页版，并播放需要下载的音乐3.切换到 Fiddler 界面4.找乐符形式的图标5.右键选择Copy&gt; Just URL6.复制链接到浏览器或下载软件中下载即可 2.使用流媒体抓取软件这里推荐使用 VSO Downloader ，原理是借助 WinCap 直接抓包获取流媒体，甚至可以下载一些无法使用普通下载器下载的流媒体，建议在淘宝数码荔枝购买由VSO授权的正版软件。1.下载并安装 VSO Downloader 2.打开 VSO Downloader3.在任意浏览器中播放 Echo 网页版上的音乐4.VSO Downloader 提示捕获mp3文件5.选中下载即可，当然，试用版只能下载 50% 3.通过手机代理抓取 Echo 客户端中的音乐 打开 Fiddler 4 进入 Tools &gt; Fiddler Options 切换至 Connections 标签 勾选 Allow remote computers to connect 手机与电脑连接至同一 Wifi 下 手机长按接入的热点，进入高级设置 将代理一项调节为手动 输入代理服务器地址，地址为电脑的局域网地址 端口填写 888810.配置好代理收，手机打开 Echo 客户端播放需要下载的音乐11.找乐符形式的图标，右键选择 Copy &gt; Just URL12.复制链接到浏览器或下载软件中下载即可 4. 在 Openwrt 路由器上抓包并下载 本节参考了恩山无线论坛上的局域网嗅探教程（仅限科普使用） 一帖 1.准备一个已刷入 Openwrt 系统的路由器2.登陆路由器后台 Luci 界面3.进入 系统 &gt; 软件包4.切换到 配置 标签下5.将配置改为如下内容，并点击 提交 按钮 12345678910111213dest root /dest ram /tmplists_dir ext /var/opkg-listsoption overlay_root /overlaysrc/gz 14.09_base http://downloads.openwrt.org.cn/PandoraBox/ralink/packages/base/src/gz 14.09_telephony http://downloads.openwrt.org.cn/PandoraBox/ralink/packages/telephony/src/gz 14.09_packages http://downloads.openwrt.org.cn/PandoraBox/ralink/packages/packages/src/gz 14.09_routing http://downloads.openwrt.org.cn/PandoraBox/ralink/packages/routing/src/gz 14.09_management http://downloads.openwrt.org.cn/PandoraBox/ralink/packages/management/src/gz 14.09_oldpackages http://downloads.openwrt.org.cn/PandoraBox/ralink/packages/oldpackages/arch ralink 1arch all 2arch ramips_24kec 3 7.切换回 动作 标签，点击 刷新列表8.等页面刷新完成9.在可用软件包中找到 Tcpdump 并安装 10.电脑上下载并安装 Wireshark 与 Plink (Wireshark 安装目录最好不要改动）11.启动 cmd 并进入 Plink 目录12.输入抓包命令，弹出 Wireshark 窗口 1plink.exe -ssh -pw admin root@192.168.1.1 "tcpdump -ni br-lan -s 0 -w - not port 22" | "C:\Program Files\Wireshark\Wireshark.exe" -k -i - 其中admin为路由器管理员密码，root为管理员用户名，192.168.1.1为路由器后台地址，br-lan为需要抓包的端口，port 22为端口22，C:\Program Files\Wireshark\Wireshark.exe为 Wireshark 安装位置。 13.Wireshark 启动，并会直接从路由器端口抓包，此时连入路由器的任意设备的包在Wireshark 中均可查看。（Wireshark 展示内容较多，什么时候开始抓包需要自己控制好）15.在Wireshark 中输入筛选命令，筛选出 http 的 GET 数据包 1http.request.method==GET 16.从第一条结果开始，双击项目，再展开Hypertext Transfer Protocol，找到Full Request URI参数（那些直接在筛选结果中就能看到扩展名为.png之类的包就不要再花时间去看了） 17.如果Full Request URI参数结尾有mp3扩展名，那么这便是该歌曲的真实链接，双击链接即可在浏览器中下载。 0x05 其他的一些1.如果要测试上述多种方法的话，每次尽量选择不同歌曲测试，同一歌曲会在本地留下缓存。2.上述方法下载到的全部为原版文件，不会拿什么 Adobe Audition 来录制。3.一些 Echo 音乐下载的小软件也可以去用，原理类似，但由于非开源软件，安全性未知。4.Echo 上的音乐版权模糊，谨慎使用吧。 5.文章可以以任意方式分享，转载请获授权。 6.对文章有疑问可以留言，我会认真回复的，反正有(mei)的(you)是(nv)时(peng)间(you) 文章已同步发表至简书]]></content>
+      <url>http://login926.top/2016/07/06/WebMedia/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p><img src="https://ooo.0o0.ooo/2016/07/30/579d69308a990.png" alt="Echo"></p>
+<p><a href="http://www.app-echo.com/" target="_blank" rel="external">Echo</a>是一款基于声音/音乐内容的社交媒体型产品。最早接触Echo，是同学分享的一首 3D 音乐，不过第一次使用便发现， Echo 似乎并不支持音乐下载。</p>
+<a id="more"></a>
+<p>其实Echo 上的音乐都是常规的流媒体，下载并不困难。文章介绍了网页版 Echo 以及 Echo 客户端中音乐下载的几种方法。</p>
+<p>如果对流媒体下载很感兴趣，文章中的内容可能对你有所启发。</p>
+<hr>
+<h1 id="0x01-在-PC-上使用-Chrome-浏览器下载"><a href="#0x01-在-PC-上使用-Chrome-浏览器下载" class="headerlink" title="0x01 在 PC 上使用 Chrome 浏览器下载"></a>0x01 在 PC 上使用 Chrome 浏览器下载</h1><p><a href="http://www.google.cn/chrome/browser" target="_blank" rel="external">Chrome </a>支持浏览器扩展与开发者模式，所以我们可以使用浏览器中的嗅探扩展或开发者模式实现 Echo 音乐下载（Chrome 使用 <a href="http://www.chromium.org" target="_blank" rel="external">Chromium </a>内核，下面的方法在其他 Chromium 内核浏览器中同样适用）</p>
+<h4 id="1-使用浏览器扩展"><a href="#1-使用浏览器扩展" class="headerlink" title="1.使用浏览器扩展"></a>1.使用浏览器扩展</h4><p>1.进入 ChromeWebStore 并添加 <a href="https://chrome.google.com/webstore/detail/chrono-download-manager/mciiogijehkdemklbdcbfkefimifhecn" target="_blank" rel="external">Chrono </a>扩展<br>2.打开 Echo 网页版，播放需要下载的音乐<br>3.点击 Chrono 图标，进入 Chrono 嗅探管理界面，选中 mp3 文件下载即可。</p>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E5%B7%B2%E6%88%90%E5%8A%9F%E5%97%85%E6%8E%A2.png" alt="已成功嗅探"></p>
+<h4 id="2-使用-Chrome-开发者模式"><a href="#2-使用-Chrome-开发者模式" class="headerlink" title="2.使用 Chrome 开发者模式"></a>2.使用 Chrome 开发者模式</h4><p>1.按 F12 键打开开发者模式<br>2.进入<code>Network</code>标签下<br>3.打开 Echo 网页版并播放需要下载的音乐<br>4.找到<code>Type</code>为<code>Media</code>的文件</p>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E5%9B%BE%E4%B8%AD%E7%BB%BF%E8%89%B2%E9%AB%98%E4%BA%AE%E5%A4%84.png" alt="图中绿色高亮处"><br>5.右键，选择<code>Open link in new Tab</code><br>6.新标签页中会展示一个 Html5 播放器，右键选择<code>视频另存为</code>即可</p>
+<h4 id="3-使用-Chrome-审查元素"><a href="#3-使用-Chrome-审查元素" class="headerlink" title="3.使用 Chrome 审查元素"></a>3.使用 Chrome 审查元素</h4><p>1.按 F12 进入审查元素<br>2.依次展开如下图项目，找到真实地址</p>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E7%BB%BF%E8%89%B2%E9%AB%98%E4%BA%AE%E5%A4%84%E5%8D%B3%E4%BD%8D%E7%9C%9F%E5%AE%9E%E5%9C%B0%E5%9D%80%EF%BC%8CEcho%20%E7%94%A8%E7%9A%84%E4%B9%9F%E6%98%AF%E4%B8%83%E7%89%9B%E7%9A%84%E6%9C%8D%E5%8A%A1.png" alt="绿色高亮处即位真实地址，Echo 用的也是七牛的服务"></p>
+<p>3.复制地址访问<br>4.新标签页中会展示一个 Html5 播放器，右键选择<code>视频另存为</code>即可</p>
+<h4 id="4-Chrome-配合-IDM-下载"><a href="#4-Chrome-配合-IDM-下载" class="headerlink" title="4.Chrome 配合 IDM 下载"></a>4.Chrome 配合 IDM 下载</h4><p>1.安装<a href="https://www.internetdownloadmanager.com/" target="_blank" rel="external"> Internet Download Manager </a>（IDM）<br>2.打开 IDM，进入 IDM 设置<br>3.添加 Chrome 浏览器集成<br><img src="http://oa0thinbz.bkt.clouddn.com/%E5%8B%BE%E9%80%89.png" alt="勾选Chrome"><br>4.启动 Chrome ，提示添加了<a href="https://chrome.google.com/webstore/detail/idm-integration-module-ex/cnlojoclkbpmfhakhaagjpjfifbaoadf?hl=zh-CN" target="_blank" rel="external"> IDM Integration Module 扩展</a><br>5.打开 Echo 回声网页版，播放需要下载的音乐<br>6.开始播放后浏览器中便会跳出下载浮动条<br><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E4%B8%8B%E8%BD%BD%E6%B5%AE%E5%8A%A8%E6%9D%A1.png" alt="下载浮动条"></p>
+<p>7.点击下载即可</p>
+<hr>
+<h1 id="0x02-借助-Python-下载"><a href="#0x02-借助-Python-下载" class="headerlink" title="0x02 借助 Python 下载"></a>0x02 借助 Python 下载</h1><h4 id="1-Python3"><a href="#1-Python3" class="headerlink" title="1.Python3"></a>1.Python3</h4><p>在 Python3 可以使用 You-Get 下载 Echo 音乐，You-Get 具体使用方法请参考之前写的一篇<a href="http://www.jianshu.com/p/a3f8df948395" target="_blank" rel="external">《You-Get——基于 Python3 的媒体下载工具》</a>，这里直接给下载命令。同样的，类似 You-Get ，还有 <a href="https://github.com/rg3/youtube-dl" target="_blank" rel="external">youtube-dl </a>。</p>
+<p>以<a href="http://www.app-echo.com/user/1547431" target="_blank" rel="external">金玟岐</a>的<a href="http://www.app-echo.com/sound/560030" target="_blank" rel="external">《吃掉我》</a>为例</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">you-get http://www.app-<span class="built_in">echo</span>.com/sound/<span class="number">560030</span></div></pre></td></tr></table></figure>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/You-Get%20%E4%B8%8B%E8%BD%BD%20Echo.png" alt="You-Get 下载 Echo"></p>
+<h4 id="2-Python2"><a href="#2-Python2" class="headerlink" title="2.Python2"></a>2.Python2</h4><p>可以使用Github上的一个项目：<a href="https://github.com/cizel/echo-download" target="_blank" rel="external">Echo download</a>，Python 版本为 2.7</p>
+<blockquote>
+<p>作者：<a href="https://github.com/cizel" target="_blank" rel="external">cizel</a><br>Github：<a href="https://github.com/cizel/echo-download" target="_blank" rel="external">https://github.com/cizel/echo-download</a></p>
+</blockquote>
+<p>以<a href="http://www.app-echo.com/user/1547431" target="_blank" rel="external">金玟岐</a>的<a href="http://www.app-echo.com/sound/560030" target="_blank" rel="external">《吃掉我》</a>为例</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python <span class="built_in">echo</span>.py http://www.app-<span class="built_in">echo</span>.com/sound/<span class="number">560030</span></div></pre></td></tr></table></figure>
+<hr>
+<h1 id="0x03-在-Android-设备上使用-Xposed-模块下载"><a href="#0x03-在-Android-设备上使用-Xposed-模块下载" class="headerlink" title="0x03 在 Android 设备上使用 Xposed 模块下载"></a>0x03 在 Android 设备上使用 Xposed 模块下载</h1><ol>
+<li>在 Android 设备上获取 Root 权限</li>
+<li>选择对应版本的 Xposed 框架进行安装（建议在<a href="http://www.coolapk.com/search?q=Xposed" target="_blank" rel="external">酷安网</a>上下载）<br><img src="http://ww1.sinaimg.cn/large/9a8049afjw1f6yckw4a74j20zk0k0go0.jpg" alt="Xposed"></li>
+<li>安装 <a href="http://www.coolapk.com/apk/com.phantom.onetapvideodownload" target="_blank" rel="external">Xposed One Tap Video Download</a>这个 Xposed 模块</li>
+<li>进入 Xposed 模块管理，激活 Xposed One Tap Video Download<br><img src="http://ww4.sinaimg.cn/large/9a8049afjw1f6yclkbp4kj20zk0k040r.jpg" alt="激活 Xposed One Tap Video Download"></li>
+<li>重启设备</li>
+<li>在后台开启 Xposed One Tap Video Download</li>
+<li>打开手机浏览器，访问网页版 Echo ，播放音乐（Xposed One Tap Video Download 暂时无法下载 Echo Android 客户端中的音乐）</li>
+<li>此时通知栏会弹出提示，点击下载即可<br><img src="http://ww4.sinaimg.cn/large/9a8049afjw1f6ycnggfopj20zk0k0go7.jpg" alt="Xposed One Tap Video Download 提示"></li>
+</ol>
+<hr>
+<h1 id="0x04-使用抓包软件下载"><a href="#0x04-使用抓包软件下载" class="headerlink" title="0x04 使用抓包软件下载"></a>0x04 使用抓包软件下载</h1><h4 id="1-网页版-Echo-抓取"><a href="#1-网页版-Echo-抓取" class="headerlink" title="1.网页版 Echo 抓取"></a>1.网页版 Echo 抓取</h4><p>演示以 Fiddler 4 为例，其他抓包软件类似。<br>1.打开 Fiddler 4<br>2.打开 Echo 网页版，并播放需要下载的音乐<br>3.切换到 Fiddler 界面<br>4.找乐符形式的图标<br><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E8%93%9D%E8%89%B2%E9%AB%98%E4%BA%AE%E5%A4%84.png" alt="蓝色高亮处"><br>5.右键选择<code>Copy</code>&gt; <code>Just URL</code><br>6.复制链接到浏览器或下载软件中下载即可</p>
+<h4 id="2-使用流媒体抓取软件"><a href="#2-使用流媒体抓取软件" class="headerlink" title="2.使用流媒体抓取软件"></a>2.使用流媒体抓取软件</h4><p>这里推荐使用 <a href="https://cn.vso-software.fr/products/downloader/vso-downloader.php" target="_blank" rel="external">VSO Downloader </a>，原理是借助 WinCap 直接抓包获取流媒体，甚至可以下载一些无法使用普通下载器下载的流媒体，建议在淘宝<a href="https://sbcwangka.taobao.com/index.htm" target="_blank" rel="external">数码荔枝</a>购买由<a href="https://cn.vso-software.fr" target="_blank" rel="external">VSO</a>授权的<a href="https://item.taobao.com/item.htm?id=35161240656" target="_blank" rel="external">正版软件</a>。<br>1.下载并安装 <a href="https://cn.vso-software.fr/products/downloader/vso-downloader.php" target="_blank" rel="external"> VSO Downloader </a><br>2.打开 VSO Downloader<br>3.在任意浏览器中播放 Echo 网页版上的音乐<br>4.VSO Downloader 提示捕获mp3文件<br>5.选中下载即可，当然，试用版只能下载 50%</p>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/VSO%20Downloader.png" alt="VSO Downloader "></p>
+<h4 id="3-通过手机代理抓取-Echo-客户端中的音乐"><a href="#3-通过手机代理抓取-Echo-客户端中的音乐" class="headerlink" title="3.通过手机代理抓取 Echo 客户端中的音乐"></a>3.通过手机代理抓取 Echo 客户端中的音乐</h4><ol>
+<li>打开 Fiddler 4</li>
+<li>进入 <code>Tools</code> &gt; <code>Fiddler Options</code></li>
+<li>切换至 <code>Connections</code> 标签</li>
+<li>勾选 <code>Allow remote computers to connect</code></li>
+<li>手机与电脑连接至同一 Wifi 下</li>
+<li>手机长按接入的热点，进入<code>高级设置</code></li>
+<li>将代理一项调节为<code>手动</code></li>
+<li>输入代理服务器地址，地址为电脑的局域网地址</li>
+<li>端口填写 <code>8888</code><br><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86.png" alt="配置代理"><br>10.配置好代理收，手机打开 Echo 客户端播放需要下载的音乐<br>11.找乐符形式的图标，右键选择 <code>Copy</code> &gt; <code>Just URL</code><br>12.复制链接到浏览器或下载软件中下载即可</li>
+</ol>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E5%9B%BE%E7%A4%BA%E4%B8%BA%20Android%20%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%AD%E8%BF%90%E8%A1%8C%20Echo.png" alt="图示为 Android 虚拟机中运行 Echo"></p>
+<h4 id="4-在-Openwrt-路由器上抓包并下载"><a href="#4-在-Openwrt-路由器上抓包并下载" class="headerlink" title="4. 在 Openwrt 路由器上抓包并下载"></a>4. 在 Openwrt 路由器上抓包并下载</h4><blockquote>
+<p>本节参考了<a href="http://www.right.com.cn/" target="_blank" rel="external">恩山无线论坛</a>上的<a href="http://www.right.com.cn/forum/thread-155213-1-1.html" target="_blank" rel="external">局域网嗅探教程（仅限科普使用） </a>一帖</p>
+</blockquote>
+<p>1.准备一个已刷入 Openwrt 系统的路由器<br>2.登陆路由器后台 Luci 界面<br>3.进入  <code>系统</code> &gt; <code>软件包</code><br>4.切换到  <code>配置</code>  标签下<br>5.将配置改为如下内容，并点击 提交 按钮</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">dest root /</div><div class="line">dest ram /tmp</div><div class="line">lists_dir ext /var/opkg-lists</div><div class="line">option overlay_root /overlay</div><div class="line">src/gz <span class="number">14</span>.<span class="number">09</span>_base http://downloads.openwrt.org.cn/PandoraBox/ralink/packages/base/</div><div class="line">src/gz <span class="number">14</span>.<span class="number">09</span>_telephony http://downloads.openwrt.org.cn/PandoraBox/ralink/packages/telephony/</div><div class="line">src/gz <span class="number">14</span>.<span class="number">09</span>_packages http://downloads.openwrt.org.cn/PandoraBox/ralink/packages/packages/</div><div class="line">src/gz <span class="number">14</span>.<span class="number">09</span>_routing http://downloads.openwrt.org.cn/PandoraBox/ralink/packages/routing/</div><div class="line">src/gz <span class="number">14</span>.<span class="number">09</span>_management http://downloads.openwrt.org.cn/PandoraBox/ralink/packages/management/</div><div class="line">src/gz <span class="number">14</span>.<span class="number">09</span>_oldpackages http://downloads.openwrt.org.cn/PandoraBox/ralink/packages/oldpackages/</div><div class="line">arch ralink <span class="number">1</span></div><div class="line">arch all <span class="number">2</span></div><div class="line">arch ramips_24kec <span class="number">3</span></div></pre></td></tr></table></figure>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E9%85%8D%E7%BD%AE.png" alt="配置"></p>
+<p>7.切换回 <code>动作</code> 标签，点击 <code>刷新列表</code><br>8.等页面刷新完成<br>9.在<code>可用软件包</code>中找到 Tcpdump 并安装</p>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E5%AE%89%E8%A3%85%20Tcpdump.png" alt="安装 Tcpdump"><br>10.电脑上下载并安装 <a href="https://www.wireshark.org/download.html" target="_blank" rel="external">Wireshark</a> 与 <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html" target="_blank" rel="external">Plink</a> (Wireshark 安装目录最好不要改动）<br>11.启动 cmd 并进入 Plink 目录<br>12.输入抓包命令，弹出 Wireshark 窗口</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">plink.exe -ssh -pw admin root@<span class="number">192</span>.<span class="number">168</span>.<span class="number">1</span>.<span class="number">1</span> "tcpdump -ni br-lan -s <span class="number">0</span> -w - <span class="keyword">not</span> port <span class="number">22</span>" | "C:\Program Files\Wireshark\Wireshark.exe" -k -i -</div></pre></td></tr></table></figure>
+<p>其中<code>admin</code>为路由器管理员密码，<code>root</code>为管理员用户名，<code>192.168.1.1</code>为路由器后台地址，<code>br-lan</code>为需要抓包的端口，<code>port 22</code>为端口22，<code>C:\Program Files\Wireshark\Wireshark.exe</code>为 Wireshark 安装位置。</p>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E5%91%BD%E4%BB%A4%E6%AD%A3%E7%A1%AE%E4%BC%9A%E6%9C%89%E6%8F%90%E7%A4%BA.png" alt="命令正确会有提示"></p>
+<p>13.Wireshark 启动，并会直接从路由器端口抓包，此时连入路由器的任意设备的包在Wireshark 中均可查看。（Wireshark 展示内容较多，什么时候开始抓包需要自己控制好）<br>15.在Wireshark 中输入筛选命令，筛选出 http 的 GET 数据包</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http.request.method==GET</div></pre></td></tr></table></figure>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E7%AD%9B%E9%80%89%20Get%20%E6%95%B0%E6%8D%AE%E5%8C%85.png" alt="筛选 Get 数据包"></p>
+<p>16.从第一条结果开始，双击项目，再展开<code>Hypertext Transfer Protocol</code>，找到<code>Full Request URI</code>参数（那些直接在筛选结果中就能看到扩展名为<code>.png</code>之类的包就不要再花时间去看了）<br><img src="http://7xibe6.com1.z0.glb.clouddn.com/Full%20Request%20URI.png" alt="Full Request URI"></p>
+<p>17.如果<code>Full Request URI</code>参数结尾有<code>mp3</code>扩展名，那么这便是该歌曲的真实链接，双击链接即可在浏览器中下载。</p>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E6%89%BEmp3%E5%85%B3%E9%94%AE%E5%AD%97%E5%B0%B1%E8%A1%8C.png" alt="找mp3关键字就行"></p>
+<hr>
+<h1 id="0x05-其他的一些"><a href="#0x05-其他的一些" class="headerlink" title="0x05 其他的一些"></a>0x05 其他的一些</h1><p>1.如果要测试上述多种方法的话，每次尽量选择不同歌曲测试，同一歌曲会在本地留下缓存。<br>2.上述方法下载到的全部为原版文件，不会拿什么 Adobe Audition 来录制。<br>3.一些 Echo 音乐下载的小软件也可以去用，原理类似，但由于非开源软件，安全性未知。<br>4.Echo 上的音乐版权模糊，谨慎使用吧。</p>
+<p><strong><em>5.文章可以以任意方式分享，转载请获授权。</em></strong></p>
+<p>6.对文章有疑问可以留言，我会认真回复的，反正有(mei)的(you)是(nv)时(peng)间(you)</p>
+<p><img src="http://oa0thinbz.bkt.clouddn.com/0.jpeg" alt="呵呵呵呵呵呵"></p>
+<p>文章已同步发表至<a href="http://www.jianshu.com/p/e7d2c3a624f6" target="_blank" rel="external">简书</a></p>
+]]></content>
     </entry>
-
     
     <entry>
       <title><![CDATA[使用 Burpsuite 自定义百度云提取码]]></title>
-      <url>%2F2016%2F07%2F03%2FBaidu_Burpsuite%2F</url>
-      <content type="text"><![CDATA[之前写了一篇《使用 Fiddler 自定义百度云分享提取码》，简书有朋友@代码描绘人生提示说Burpsuite也可以实现该功能，遂决定再写一篇 Burp 的教程。 Step1 下载与安装 Burp1.Burp 基于 Java，需要先安装 Java 运行环境（Java Runtime Environment） 系统 下载地址 Win x86 Oracle官网下载 Win x64 Oracle官网下载 2.下载 Burp访问下载界面，Burp 有免费版，也提供功能更为全面的专业版。 下载完成后双击 jar 文件运行即可启动 Burp Step 2 修改代理设置1.打开 Burp2.进入Proxy/Options3.勾选运行代理（默认状态为勾选，如果项目为空，请按下图自行添加） 3.打开IE浏览器中的Internet选项4.切换到连接标签5.点击局域网设置6.勾选为 LAN 使用代理服务器7.在地址项目中填入 127.0.0.1，在端口项目中填入 8080 保存即可。 Burp 使用完后请取消勾选第6步中的为 LAN 使用代理服务器，否则将无法上网 如果使用Chrome浏览器，可以安装 Proxy SwitchyOmega 扩展来快速添加浏览器代理，添加方法不再赘述。 代理设置完成后，浏览器中的数据包都会通过 Burp 这个中转站。 Step3 修改提取码1.首先切换到 Burp 界面，进入Prxoy/Intercept点击Intercept Is On按钮关闭 Intercept 功能2.打开配置好代理的浏览器，访问百度云3.选中需要分享的文件，点击分享4.点分享按钮出现如下界面 5.切换到 Burp 界面，开启 Intercept 功能6.切换到浏览器，点击创建私密连接7.此时本地生成的提取码被 Burp 阻止，Burp 会有提示8.切换到 Burp 界面，即可看到被阻止的包，末尾的 pwd=s84y 即为本地生成的提取码元数据9.删掉原来的提取码，直接修改 pwd 后面的值即可Burp 对中文不友好，目前只能将提取码修改为数字或英文，并不能像 Fiddler 一样在提取码中添加中文 10.修改完成后，点击Intercept Is On按钮关闭 Intercept 功能，将包放行，此时带着修改提取码的包便会发送给服务器，也就实现了提取码修改。 总结Burp 和 Fiddler都有各自好处，两者都是抓包和重放的利器，两者功能也远不止修改提取码这么简单，都值得深入学习。 Burp 修改提取码测试链接:http://pan.baidu.com/s/1i5rT88l 密码:testFiddler 修改提取码测试链接:http://pan.baidu.com/s/1hrYYGEo 密码:7喜 本文以同步发表至简书如果对文章有疑问、建议或发现错误，欢迎留言。]]></content>
+      <url>http://login926.top/2016/07/03/Baidu_Burpsuite/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>之前写了一篇<a href="http://www.jianshu.com/p/cb33b8132b42" target="_blank" rel="external">《使用 Fiddler 自定义百度云分享提取码》</a>，简书有朋友<a href="http://www.jianshu.com/users/4588e4274830" target="_blank" rel="external">@代码描绘人生</a>提示说<a href="https://portswigger.net/burp/" target="_blank" rel="external">Burpsuite</a>也可以实现该功能，遂决定再写一篇 Burp 的教程。</p>
+ <a id="more"></a>
+<hr>
+<h1 id="Step1-下载与安装-Burp"><a href="#Step1-下载与安装-Burp" class="headerlink" title="Step1  下载与安装 Burp"></a>Step1  下载与安装 Burp</h1><h4 id="1-Burp-基于-Java，需要先安装-Java-运行环境（Java-Runtime-Environment）"><a href="#1-Burp-基于-Java，需要先安装-Java-运行环境（Java-Runtime-Environment）" class="headerlink" title="1.Burp 基于 Java，需要先安装 Java 运行环境（Java Runtime Environment）"></a>1.Burp 基于 Java，需要先安装 Java 运行环境（Java Runtime Environment）</h4><table>
+<thead>
+<tr>
+<th>系统</th>
+<th>下载地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Win x86</td>
+<td><a href="http://javadl.oracle.com/webapps/download/AutoDL?BundleId=207229" target="_blank" rel="external">Oracle官网下载</a></td>
+</tr>
+<tr>
+<td>Win x64</td>
+<td><a href="http://javadl.oracle.com/webapps/download/AutoDL?BundleId=207231" target="_blank" rel="external">Oracle官网下载</a></td>
+</tr>
+</tbody>
+</table>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/Java%E5%AE%89%E8%A3%85.png" alt="Java安装"></p>
+<h4 id="2-下载-Burp"><a href="#2-下载-Burp" class="headerlink" title="2.下载 Burp"></a>2.下载 Burp</h4><p>访问<a href="https://portswigger.net/burp/download.html" target="_blank" rel="external">下载界面</a>，Burp 有免费版，也提供功能更为全面的专业版。</p>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E4%B8%8B%E8%BD%BD%E5%BE%97%E5%88%B0%E7%9A%84%E5%BA%94%E4%B8%BAjar%E6%96%87%E4%BB%B6.png" alt="下载得到的应为jar文件"><br>下载完成后双击 jar 文件运行即可启动 Burp</p>
+<h1 id="Step-2-修改代理设置"><a href="#Step-2-修改代理设置" class="headerlink" title="Step 2  修改代理设置"></a>Step 2  修改代理设置</h1><p>1.打开 Burp<br>2.进入<code>Proxy</code>/<code>Options</code><br>3.勾选运行代理（默认状态为勾选，如果项目为空，请按下图自行添加）</p>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/Burp%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE.png" alt="Burp代理设置"></p>
+<p>3.打开IE浏览器中的<code>Internet选项</code><br>4.切换到<code>连接</code>标签<br>5.点击<code>局域网设置</code><br>6.勾选<code>为 LAN 使用代理服务器</code><br>7.在<code>地址</code>项目中填入 127.0.0.1，在<code>端口</code>项目中填入 8080 保存即可。</p>
+<p><strong>Burp 使用完后请取消勾选第6步中的<code>为 LAN 使用代理服务器</code>，否则将无法上网</strong></p>
+<p>如果使用Chrome浏览器，可以安装 <a href="https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif" target="_blank" rel="external">Proxy SwitchyOmega</a> 扩展来快速添加浏览器代理，添加方法不再赘述。</p>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/Proxy%20SwitchyOmega.png" alt="Proxy SwitchyOmega"><br>代理设置完成后，浏览器中的数据包都会通过 Burp 这个中转站。</p>
+<h1 id="Step3-修改提取码"><a href="#Step3-修改提取码" class="headerlink" title="Step3  修改提取码"></a>Step3  修改提取码</h1><p>1.首先切换到 Burp 界面，进入<code>Prxoy</code>/<code>Intercept</code><br>点击<code>Intercept Is On</code>按钮关闭 Intercept 功能<br><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E7%82%B9%E5%87%BB%E6%8C%89%E9%92%AE%E4%BC%9A%E5%8F%98%E4%B8%BAOff.png" alt="点击按钮会变为Off"><br>2.打开配置好代理的浏览器，访问百度云<br>3.选中需要分享的文件，点击分享<br>4.点分享按钮出现如下界面</p>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E7%99%BE%E5%BA%A6%E4%BA%91%E5%88%86%E4%BA%AB.png" alt="百度云分享"><br>5.切换到 Burp 界面，开启 Intercept 功能<br>6.切换到浏览器，点击<code>创建私密连接</code><br>7.此时本地生成的提取码被 Burp 阻止，Burp 会有提示<br>8.切换到 Burp 界面，即可看到被阻止的包，末尾的</p>
+<pre><code>pwd=s84y
+</code></pre><p>即为本地生成的提取码元数据<br><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E8%A2%AB%E9%98%BB%E6%AD%A2%E7%9A%84%E5%8C%85.png" alt="被阻止的包"><br>9.删掉原来的提取码，直接修改 pwd 后面的值即可<br>Burp 对中文不友好，目前只能将提取码修改为数字或英文，并不能像 Fiddler 一样在提取码中添加中文</p>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E4%BF%AE%E6%94%B9%E6%8F%90%E5%8F%96%E7%A0%81.png" alt="修改提取码"><br>10.修改完成后，点击<code>Intercept Is On</code>按钮关闭 Intercept 功能，将包放行，此时带着修改提取码的包便会发送给服务器，也就实现了提取码修改。</p>
+<hr>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>Burp 和 Fiddler都有各自好处，两者都是抓包和重放的利器，两者功能也远不止修改提取码这么简单，都值得深入学习。</p>
+<p>Burp 修改提取码测试链接:<a href="http://pan.baidu.com/s/1i5rT88l" target="_blank" rel="external">http://pan.baidu.com/s/1i5rT88l</a> 密码:test<br>Fiddler 修改提取码测试链接:<a href="http://pan.baidu.com/s/1hrYYGEo" target="_blank" rel="external">http://pan.baidu.com/s/1hrYYGEo</a> 密码:7喜<br><img src="http://7xibe6.com1.z0.glb.clouddn.com/GIF%E6%BC%94%E7%A4%BA.gif" alt="GIF演示"></p>
+<p>本文以同步发表至<a href="http://www.jianshu.com/p/ee92ba8df681" target="_blank" rel="external">简书</a><br>如果对文章有疑问、建议或发现错误，欢迎留言。</p>
+]]></content>
     </entry>
-
     
     <entry>
       <title><![CDATA[使用 Fiddler 自定义百度云分享提取码]]></title>
-      <url>%2F2016%2F07%2F03%2FBaidu_Fiddler%2F</url>
-      <content type="text"><![CDATA[Fiddler是一款经典的 Web 调试工具。其工作原理是建立本地代理服务器，由于通信时产生的数据包都会通过该代理，所以 Fiddler 可以用来监视并修改客户端与服务器的连接。 百度云是百度公司推出的一款云服务产品。使用百度云可以轻松地与好友分享你的文件。百度云有一个私密分享功能，即一个百度云分享链接对应一个提取码，好友正确输入提取码之后才能提取文件。 这里便是使用Fiddler，来自定义自己分享出去的文件的提取码。 Step1 下载与安装 Fiddler请先安装.NET框架再安装Fiddler 项目 要求 系统 Windows XP 至 Windows 10 .NET框架 Fiddler2 需要 .NET v2, Fiddler4 需要 .NET v4 硬盘空间 8MB 处理器 1GHz 内存 2G+ Step2 启动 Fiddler，并在浏览器中打开百度云 Step3 在 Fiddler 中阻止 Request切换到Fiddler界面，左下角输入命令 bpu http://pan.baidu.com/ Step4 在浏览器中分享文件切换到浏览器，分享文件，点击创建私密链接因为Request被阻止此时百度云会一直提示正在创建分享链接，请稍候 Step5 在 Fiddler 中修改提取码1.切换到Fiddler，在左侧找到被禁止的Request并选中 2.右侧切换到Inspectors \ WebForms标签下 3.pwd项目中的vm9x即为刚才分享文件的提取码，由于 Fiddler 阻止了Request，百度云服务器目前并不知道该提取码，所以我们可以先修改提取码，再提交给服务器。 提取码为任意的4位字符以下示例几个提取码 提取码 是否可以 abcd ✔ abc1 ✔ 初6 ✔ 初A ✔ 初六 ✗ 初 ✗ 4.修改完成后便可以将该 Request 放行点击Fiddler工具栏中的Go即可 Step6 测试提取码是否修改成功链接:http://pan.baidu.com/s/1hrYYGEo 密码:7喜 如果对 PHP 比较熟悉，也可以尝试使用 Github 上的一个百度云补档项目BaiduPanAutoReshare，同样可以修改提取码。 如果对文章有疑问、建议或发现错误，欢迎留言。微博@Login926本文已同步发表至简书]]></content>
+      <url>http://login926.top/2016/07/03/Baidu_Fiddler/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p><img src="https://ooo.0o0.ooo/2016/07/30/579d6930a8a7a.png" alt="Fiddler"></p>
+<p><a href="https://www.telerik.com/download/fiddler" target="_blank" rel="external">Fiddler</a>是一款经典的 Web 调试工具。其工作原理是建立本地代理服务器，由于通信时产生的数据包都会通过该代理，所以 Fiddler 可以用来监视并修改客户端与服务器的连接。</p>
+ <a id="more"></a>
+<p><a href="http://yun.baidu.com/" target="_blank" rel="external">百度云</a>是百度公司推出的一款云服务产品。使用百度云可以轻松地与好友分享你的文件。百度云有一个私密分享功能，即一个百度云分享链接对应一个提取码，好友正确输入提取码之后才能提取文件。</p>
+<p>这里便是使用Fiddler，来自定义自己分享出去的文件的提取码。</p>
+<hr>
+<h1 id="Step1-下载与安装-Fiddler"><a href="#Step1-下载与安装-Fiddler" class="headerlink" title="Step1   下载与安装 Fiddler"></a>Step1   下载与安装 Fiddler</h1><p><strong><em>请先安装<a href="https://www.microsoft.com/net" target="_blank" rel="external">.NET框架</a>再安装<a href="https://www.telerik.com/download/fiddler" target="_blank" rel="external">Fiddler</a></em></strong></p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>系统</td>
+<td>Windows XP 至 Windows 10</td>
+</tr>
+<tr>
+<td>.NET框架</td>
+<td>Fiddler2 需要 .NET v2, Fiddler4 需要 .NET v4</td>
+</tr>
+<tr>
+<td>硬盘空间</td>
+<td>8MB</td>
+</tr>
+<tr>
+<td>处理器</td>
+<td>1GHz</td>
+</tr>
+<tr>
+<td>内存</td>
+<td>2G+</td>
+</tr>
+</tbody>
+</table>
+<h1 id="Step2-启动-Fiddler，并在浏览器中打开百度云"><a href="#Step2-启动-Fiddler，并在浏览器中打开百度云" class="headerlink" title="Step2  启动 Fiddler，并在浏览器中打开百度云"></a>Step2  启动 Fiddler，并在浏览器中打开百度云</h1><p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E7%99%BE%E5%BA%A6%E4%BA%91.png" alt="百度云"></p>
+<h1 id="Step3-在-Fiddler-中阻止-Request"><a href="#Step3-在-Fiddler-中阻止-Request" class="headerlink" title="Step3  在 Fiddler 中阻止 Request"></a>Step3  在 Fiddler 中阻止 Request</h1><p>切换到Fiddler界面，左下角输入命令</p>
+<pre><code>bpu http://pan.baidu.com/
+</code></pre><h1 id="Step4-在浏览器中分享文件"><a href="#Step4-在浏览器中分享文件" class="headerlink" title="Step4  在浏览器中分享文件"></a>Step4  在浏览器中分享文件</h1><p>切换到浏览器，分享文件，点击<code>创建私密链接</code><br>因为<code>Request</code>被阻止<br>此时百度云会一直提示<code>正在创建分享链接，请稍候</code></p>
+<h1 id="Step5-在-Fiddler-中修改提取码"><a href="#Step5-在-Fiddler-中修改提取码" class="headerlink" title="Step5  在 Fiddler 中修改提取码"></a>Step5  在 Fiddler 中修改提取码</h1><p>1.切换到Fiddler，在左侧找到被禁止的<code>Request</code>并选中</p>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E8%AF%A5%E5%8C%85%E5%9B%BE%E6%A0%87%E4%B8%BA%E7%BA%A2%E8%89%B2.png" alt="该包图标为红色"><br>2.右侧切换到<code>Inspectors</code> \ <code>WebForms</code>标签下</p>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E5%A6%82%E5%9B%BE%E6%89%80%E7%A4%BA.png" alt="如图所示"></p>
+<p>3.<code>pwd</code>项目中的<code>vm9x</code>即为刚才分享文件的提取码，由于 Fiddler 阻止了<code>Request</code>，百度云服务器目前并不知道该提取码，所以我们可以先修改提取码，再提交给服务器。</p>
+<p>提取码为任意的4位字符<br><strong><em>以下示例几个提取码</em></strong></p>
+<table>
+<thead>
+<tr>
+<th>提取码</th>
+<th>是否可以</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>abcd</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>abc1</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>初6</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>初A</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>初六</td>
+<td>✗</td>
+</tr>
+<tr>
+<td>初</td>
+<td>✗</td>
+</tr>
+</tbody>
+</table>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E6%8F%90%E5%8F%96%E7%A0%81%E4%B8%BA%E4%BB%BB%E6%84%8F%E7%9A%844%E4%BD%8D%E5%AD%97%E7%AC%A6.png" alt="提取码为任意的 4 位字符"></p>
+<p>4.修改完成后便可以将该 Request 放行<br>点击Fiddler工具栏中的<code>Go</code>即可</p>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E6%94%BE%E8%A1%8CRequest.png" alt="放行Request"></p>
+<h1 id="Step6-测试提取码是否修改成功"><a href="#Step6-测试提取码是否修改成功" class="headerlink" title="Step6  测试提取码是否修改成功"></a>Step6  测试提取码是否修改成功</h1><p>链接:<a href="http://pan.baidu.com/s/1hrYYGEo" target="_blank" rel="external">http://pan.baidu.com/s/1hrYYGEo</a> 密码:7喜</p>
+<p><img src="http://7xibe6.com1.z0.glb.clouddn.com/%E5%88%86%E4%BA%AB%E6%88%90%E5%8A%9F.gif" alt="分享成功"></p>
+<hr>
+<p>如果对 PHP 比较熟悉，也可以尝试使用 Github 上的一个百度云补档项目<a href="https://github.com/NijiharaTsubasa/BaiduPanAutoReshare" target="_blank" rel="external">BaiduPanAutoReshare</a>，同样可以修改提取码。</p>
+<p>如果对文章有疑问、建议或发现错误，欢迎留言。<br>微博<a href="http://weibo.com/login926" target="_blank" rel="external">@Login926</a><br>本文已同步发表至<a href="http://www.jianshu.com/p/cb33b8132b42" target="_blank" rel="external">简书</a></p>
+]]></content>
     </entry>
-
     
     <entry>
       <title><![CDATA[嗯，送了罐可乐]]></title>
-      <url>%2F2016%2F06%2F27%2FCola%2F</url>
-      <content type="text"><![CDATA[高考成绩出来了，离二本差三分。班主任问我大学打算去哪儿。我说：去黑龙江 去喂猫。林荫道遇见她。送了罐可乐。]]></content>
+      <url>http://login926.top/2016/06/27/Cola/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p><img src="https://ooo.0o0.ooo/2016/07/30/579d69329b9a8.png" alt="Photo by Lumia Icon"><br>高考成绩出来了，离二本差三分。<br>班主任问我大学打算去哪儿。<br>我说：去黑龙江</p>
+<a id="more"></a>
+<p><img src="http://ww3.sinaimg.cn/large/9a8049afgw1f55461ttx0j21kw0w0axp.jpg" alt="Photo by Lumia Icon"><br>去喂猫。<br>林荫道遇见她。<br>送了罐可乐。</p>
+]]></content>
     </entry>
-
     
     <entry>
       <title><![CDATA[毕业]]></title>
-      <url>%2F2016%2F06%2F23%2FGraduation%2F</url>
-      <content type="text"><![CDATA[三年的高中生活今天就结束了。明天也是高考成绩公布的时候。接下来又是志愿、录取云云，又是一次轮回。 高三上班学期浑浑噩噩，其实真的当看到她一模进线的时候，心里一直暗骂自己傻逼：喜欢的女孩都进线了，你他妈在干什么？差了二本线近 30 分的成绩以及剩下的 70 天。 高考考上二本去表白。 当时心里就一个简单的目标。如今回首，觉得这可能是目前以来最有意义的 70 天。70 天来，学习、吃饭、看她吃饭以及喂学校里的猫，可能也是最充实的 70 天。 而如今，表白似乎并不顺利，被发了好人卡。但未曾后悔过。或许有人觉得两个人在一起才是最好的结局，但这毕竟是生活。 毕业典礼做了个视频，也是对高中的一种留念吧。 http://v.youku.com/v_show/id_XMTYxNzg0OTEyOA==.html]]></content>
+      <url>http://login926.top/2016/06/23/Graduation/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>三年的高中生活今天就结束了。<br>明天也是高考成绩公布的时候。<br>接下来又是志愿、录取云云，又是一次轮回。</p>
+<a id="more"></a>
+<p>高三上班学期浑浑噩噩，其实真的当看到她一模进线的时候，心里一直暗骂自己傻逼：喜欢的女孩都进线了，你他妈在干什么？<br>差了二本线近 30 分的成绩以及剩下的 70 天。</p>
+<p>高考考上二本去表白。</p>
+<p>当时心里就一个简单的目标。<br>如今回首，觉得这可能是目前以来最有意义的 70 天。<br>70 天来，学习、吃饭、看她吃饭以及喂学校里的猫，可能也是最充实的 70 天。</p>
+<p>而如今，表白似乎并不顺利，被发了好人卡。但未曾后悔过。<br>或许有人觉得两个人在一起才是最好的结局，但这毕竟是生活。</p>
+<p>毕业典礼做了个视频，也是对高中的一种留念吧。</p>
+<p><a href="http://v.youku.com/v_show/id_XMTYxNzg0OTEyOA==.html" target="_blank" rel="external">http://v.youku.com/v_show/id_XMTYxNzg0OTEyOA==.html</a></p>
+]]></content>
     </entry>
-
     
     <entry>
       <title><![CDATA[You-Get——基于Python3的媒体下载工具]]></title>
-      <url>%2F2016%2F06%2F18%2FYou-Get%2F</url>
-      <content type="text"><![CDATA[You-Get是一个基于 Python 3 的下载工具。使用 You-Get 可以很轻松的下载到网络上的视频、图片及音乐。 项目主页：https://github.com/soimort/you-getYou-Get主页：https://you-get.org/You-Get 原版中文说明：https://github.com/soimort/you-get/wiki/中文说明/作者：soimort Python 是一款跨平台编程语言，Liunx 以及 Mac OS 下都可以使用，此处展示仅使用 Windows。 0x01 使用 You-Get 下载视频Step1 下载与安装 Python 31.访问 Python 官方网站下载对应版本的Python，You-Get基于Python 3，建议下载 Python 3.5.1。2.安装 Python 3.5.1，注意勾选Add Python 3.5 to PATH3.按Win+R键打开运行，输入cmd，再输入python并回车执行，如果出现如下界面，则代表安装成功。 Step2 安装You-Get1.打开cmd，输入命令并执行 1pip3 install you-get 2.输入命令，检测 You-Get 是否安装成功 1you-get Step3 开始下载吧打开cmd输入命令 1you-get [视频地址] e.g. 下载下面这段美拍视频（视频链接为：http://www.meipai.com/media/454570774 ） var dplayer1 = new DPlayer({"element":document.getElementById("dplayer1"),"autoplay":false,"theme":"#FADFA3","loop":true,"video":{"url":"http://mvvideo2.meitudata.com/56ea1220d2ca92407.mp4"}}); 输入如下命令 1you-get http://www.meipai.com/media/454570774 文件保存在C:\Users\用户名目录下，如果想自定义保存位置，使用如下命令即可 e.g.下载下面这段 Instagram 视频（视频链接为：https://www.instagram.com/p/BBepg3ypD92/?taken-by=mi_fairy ）并保存在E:\Desktop目录下 var dplayer2 = new DPlayer({"element":document.getElementById("dplayer2"),"autoplay":false,"theme":"#FADFA3","loop":true,"video":{"url":"https://igcdn-videos-a-6-a.akamaihd.net/hphotos-ak-xpf1/t50.2886-16/12668952_470599976457126_1236695753_n.mp4"}}); 输入如下命令： 1you-get -o E:/Desktop https://www.instagram.com/p/BBepg3ypD92/?taken-by=mi_fairy 0x02 You-Get 有关视频的其他用法You-Get仅用来下载视频显得有些大材小用了，作者也给出了You-Get的一些其他用法，这里着重介绍几个。 1.选择视频下载格式和清晰度通常网页视频的格式为.flv，但部分网站会提供好几种视频格式，我们可以使用 You-Get 下载这些视频。 e.g.下载一段下面这段优酷视频(视频链接为：http://v.youku.com/v_show/id_XMTQ2NzQyMjY1Ng.html ) 1.查看当前视频的清晰度和格式 1you-get -i http://v.youku.com/v_show/id_XMTQ2NzQyMjY1Ng.html 2.选择需要下载的清晰度及格式 1you-get --format=hd2 http://v.youku.com/v_show/id_XMTQ2NzQyMjY1Ng.html 2.在本地播放器中播放流媒体视频Flash 因CPU占用高被嗤之以鼻，而 You-Get 可以直接在本地播放器中播放网页视频。类似功能的还有 Livestreamer 这个神奇的工具。 e.g.在 Potpalyer 中播放一段下面这段爱奇艺视频(视频链接：http://www.iqiyi.com/v_19rrgzy5ls.html ) 1.在资源管理器中打开 PotPlayer 安装目录2.按住Shift并右击鼠标，选择在此处打开命令窗口3.输入下面的 You-Get 播放命令即可 1you-get -p PotPlayerMini64.exe http://v.youku.com/v_show/id_XMTY0MTA4ODM1Mg==.html (注意 PotPalyer 可执行文件的文件名的大小写，大小写错误将会导致 you-get 报错，如果 Potplayer 播放失败请尝试使用 VLC 进行播放) 3.暂停下载与继续下载1.暂停下载：和Linux一样，按Ctrl+C可以中断命令，下载目录下会保存有一个以.download为扩展名的缓存文件。 2.继续下载：重新执行下载任务，如果下载目录下有上次下载保存的缓存文件，则继续上次下载进度。 3.强制重新下载（即使下载完成也会重新写入）：1you-get -f http://www.meipai.com/media/437971164 4.下载视频列表中的所有视频优酷等网站会提供视频列表，而 You-Get 可以通过视频列表进行批量下载。 e.g.下载一个优酷视频专辑1you-get http://www.youku.com/playlist_show/id_25917721.html 5.下载 Bilibili 视频的弹幕看 Bilibili 没有弹幕简直失去了人生一大乐趣，You-Get同样提供了弹幕下载功能。e.g.下载下面这段 Bilibili 视频（视频链接：http://www.bilibili.com/video/av3571797 ） 1.输入命令下载 Bilibili 视频2.下载完成后会自动下载.xml格式的弹幕3.使用 Danmu2Ass 将.xml格式转换为.ass格式4.打开播放器，将.ass文件加载即可 0x03 You-Get 下载图片You-Get 不但支持视频下载，同样支持图片下载，支持的站点已在其主页列出。部分网站支持批量下载。1.访问网站2.点击图片/帖子，进入图片/帖子详情3.复制地址到 You-Get 下载即可 截图中展现了一些例子 0x04 其他的一些1.使用 You-Get 建议先安装FFmpeg或 Libav4.部分网站在中国大陆可能无法访问，如果想正常访问这些网站，可以去问问神奇海螺。 本文已同步发表至简书Python 初学者，文章内容可能存有纰漏，欢迎指正。微博@Login926]]></content>
+      <url>http://login926.top/2016/06/18/You-Get/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p><a href="https://github.com/soimort/you-get" target="_blank" rel="external">You-Get</a>是一个基于 Python 3 的下载工具。使用 You-Get 可以很轻松的下载到网络上的视频、图片及音乐。</p>
+<blockquote>
+<p>项目主页：<a href="https://github.com/soimort/you-get" target="_blank" rel="external">https://github.com/soimort/you-get</a><br>You-Get主页：<a href="https://you-get.org/" target="_blank" rel="external">https://you-get.org/</a><br>You-Get 原版中文说明：<a href="https://github.com/soimort/you-get/wiki/中文说明/" target="_blank" rel="external">https://github.com/soimort/you-get/wiki/中文说明/</a><br>作者：<a href="https://github.com/soimort" target="_blank" rel="external">soimort</a></p>
+</blockquote>
+<a id="more"></a>
+<p><img src="http://ww2.sinaimg.cn/large/9a8049afgw1f5rwn8q8lpg20o308g7wh.gif" alt="You-Get"></p>
+<p>Python 是一款跨平台编程语言，Liunx 以及 Mac OS 下都可以使用，此处展示仅使用 Windows。</p>
+<hr>
+<h1 id="0x01-使用-You-Get-下载视频"><a href="#0x01-使用-You-Get-下载视频" class="headerlink" title="0x01  使用 You-Get 下载视频"></a>0x01  使用 You-Get 下载视频</h1><h4 id="Step1-下载与安装-Python-3"><a href="#Step1-下载与安装-Python-3" class="headerlink" title="Step1  下载与安装 Python 3"></a>Step1  下载与安装 Python 3</h4><p>1.访问<a href="https://www.python.org" target="_blank" rel="external"> Python 官方网站</a>下载对应版本的Python，You-Get基于Python 3，建议<a href="https://www.python.org/ftp/python/3.5.1/python-3.5.1.exe" target="_blank" rel="external">下载 Python 3.5.1</a>。<br>2.安装 Python 3.5.1，注意勾选<code>Add Python 3.5 to PATH</code><br><img src="http://ww1.sinaimg.cn/large/9a8049afgw1f5rwp6jv9kj20iy0bsdiz.jpg" alt="勾选"><br>3.按<code>Win+R</code>键打开运行，输入<code>cmd</code>，再输入<code>python</code>并回车执行，如果出现如下界面，则代表安装成功。<br><img src="http://ww2.sinaimg.cn/large/9a8049afjw1f5rwpyxqg8j20sp0fe0vu.jpg" alt="安装成功"></p>
+<h4 id="Step2-安装You-Get"><a href="#Step2-安装You-Get" class="headerlink" title="Step2  安装You-Get"></a>Step2  安装You-Get</h4><p>1.打开<code>cmd</code>，输入命令并执行</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip3 install you-get</div></pre></td></tr></table></figure>
+<p>2.输入命令，检测 You-Get 是否安装成功</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">you-get</div></pre></td></tr></table></figure>
+<p><img src="http://ww4.sinaimg.cn/large/9a8049afgw1f5rwqhcq4wj20nz0kwtfl.jpg" alt="you-get安装成功"></p>
+<h4 id="Step3-开始下载吧"><a href="#Step3-开始下载吧" class="headerlink" title="Step3  开始下载吧"></a>Step3  开始下载吧</h4><p>打开<code>cmd</code>输入命令</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">you-get [视频地址]</div></pre></td></tr></table></figure>
+<p>e.g. 下载下面这段美拍视频<br>（视频链接为：<a href="http://www.meipai.com/media/454570774" target="_blank" rel="external">http://www.meipai.com/media/454570774</a> ）</p>
+<div id="dplayer1" class="dplayer" style="margin-bottom: 20px;"></div><script>var dplayer1 = new DPlayer({"element":document.getElementById("dplayer1"),"autoplay":false,"theme":"#FADFA3","loop":true,"video":{"url":"http://mvvideo2.meitudata.com/56ea1220d2ca92407.mp4"}});</script>
+<p>输入如下命令</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">you-get http://www.meipai.com/media/<span class="number">454570774</span></div></pre></td></tr></table></figure>
+<p><img src="http://ww2.sinaimg.cn/large/9a8049afjw1f5rwr14xpfj20sp0feq7b.jpg" alt="点击左上角可以快速粘贴"></p>
+<p>文件保存在<code>C:\Users\用户名</code>目录下，如果想自定义保存位置，使用如下命令即可</p>
+<p>e.g.下载下面这段 Instagram 视频<br>（视频链接为：<a href="https://www.instagram.com/p/BBepg3ypD92/?taken-by=mi_fairy" target="_blank" rel="external">https://www.instagram.com/p/BBepg3ypD92/?taken-by=mi_fairy</a> ）<br>并保存在<code>E:\Desktop</code>目录下</p>
+<div id="dplayer2" class="dplayer" style="margin-bottom: 20px;"></div><script>var dplayer2 = new DPlayer({"element":document.getElementById("dplayer2"),"autoplay":false,"theme":"#FADFA3","loop":true,"video":{"url":"https://igcdn-videos-a-6-a.akamaihd.net/hphotos-ak-xpf1/t50.2886-16/12668952_470599976457126_1236695753_n.mp4"}});</script>
+<p>输入如下命令：</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">you-get -o E:/Desktop https://www.instagram.com/p/BBepg3ypD92/?taken-by=mi_fairy</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="0x02-You-Get-有关视频的其他用法"><a href="#0x02-You-Get-有关视频的其他用法" class="headerlink" title="0x02  You-Get 有关视频的其他用法"></a>0x02  You-Get 有关视频的其他用法</h1><p>You-Get仅用来下载视频显得有些大材小用了，作者也给出了You-Get的一些其他用法，这里着重介绍几个。</p>
+<h4 id="1-选择视频下载格式和清晰度"><a href="#1-选择视频下载格式和清晰度" class="headerlink" title="1.选择视频下载格式和清晰度"></a>1.选择视频下载格式和清晰度</h4><p>通常网页视频的格式为<code>.flv</code>，但部分网站会提供好几种视频格式，我们可以使用 You-Get 下载这些视频。</p>
+<p>e.g.下载一段下面这段优酷视频<br>(视频链接为：<a href="http://v.youku.com/v_show/id_XMTQ2NzQyMjY1Ng.html" target="_blank" rel="external">http://v.youku.com/v_show/id_XMTQ2NzQyMjY1Ng.html</a> )</p>
+<p>1.查看当前视频的清晰度和格式</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">you-get -i http://v.youku.com/v_show/id_XMTQ2NzQyMjY1Ng.html</div></pre></td></tr></table></figure>
+<p><img src="http://ww2.sinaimg.cn/large/9a8049afjw1f5rwrcl2xvj20mh0isq7a.jpg" alt="视频提供三种格式，三种清晰度"></p>
+<p>2.选择需要下载的清晰度及格式</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">you-get --<span class="built_in">format</span>=hd2 http://v.youku.com/v_show/id_XMTQ2NzQyMjY1Ng.html</div></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/9a8049afgw1f5rwt9x487j20p40ccwhk.jpg" alt="下载成功"></p>
+<h4 id="2-在本地播放器中播放流媒体视频"><a href="#2-在本地播放器中播放流媒体视频" class="headerlink" title="2.在本地播放器中播放流媒体视频"></a>2.在本地播放器中播放流媒体视频</h4><p>Flash 因CPU占用高被嗤之以鼻，而 You-Get 可以直接在本地播放器中播放网页视频。类似功能的还有<a href="https://github.com/chrippa/livestreamer" target="_blank" rel="external"> Livestreamer </a>这个神奇的工具。</p>
+<p>e.g.在 Potpalyer 中播放一段下面这段爱奇艺视频<br>(视频链接：<a href="http://www.iqiyi.com/v_19rrgzy5ls.html" target="_blank" rel="external">http://www.iqiyi.com/v_19rrgzy5ls.html</a> )</p>
+<p>1.在资源管理器中打开 PotPlayer 安装目录<br>2.按住<code>Shift</code>并右击鼠标，选择在此处打开命令窗口<br>3.输入下面的 You-Get 播放命令即可</p>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">you-get -p PotPlayerMini64.exe http://v.youku.com/v_show/id_XMTY0MTA4ODM1Mg==.html</div></pre></td></tr></table></figure>
+<p>(注意 PotPalyer 可执行文件的文件名的大小写，大小写错误将会导致 you-get 报错，如果 Potplayer 播放失败请尝试使用 VLC 进行播放)<br><img src="http://ww2.sinaimg.cn/large/9a8049afjw1f5rx36edhoj21a80qswnc.jpg" alt="VLC 中播放成功"></p>
+<h4 id="3-暂停下载与继续下载"><a href="#3-暂停下载与继续下载" class="headerlink" title="3.暂停下载与继续下载"></a>3.暂停下载与继续下载</h4><p>1.暂停下载：和Linux一样，按<code>Ctrl+C</code>可以中断命令，下载目录下会保存有一个以<code>.download</code>为扩展名的缓存文件。</p>
+<p>2.继续下载：重新执行下载任务，如果下载目录下有上次下载保存的缓存文件，则继续上次下载进度。</p>
+<p>3.强制重新下载（即使下载完成也会重新写入）：<br><figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">you-get -f http://www.meipai.com/media/<span class="number">437971164</span></div></pre></td></tr></table></figure></p>
+<h4 id="4-下载视频列表中的所有视频"><a href="#4-下载视频列表中的所有视频" class="headerlink" title="4.下载视频列表中的所有视频"></a>4.下载视频列表中的所有视频</h4><p>优酷等网站会提供视频列表，而 You-Get 可以通过视频列表进行批量下载。</p>
+<p>e.g.下载一个<a href="http://www.youku.com/playlist_show/id_25917721.html?sf=10101" target="_blank" rel="external">优酷视频专辑</a><br><figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">you-get http://www.youku.com/playlist_show/id_25917721.html</div></pre></td></tr></table></figure></p>
+<p><img src="http://ww4.sinaimg.cn/large/9a8049afjw1f5rwrqtj3nj20ne0na45p.jpg" alt="下载成功"></p>
+<h4 id="5-下载-Bilibili-视频的弹幕"><a href="#5-下载-Bilibili-视频的弹幕" class="headerlink" title="5.下载 Bilibili 视频的弹幕"></a>5.下载 Bilibili 视频的弹幕</h4><p>看 Bilibili 没有弹幕简直失去了人生一大乐趣，You-Get同样提供了弹幕下载功能。<br>e.g.下载下面这段 Bilibili 视频<br>（视频链接：<a href="http://www.bilibili.com/video/av3571797" target="_blank" rel="external">http://www.bilibili.com/video/av3571797</a> ）</p>
+<p>1.输入命令下载 Bilibili 视频<br>2.下载完成后会自动下载<code>.xml</code>格式的弹幕<br><img src="http://ww1.sinaimg.cn/large/9a8049afgw1f5rwtwtu1oj20nu0b4di6.jpg" alt="Bilibili视频及弹幕下载"><br>3.使用<a href="https://danmu2ass.codeplex.com/" target="_blank" rel="external"> Danmu2Ass </a>将<code>.xml</code>格式转换为<code>.ass</code>格式<br>4.打开播放器，将<code>.ass</code>文件加载即可</p>
+<p><img src="http://ww1.sinaimg.cn/large/9a8049afjw1f5rwu78hf3j218g0p0ds2.jpg" alt="PotPlayer中加载弹幕"></p>
+<hr>
+<h1 id="0x03-You-Get-下载图片"><a href="#0x03-You-Get-下载图片" class="headerlink" title="0x03 You-Get 下载图片"></a>0x03 You-Get 下载图片</h1><p>You-Get 不但支持视频下载，同样支持图片下载，支持的站点已在其主页列出。部分网站支持批量下载。<br>1.访问网站<br>2.点击图片/帖子，进入图片/帖子详情<br>3.复制地址到 You-Get 下载即可</p>
+<p>截图中展现了一些例子</p>
+<p><img src="http://ww4.sinaimg.cn/large/9a8049afgw1f5rwunblymj218g0p0wpc.jpg" alt="Twitter"></p>
+<p><img src="http://ww4.sinaimg.cn/large/9a8049afjw1f5rwuv8cl8j218g0p0tga.jpg" alt="Imgur"></p>
+<p><img src="http://ww3.sinaimg.cn/large/9a8049afgw1f5rwv3kcuij218g0p0gw9.jpg" alt="Flickr"></p>
+<p><img src="http://ww1.sinaimg.cn/large/9a8049afgw1f5rwvfd9hej218g0p0134.jpg" alt="Pinterest"></p>
+<hr>
+<h1 id="0x04-其他的一些"><a href="#0x04-其他的一些" class="headerlink" title="0x04  其他的一些"></a>0x04  其他的一些</h1><p>1.使用 You-Get 建议先安装<a href="https://www.ffmpeg.org/" target="_blank" rel="external">FFmpeg</a>或 <a href="https://libav.org/" target="_blank" rel="external">Libav</a><br>4.部分网站在中国大陆可能无法访问，如果想正常访问这些网站，可以去问问神奇海螺。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/971576-1c145c6e3d870a1a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="神奇海螺"></p>
+<hr>
+<p>本文已同步发表至<a href="http://www.jianshu.com/p/a3f8df948395" target="_blank" rel="external">简书</a><br>Python 初学者，文章内容可能存有纰漏，欢迎指正。<br>微博<a href="http://weibo.com/login926" target="_blank" rel="external">@Login926</a></p>
+]]></content>
     </entry>
-
     
     <entry>
       <title><![CDATA[Hello World]]></title>
-      <url>%2F2016%2F06%2F15%2FHello%20World%2F</url>
-      <content type="text"><![CDATA[博客由 Hexo 强力驱动，托管于 Github ，支持 https 。 早就有自己建博客的念头了，先前在把简书作为博客，写了有大半年吧，今天花了大半天的时间终于搞好了这个博客。 现在在 Github上借助 Hexo 真正建立了属于自己的博客，未来有搭建 Typeecho 博客的打算。 之后会将简书上的文章搬运过来，Markdown 语法的文章复制一下就行，富文本写的，还得转成 Markdown 语法。 博客自适应移动设备与桌面设备，推荐使用支持 Html5 技术的浏览器访问。图片使用七牛云、新浪图床和 SM.MS 图床，部分视频使用七牛云。 博客与简书将同步更新，两边的留言都会认真回复，反正有(mei)的(you)是(nv)时(peng)间(you) 欢迎关注新浪微博@Login926]]></content>
+      <url>http://login926.top/2016/06/15/Hello%20World/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>博客由 Hexo 强力驱动，托管于 Github ，支持 https 。</p>
+ <a id="more"></a>
+<p>早就有自己建博客的念头了，先前在把<a href="http://www.jianshu.com/users/fb4020fff909" target="_blank" rel="external">简书</a>作为博客，写了有大半年吧，今天花了大半天的时间终于搞好了这个博客。</p>
+<p>现在在 Github上借助 Hexo 真正建立了属于自己的博客，未来有搭建 Typeecho 博客的打算。</p>
+<p>之后会将<a href="http://www.jianshu.com/users/fb4020fff909" target="_blank" rel="external">简书</a>上的文章搬运过来，Markdown 语法的文章复制一下就行，富文本写的，还得转成 Markdown 语法。</p>
+<p><img src="http://oa0thinbz.bkt.clouddn.com/hexo-1.png" alt="hexo-1"><br><strong><em>博客自适应移动设备与桌面设备，推荐使用支持 Html5 技术的浏览器访问。</em></strong><br>图片使用七牛云、新浪图床和 SM.MS 图床，部分视频使用七牛云。</p>
+<p>博客与简书将同步更新，两边的留言都会认真回复，反正有(mei)的(you)是(nv)时(peng)间(you)</p>
+<p><img src="http://oa0thinbz.bkt.clouddn.com/0.jpeg" alt="呵呵呵呵呵呵"></p>
+<p>欢迎关注新浪微博<a href="http://weibo.com/login926" target="_blank" rel="external">@Login926</a></p>
+]]></content>
     </entry>
-
     
   
   
