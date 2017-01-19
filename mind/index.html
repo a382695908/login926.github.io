@@ -6,13 +6,10 @@
 <!-- 爱 -->
 <!-- 你 -->
 <head>
+	<link rel="icon" href="favicon.png" />
 	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>念念不忘，必有回响</title>
-	<meta name="description" content="Some WebGL experiments with raindrop effects" />
-	<meta name="keywords" content="webgl, raindrops, effect, rain, web, video, background" />
-	<meta name="author" content="Lucas Bebber for Codrops" />
 	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
 	<link rel="stylesheet" type="text/css" href="css/demo.css" />
 	<link rel="stylesheet" type="text/css" href="css/style1.css" />
@@ -54,14 +51,32 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 				<div class="slide__element slide__element--temp">
 					<p class="Type1"></p>
 					<p class="Type2"></p>
+					<p class="Type3"></p>
+					<p class="Type4"></p>
 				</div>
-				<div class="slide__element slide__element--date">Thursday, 9<sup>th</sup> of June 2016</div>
+				<div class="slide__element slide__element--date">
+					<div id="days"></div>
+				</div>
 			</div>
 		<p class="nosupport">当前浏览器不支持 WebGL，网页内容无法正常显示，但这无法阻止我爱她</p>
 	</div>
-	<script src="js/index.min.js"></script>
 	<script src="js/jquery-2.1.4.js"></script>
+	<script src="https://cdn.bootcss.com/moment.js/2.17.0/moment.js"></script>
+	<script src="js/index.min.js"></script>
 	<script src="js/typeit.js"></script>
 	<script src="js/scripts.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#days").hide();
+    $("#days").delay(10000).fadeIn(6000);
+});
+</script>
+	<script>
+	  var begin = moment([2013,08,01]);
+	  var now = moment();
+	    document.getElementById('days').innerHTML ="已经爱你 "+now.diff(begin,'days')+" 天";
+	</script>
+
+
 </body>
 </html>

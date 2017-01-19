@@ -297,7 +297,7 @@
                 <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 	
 		<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><h1 id="留言板"><a href="#留言板" class="headerlink" title="留言板"></a>留言板</h1><p>↑ 封面 via:<a href="http://weibo.com/u/2144956061" target="_blank" rel="external">米咪</a><br>大爱 C77124。<br>近期多说评论框可能不太稳定，出现错误刷新即可。</p>
-<h3 id="赞助"><a href="#赞助" class="headerlink" title="赞助"></a>赞助</h3><p>简书打赏（作者提现需要收 5% 手续费）<br>云打赏：<a href="http://www.dashangcloud.com/sh/878f04" target="_blank" rel="external">http://www.dashangcloud.com/sh/878f04</a> （收款方为：深圳市红蓝网络技术有限公司）<br><img src="https://ww4.sinaimg.cn/large/9a8049afgw1fba0nzzq98j20c90c9adk.jpg" alt=""></p>
+<h3 id="赞助"><a href="#赞助" class="headerlink" title="赞助"></a>赞助</h3><p>简书打赏（作者提现需要收 5% 手续费）<br>云打赏：<a href="http://www.dashangcloud.com/sh/878f04" target="_blank" rel="external">http://www.dashangcloud.com/sh/878f04</a> （收款方为：深圳市红蓝网络技术有限公司）</p>
 <h4 id="感谢赞助"><a href="#感谢赞助" class="headerlink" title="感谢赞助"></a>感谢赞助</h4><p>谢谢以下用户的赞助（排名按时间顺序）：</p>
 <table>
 <thead>
@@ -494,7 +494,7 @@
         </a>
         <ul class="dropdown-menu">
             <li>
-            <a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">十二月 2016<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/08/">八月 2016<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/06/">六月 2016<span class="sidebar_archives-count">4</span></a>
+            <a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/12/">十二月 2016<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/11/">十一月 2016<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/08/">八月 2016<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">6</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/06/">六月 2016<span class="sidebar_archives-count">4</span></a>
         </ul>
     </li>
 
@@ -541,7 +541,7 @@
     <li>
         <a href="/archives">
              文章总数
-             <span class="sidebar-badge">29</span>
+             <span class="sidebar-badge">30</span>
         </a>
     </li>
 </ul>
@@ -669,7 +669,17 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 		<!--Copyright-->
-		<div id="copyright">CopyLeft&nbsp;©&nbsp;<script type="text/javascript">var fd = new Date();document.write(fd.getFullYear());</script>&nbsp;Raintone</div>
+
+
+		<div id="copyright">	<script src="https://cdn.bootcss.com/moment.js/2.17.0/moment.min.js"></script>
+				<script>
+					var begin = moment([2016,05,15]);
+					var now = moment();
+					setInterval(function (){document.getElementById('copyright').innerHTML ="Raintone 已运行 "+now.diff(begin,'days')+" 天"+"<br>"+moment().format("YYYY-MM-DD HH:mm:ss"),900000})
+				</script></div>
+
+
+
 		<!-- Paradox Footer Right Section -->
 
 		<!--

@@ -4,7 +4,7 @@
     <!-- Title -->
     
     <title>
-        标签: html | Raintone
+        Moment.js 小实践 —— 为 Hexo 博客 Material 主题添加运行时间 | Raintone
     </title>
     
     <!-- Favicons -->
@@ -40,7 +40,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://login926.top">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="标签: html | Raintone">
+    <meta property="og:title" content="Moment.js 小实践 —— 为 Hexo 博客 Material 主题添加运行时间 | Raintone">
     <meta property="og:description" content="↑ 智障青年">
     
      <!--[if lte IE 9]>
@@ -189,158 +189,218 @@
                 </button>
 				
 				
-                <!-- Index Module -->
-<div class="material-index mdl-grid">
-	
-    <div class="locate-thumbnail-symbol"></div>
+                <!-- Post TOC -->
+
     
-    
+	<!-- Back Button -->
+<!--
+	<div class="material-back" id="backhome-div" tabindex="0">
+		<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="#" onclick="window.history.back();return false;" target="_self" role="button" data-upgraded=",MaterialButton,MaterialRipple">
+			<i class="material-icons" role="presentation">arrow_back</i>
+			<span class="mdl-button__ripple-container">
+				<span class="mdl-ripple"></span>
+			</span>
+		</a>
+	</div>			
+-->
+	<!-- Left aligned menu below button -->
+	<button id="post-toc-trigger-btn"
+			class="mdl-button mdl-js-button mdl-button--icon">
+	  <i class="material-icons">format_list_numbered</i>
+	</button>
+
+	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+		for="post-toc-trigger-btn">
+			
+			<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#开始实-zhe-践-teng"><span class="post-toc-number">1.</span> <span class="post-toc-text">开始实(zhe)践(teng)</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">2.</span> <span class="post-toc-text">总结</span></a></li></ol>
 		
-			<!-- Paradox Thumbnail -->
-        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    
-    <!-- Post Thumbnail -->
+<!--			<li class="mdl-menu__item">Some Action</li>-->
+	</ul>
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+		
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+	<!-- Paradox Post Header -->
 	
 		<!-- Custom Thumbnail -->
-		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(https://ooo.0o0.ooo/2016/08/17/57b475e4cfc0f.png)">
+		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(https://ooo.0o0.ooo/2017/01/19/5880b2567b483.jpg)">
 	
+        <p class="article-headline-p">
+            Moment.js 小实践 —— 为 Hexo 博客 Material 主题添加运行时间
+        </p>
+    </div>
+
+	
+
 				
-		<!-- Post Title -->
-		<p class="article-headline-p"><a href="/2016/08/17/Hexo_Skip_Generated/">在 Hexo 博客中跳过渲染，创建自定义网页</a></p>
-	</div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            Hexo 博客中所见文章都是经由渲染的静态网页，而静态网页的样式都直接由 Hexo 的主题控制，所以 Hexo 博客大部分都呈现出一种高度的统一化与规范化。不过 Hexo 提供了跳过渲染功能，使得我们可以直接在博客中放入自定义网页。比如在博客中放入蹭饭图、自定义 404.html 、自定义 About 页面等。
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/08/17/Hexo_Skip_Generated/" target="_self">继续阅读 →_→</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="https://ooo.0o0.ooo/2016/07/30/579d6ad7910bd.jpg" width="44px" height="44px" alt="Login926's avatar">
-            </div>
-            <div>
-                <strong>Login926</strong>
-                <span>8月 17, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                
-            </span>
-            
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="2016/08/17/Hexo_Skip_Generated/" data-count-type="comments"></span>
-                </span>
-            
-            
-            <!-- Post Views -->
-            <span class="post_entry-views">
-                
-            </span>
-        </div>
-    </div>
-            
-</div>
-
-		
-		
-    
-		
-			<!-- Paradox Thumbnail -->
-        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    
-    <!-- Post Thumbnail -->
-	
-		<!-- Custom Thumbnail -->
-		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(https://ooo.0o0.ooo/2016/12/25/585f450f205a3.jpg)">
-	
 				
-		<!-- Post Title -->
-		<p class="article-headline-p"><a href="/2016/08/16/cengfantu/">蹭饭图</a></p>
-	</div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            哈哈哈哈，花了大半天时间，凭借着渣渣的前端知识做了个线上版的蹭饭图，点左侧导航栏就能看到了
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/08/16/cengfantu/" target="_self">继续阅读 →_→</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="https://ooo.0o0.ooo/2016/07/30/579d6ad7910bd.jpg" width="44px" height="44px" alt="Login926's avatar">
-            </div>
-            <div>
-                <strong>Login926</strong>
-                <span>8月 16, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                
-            </span>
-            
-            
-                <!-- Comment Number -->
-                &nbsp;|&nbsp;
-                <span class="post_entry-comment" >
-                        <span class="ds-thread-count" data-thread-key="2016/08/16/cengfantu/" data-count-type="comments"></span>
-                </span>
-            
-            
-            <!-- Post Views -->
-            <span class="post_entry-views">
-                
-            </span>
-        </div>
-    </div>
-            
-</div>
-
-		
-		
+					<!-- Paradox Post Info -->
+					<div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
     
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="https://ooo.0o0.ooo/2016/07/30/579d6ad7910bd.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Login926</strong>
+        <span>1月 19, 2017</span>
+    </div>
     
+    <div class="section-spacer"></div>
 	
-		<script>
+    <!-- Favorite -->
+<!--
+    <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+        <i class="material-icons" role="presentation">favorite</i>
+        <span class="visuallyhidden">favorites</span>
+    </button>
+-->
     
-    var randomNum;
+    <!-- Tags (bookmark) -->
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/Hexo/">Hexo</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/JavaScript/">JavaScript</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/折腾/">折腾</a>
+    </ul>
     
-    var locatePost = $(".locate-thumbnail-symbol").next();
-    for(var i=0; i < 10; i++){
-        
-        randomNum = Math.floor(Math.random() * 10 + 1);
-        
-        locatePost.children(".post_thumbnail-random").attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children(".post_thumbnail-random").css('background-image', 'url(' + '/img/random/' + randomNum + '.png' + ')')
-        
-        locatePost = locatePost.next();
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+    
+    
+    
+    <!-- Busuanzi Views -->
+    <a class="post_share-link" href="#">
+        <li class="mdl-menu__item">
+            <span id="busuanzi_container_page_pv">
+                <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+            </span>
+        </li>
+    </a>
+    
+    
+    <!-- Share Twitter -->
+    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Moment.js 小实践 —— 为 Hexo 博客 Material 主题添加运行时间&url=http://login926.top//2017/01/19/MomentjsLiveTime/index.html&via=Login926" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Twitter
+        </li>
+    </a>
+    
+    <!-- Share Google+ -->
+    <a class="post_share-link" href="https://plus.google.com/share?url=http://login926.top//2017/01/19/MomentjsLiveTime/index.html" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Google+
+        </li>
+    </a>
+    
+    <!-- Share Weibo -->
+    <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Moment.js 小实践 —— 为 Hexo 博客 Material 主题添加运行时间&url=http://login926.top//2017/01/19/MomentjsLiveTime/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <li class="mdl-menu__item">
+            分享到微博
+        </li>
+    </a>
+</ul>
+</div>
+				
+
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+	
+		<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>Moment.js 是一个优秀的 JavaScript 日期处理类库，Moment.js 可以说是 JavaScript 的一种扩充，强大了其在时间处理方面的能力，使得 JavaScript 也能够非常轻巧的处理麻烦的时间问题。</p>
+<blockquote>
+<p>Moment.js Github : <a href="https://github.com/moment/moment/" target="_blank" rel="external">https://github.com/moment/moment/</a></p>
+</blockquote>
+<p>闰年问题一直是计算时间的一大困难点，借助 Moment.js 可以有效避免自己处理闰年问题出现错误，进而计算出准确的时间。</p>
+<p>Hexo 博客中的 <a href="https://github.com/viosey/hexo-theme-material" target="_blank" rel="external">Material</a> 主题是一套使用 Google 的 Material Design 设计风格的主题，整套主题优雅清爽，目前 <a href="https://login926.top">我的博客</a> 正在使用这套主题。</p>
+<hr>
+<h1 id="开始实-zhe-践-teng"><a href="#开始实-zhe-践-teng" class="headerlink" title="开始实(zhe)践(teng)"></a>开始实(zhe)践(teng)</h1><ol>
+<li>进入 Hexo 博客主题目录，搜索 footer.ejs</li>
+<li>用文本编辑器打开  footer.ejs</li>
+<li>修改 copyright 模块 或者 mdl-mini-footer–right-section 模块<br>代码内容：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;days&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;script src=&quot;https://cdn.bootcss.com/moment.js/2.17.0/moment.min.js&quot;&gt;</div><div class="line">//这里调用了公共库中现成的 js 文件，也可以直接调用站点中的 js 文件</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">	var begin = moment([2016,05,15]); //定义博客开始时间</div><div class="line">	var now = moment(); //使用 moment() 获取当前时间</div><div class="line">    document.getElementById(&apos;days&apos;).innerHTML =&quot;博客已运行 &quot;+now.diff(begin,&apos;days&apos;)+&quot; 天&quot;</div><div class="line">// 使用 now.diff(begin,&apos;days&apos;) 函数获取天数，这里天数考虑了闰年</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>添加完成后的效果：</p>
+<p><img src="https://ooo.0o0.ooo/2017/01/19/5880b1b42ca9c.png" alt="Footer"></p>
+<hr>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>Hexo 的折腾对于前端知识的学习与巩固都有一定的效果，Hexo 不仅是一个优秀的博客平台，也是优秀的学习平台。</p>
+
+	
+	
+	
+	
+</div>
+				
+				
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用多说评论 -->
+    <link rel="stylesheet" href="/css/duoshuo.min.css">
+<style>
+    #ds-thread #ds-reset .ds-post-button{
+        background-color: #0097A7 !important;
     }
-    
-</script>
-
-	
-
+    #ds-wrapper #ds-reset .ds-icons-32{
+        background-color: #0097A7 !important;
+    }
+    #ds-reset .ds-highlight {
+        color: #0097A7 !important;
+    }
+</style>
+<div id="comments">
+    <!-- 多说评论框 start -->
+        <div class="ds-thread" 
+            data-thread-key="2017/01/19/MomentjsLiveTime/" 
+            data-url="http://login926.top/2017/01/19/MomentjsLiveTime/"
+            data-title="Moment.js 小实践 —— 为 Hexo 博客 Material 主题添加运行时间"></div>
+    <!-- 多说评论框 end -->
 </div>
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/01/11/Java_Notes_3/" id="post_nav-older" class="next-content">
+            后滚翻
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+        </div>
+    </div>
 
 				
 				
@@ -585,6 +645,13 @@ It will not impact the appearance and can give developers a lot of support :)
 
 				
 				
+				
+					<!-- Footer Top Button -->
+					<div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
 				
 				
 				<!--Footer-->
