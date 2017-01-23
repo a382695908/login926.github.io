@@ -323,7 +323,7 @@
                 <!-- Post Content -->
                 <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 	
-		<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>要求：编写一个程序，可以对多名学生的选择题答案与正确答案比对，并统计出正确个数。</p>
+		<script src="/assets/js/APlayer.min.js"> </script><script src="/assets/js/DPlayer.min.js"> </script><p>要求：编写一个程序，可以对多名学生的选择题答案与正确答案比对，并统计出正确个数。</p>
 <hr>
 <h1 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h1><h4 id="1-程序总体分为三个部分："><a href="#1-程序总体分为三个部分：" class="headerlink" title="1.程序总体分为三个部分："></a>1.程序总体分为三个部分：</h4><p>1.学生回答录入<br>2.正确答案录入<br>3.判断学生答案与正确答案并统计数据</p>
 <h4 id="2-代码注意点："><a href="#2-代码注意点：" class="headerlink" title="2.代码注意点："></a>2.代码注意点：</h4><p>1.选择题录入的都是 ABCD 等字符串，需要使用 String 数组<br>2.String 类型比较应当使用字符串中的  <code>.equals()</code>函数<br>3.多维数组中注意循环嵌套不能乱</p>
@@ -706,7 +706,7 @@ It will not impact the appearance and can give developers a lot of support :)
 				<script>
 					var begin = moment([2016,05,15]);
 					var now = moment();
-					setInterval(function (){document.getElementById('copyright').innerHTML ="Raintone 已运行 "+now.diff(begin,'days')+" 天"+"<br>"+moment().format("YYYY-MM-DD HH:mm:ss"),900000})
+					setInterval(function (){document.getElementById('copyright').innerHTML ="Raintone 已运行 "+now.diff(begin,'days')+" 天"+"<br>"+moment().format("YYYY-MM-DD HH:mm:ss"),900})
 				</script></div>
 
 
