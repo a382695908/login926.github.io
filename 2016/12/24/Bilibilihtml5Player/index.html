@@ -323,13 +323,14 @@
                 <!-- Post Content -->
                 <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 	
-		<script src="/assets/js/APlayer.min.js"> </script><script src="/assets/js/DPlayer.min.js"> </script><p>今年 8 月 15 号左右，B 站推出了 HTML5 播放器，自此，B 站成为国内首个原生支持全平台 HTML5 播放器的视频网站</p>
+		<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>今年 8 月 15 号左右，B 站推出了 HTML5 播放器，自此，B 站成为国内首个原生支持全平台 HTML5 播放器的视频网站。</p>
+<p>2017 年 1 月 19 日 B 站推出了 HTML5 播放器已经支持 https</p>
  <a id="more"></a>
 <p>Hexo 插 B 站的播放器很简单，在 md 文档中插个 iframe 标签就行，aid 和 cid 值需要手动填写，播放器大小可以自己调节：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;iframe src=&quot;http://www.bilibili.com/html/html5player.html?aid=3521416&amp;cid=6041635&quot; width=&quot;640&quot; height=&quot;480&quot; frameborder=&quot;0&quot; webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;iframe src=&quot;https://www.bilibili.com/html/html5player.html?aid=3521416&amp;cid=6041635&quot; width=&quot;640&quot; height=&quot;480&quot; frameborder=&quot;0&quot; webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;</div></pre></td></tr></table></figure>
 <p>B 站每个视频都有对应的 aid 和 cid 值，在视频网页的源代码中可以找到，大概在 380 行左右就能看到。</p>
 <h2 id=""><a href="#" class="headerlink" title=""></a><img src="http://ww3.sinaimg.cn/large/9a8049afgw1fb1zsjwq71j20b602a0sr.jpg" alt=""></h2><p>插入成功后就是这样：</p>
-<iframe src="http://www.bilibili.com/html/html5player.html?aid=4770523&cid=7741448" width="640" height="480" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
+<iframe src="https://www.bilibili.com/html/html5player.html?aid=4770523&cid=7741448" width="640" height="480" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
 
 
 <p>博客建了没多久，我一直找一个能对 Hexo 友好的 HTML5 播放器，期间尝试过 Vime、Youtube 等，但是由于不可描述的原因，在国内使用并不现实。后来找到了 DPlayeer 才算告一段落。但是 DPlayer 需要配合 七牛云 一类的外链才能获得最好的体验，对于个人来说，B 站的 HTML5 播放器可能是<strong><em>最好的个人博客播放器</em></strong>。</p>

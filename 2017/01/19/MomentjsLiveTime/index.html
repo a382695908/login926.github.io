@@ -212,7 +212,7 @@
 	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
 		for="post-toc-trigger-btn">
 			
-			<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#开始实-zhe-践-teng"><span class="post-toc-number">1.</span> <span class="post-toc-text">开始实(zhe)践(teng)</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">2.</span> <span class="post-toc-text">总结</span></a></li></ol>
+			<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#而-Hexo-博客框架正是在使用-Moment-js-来处理时间的。"><span class="post-toc-number">1.</span> <span class="post-toc-text">而 Hexo 博客框架正是在使用 Moment.js 来处理时间的。</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#开始实-zhe-践-teng"><span class="post-toc-number"></span> <span class="post-toc-text">开始实(zhe)践(teng)</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number"></span> <span class="post-toc-text">总结</span></a>
 		
 <!--			<li class="mdl-menu__item">Some Action</li>-->
 	</ul>
@@ -323,19 +323,19 @@
                 <!-- Post Content -->
                 <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 	
-		<script src="/assets/js/APlayer.min.js"> </script><script src="/assets/js/DPlayer.min.js"> </script><p>Moment.js 是一个优秀的 JavaScript 日期处理类库，Moment.js 可以说是 JavaScript 的一种扩充，强大了其在时间处理方面的能力，使得 JavaScript 也能够非常轻巧的处理麻烦的时间问题。</p>
+		<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>Moment.js 是一个优秀的 JavaScript 日期处理类库，Moment.js 可以说是 JavaScript 的一种扩充，强大了其在时间处理方面的能力，使得 JavaScript 也能够非常轻巧的处理麻烦的时间问题。</p>
 <blockquote>
 <p>Moment.js Github : <a href="https://github.com/moment/moment/" target="_blank" rel="external">https://github.com/moment/moment/</a></p>
 </blockquote>
 <p>闰年问题一直是计算时间的一大困难点，借助 Moment.js 可以有效避免自己处理闰年问题出现错误，进而计算出准确的时间。</p>
 <p>Hexo 博客中的 <a href="https://github.com/viosey/hexo-theme-material" target="_blank" rel="external">Material</a> 主题是一套使用 Google 的 Material Design 设计风格的主题，整套主题优雅清爽，目前 <a href="https://login926.top">我的博客</a> 正在使用这套主题。</p>
-<hr>
-<h1 id="开始实-zhe-践-teng"><a href="#开始实-zhe-践-teng" class="headerlink" title="开始实(zhe)践(teng)"></a>开始实(zhe)践(teng)</h1><ol>
+<h2 id="而-Hexo-博客框架正是在使用-Moment-js-来处理时间的。"><a href="#而-Hexo-博客框架正是在使用-Moment-js-来处理时间的。" class="headerlink" title="而 Hexo 博客框架正是在使用 Moment.js 来处理时间的。"></a>而 Hexo 博客框架正是在使用 Moment.js 来处理时间的。</h2><h1 id="开始实-zhe-践-teng"><a href="#开始实-zhe-践-teng" class="headerlink" title="开始实(zhe)践(teng)"></a>开始实(zhe)践(teng)</h1><ol>
 <li>进入 Hexo 博客主题目录，搜索 footer.ejs</li>
 <li>用文本编辑器打开  footer.ejs</li>
 <li>修改 copyright 模块 或者 mdl-mini-footer–right-section 模块<br>代码内容：</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;days&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;script src=&quot;https://cdn.bootcss.com/moment.js/2.17.0/moment.min.js&quot;&gt;</div><div class="line">//这里调用了公共库中现成的 js 文件，也可以直接调用站点中的 js 文件</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">	var begin = moment([2016,05,15]); //定义博客开始时间</div><div class="line">	var now = moment(); //使用 moment() 获取当前时间</div><div class="line">    document.getElementById(&apos;days&apos;).innerHTML =&quot;博客已运行 &quot;+now.diff(begin,&apos;days&apos;)+&quot; 天&quot;</div><div class="line">// 使用 now.diff(begin,&apos;days&apos;) 函数获取天数，这里天数考虑了闰年</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>Moment.js 中月份表达不同于自然语言，是从第 0 月开始计算的，所以上述例子中，起始时间为自然语言中的 6 月。</p>
 <p>添加完成后的效果：</p>
 <p><img src="https://ooo.0o0.ooo/2017/01/19/5880b1b42ca9c.png" alt="Footer"></p>
 <hr>
