@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Raintone</title>
+  <subtitle>余生请指教。</subtitle>
+  <link href="/rss.xml" rel="self"/>
+  
+  <link href="http://login926.top/"/>
+  <updated>2017-01-24T08:01:51.023Z</updated>
+  <id>http://login926.top/</id>
+  
+  <author>
+    <name>Login926</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Moment.js 小实践 —— 为 Hexo 博客 Material 主题添加运行时间</title>
+    <link href="http://login926.top/2017/01/19/MomentjsLiveTime/"/>
+    <id>http://login926.top/2017/01/19/MomentjsLiveTime/</id>
+    <published>2017-01-19T12:29:50.000Z</published>
+    <updated>2017-01-24T08:01:51.023Z</updated>
+    
+    <summary type="html">
+    
+      &lt;script src=&quot;/assets/js/DPlayer.min.js&quot;&gt; &lt;/script&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;Moment.js 是一个优秀的 JavaScript 日期处理类库，Mo
+    
+    </summary>
+    
+    
+      <category term="Hexo" scheme="http://login926.top/tags/Hexo/"/>
+    
+      <category term="JavaScript" scheme="http://login926.top/tags/JavaScript/"/>
+    
+      <category term="折腾" scheme="http://login926.top/tags/%E6%8A%98%E8%85%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java 多维数组小实践 —— 选择题测验评分程序</title>
+    <link href="http://login926.top/2017/01/11/Java_Notes_3/"/>
+    <id>http://login926.top/2017/01/11/Java_Notes_3/</id>
+    <published>2017-01-11T11:30:34.000Z</published>
+    <updated>2017-01-14T15:56:57.526Z</updated>
+    
+    <summary type="html">
+    
+      &lt;script src=&quot;/assets/js/DPlayer.min.js&quot;&gt; &lt;/script&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;要求：编写一个程序，可以对多名学生的选择题答案与正确答案比对，并统计出正确
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="http://login926.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2017</title>
+    <link href="http://login926.top/2016/12/31/2017NewYear/"/>
+    <id>http://login926.top/2016/12/31/2017NewYear/</id>
+    <published>2016-12-31T06:01:53.000Z</published>
+    <updated>2016-12-31T07:03:59.508Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;新年快乐！&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="生活" scheme="http://login926.top/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>NA 对比图</title>
+    <link href="http://login926.top/2016/12/29/NACompare/"/>
+    <id>http://login926.top/2016/12/29/NACompare/</id>
+    <published>2016-12-29T05:37:31.731Z</published>
+    <updated>2016-12-30T11:36:41.008Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;不用谢我[滑稽]&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="硬件" scheme="http://login926.top/tags/%E7%A1%AC%E4%BB%B6/"/>
+    
+      <category term="Nvidia" scheme="http://login926.top/tags/Nvidia/"/>
+    
+      <category term="AMD" scheme="http://login926.top/tags/AMD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java 编写一个 黑车司机发车器</title>
+    <link href="http://login926.top/2016/12/25/BlackCarDriver/"/>
+    <id>http://login926.top/2016/12/25/BlackCarDriver/</id>
+    <published>2016-12-25T07:12:43.000Z</published>
+    <updated>2016-12-25T07:48:48.414Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;灵感来源于：&lt;a href=&quot;https://www.chenxublog.com/&quot;&gt;晨旭的博客&lt;/a&gt;的&lt;a href=&quot;https://www.chenxublog.com/2016/04/09/%E8%99%9A%E5%81%87%E7%A3%81%E5%8A%9B%E9%93%BE%E6%8E%A5%E7%94%9F%E6%88%90%E5%99%A8.html&quot;&gt;虚假磁力链接生成器&lt;/a&gt;&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="http://login926.top/tags/Java/"/>
+    
+      <category term="恶搞" scheme="http://login926.top/tags/%E6%81%B6%E6%90%9E/"/>
+    
+      <category term="老司机" scheme="http://login926.top/tags/%E8%80%81%E5%8F%B8%E6%9C%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>博客现已开启 https 支持并加快了国内访问速度</title>
+    <link href="http://login926.top/2016/12/25/Bloghttps/"/>
+    <id>http://login926.top/2016/12/25/Bloghttps/</id>
+    <published>2016-12-25T04:15:27.000Z</published>
+    <updated>2016-12-25T04:46:55.717Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;昨天和&lt;a href=&quot;https://www.tiexo.cn/&quot;&gt;唐门&lt;/a&gt;换友链的时候，他说我博客打开太慢了，也是，毕竟用的 Github ，国内并不是一个最优选择&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Hexo" scheme="http://login926.top/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo 博客插入 B 站 html5 播放器</title>
+    <link href="http://login926.top/2016/12/24/Bilibilihtml5Player/"/>
+    <id>http://login926.top/2016/12/24/Bilibilihtml5Player/</id>
+    <published>2016-12-24T09:11:57.000Z</published>
+    <updated>2017-01-24T08:01:46.007Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今年 8 月 15 号左右，B 站推出了 HTML5 播放器，自此，B 站成为国内首个原生支持全平台 HTML5 播放器的视频网站。&lt;/p&gt;
+&lt;p&gt;2017 年 1 月 19 日 B 站推出了 HTML5 播放器已经支持 https&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="生活" scheme="http://login926.top/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+      <category term="音乐" scheme="http://login926.top/tags/%E9%9F%B3%E4%B9%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>利用 Java 和 Python 分别编写一个计算机原码、反码以及补码计算器</title>
+    <link href="http://login926.top/2016/12/18/ComputerCode/"/>
+    <id>http://login926.top/2016/12/18/ComputerCode/</id>
+    <published>2016-12-18T08:56:29.000Z</published>
+    <updated>2016-12-27T12:23:49.700Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;对于一个数, 计算机要使用一定的编码方式进行存储。原码, 反码, 补码是机器存储一个具体数字的编码方式。近期学习 Java 和编码知识，正好把两个结合起来。&lt;br&gt;封面是&lt;a href=&quot;http://weibo.com/lovesupie&quot;&gt;酥饼大人&lt;/a&gt;哦，圣诞快乐&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="编程" scheme="http://login926.top/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="Java" scheme="http://login926.top/tags/Java/"/>
+    
+      <category term="Python" scheme="http://login926.top/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java 学习手记 —— IDE 的配置及试用</title>
+    <link href="http://login926.top/2016/11/11/Java_Notes_2/"/>
+    <id>http://login926.top/2016/11/11/Java_Notes_2/</id>
+    <published>2016-11-11T02:25:01.000Z</published>
+    <updated>2016-12-25T04:08:44.798Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;实践证明，一款优秀的 IDE 可以使得编程效率大大提高，目前 Java 主流的 IDE 有 Eclipse、MyEclipse、NetNetBeans 等。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="http://login926.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>修改 html 代码制作一个虚假微博 V 头像</title>
+    <link href="http://login926.top/2016/10/30/WeiboFalseV/"/>
+    <id>http://login926.top/2016/10/30/WeiboFalseV/</id>
+    <published>2016-10-30T05:54:21.000Z</published>
+    <updated>2017-01-23T12:45:48.420Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;http://tieba.baidu.com/p/4811342530&quot;&gt;贴吧上有人求助怎么做微博假 V&lt;/a&gt; ，大多数吧友说可以用 PS 做，我自己也试了下，不过能力不够，做出来的总是有瑕疵。后来想到可以直接改代码截图啊，准保跟真的一毛一样。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java 学习手记 —— 使用 JDK 编写第一个 Java 程序</title>
+    <link href="http://login926.top/2016/10/13/Java_Notes_1/"/>
+    <id>http://login926.top/2016/10/13/Java_Notes_1/</id>
+    <published>2016-10-13T12:25:01.000Z</published>
+    <updated>2016-12-25T04:08:46.007Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;大一学习的是计算机网络专业，要求学习 Java 语言，以后博客会开设一个专题，做一点学习 Java 的笔记。&lt;br&gt;JDK：Java Development ToolKit，Java 开发工具包，学习 Java 必装。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="http://login926.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>沉迷 2048 ，无法自拔</title>
+    <link href="http://login926.top/2016/09/22/2048/"/>
+    <id>http://login926.top/2016/09/22/2048/</id>
+    <published>2016-09-22T13:04:27.000Z</published>
+    <updated>2016-12-25T04:01:42.117Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;![2048](&lt;a href=&quot;https://ooo.0o0.ooo/2016/12/25/585f446f0b356.jpg&quot;&gt;https://ooo.0o0.ooo/2016/12/25/585f446f0b356.jpg&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;闲着没事儿，在博客上放了个 html5  游戏 2048。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>【厉害了，我的哥】我的英语听力为什么会这么鬼畜</title>
+    <link href="http://login926.top/2016/09/07/Englishguichu/"/>
+    <id>http://login926.top/2016/09/07/Englishguichu/</id>
+    <published>2016-09-07T04:24:02.000Z</published>
+    <updated>2016-12-25T04:08:15.336Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;https://ooo.0o0.ooo/2016/12/25/585f4625df8da.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="鬼畜" scheme="http://login926.top/tags/%E9%AC%BC%E7%95%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>贴吧暴力签到</title>
+    <link href="http://login926.top/2016/08/27/baolisign/"/>
+    <id>http://login926.top/2016/08/27/baolisign/</id>
+    <published>2016-08-27T04:15:02.000Z</published>
+    <updated>2016-12-25T04:02:41.531Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天 Chrome 吧没法签到了！&lt;br&gt;这破吧药丸了！&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="http://login926.top/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>妈的智障</title>
+    <link href="http://login926.top/2016/08/26/mdzz/"/>
+    <id>http://login926.top/2016/08/26/mdzz/</id>
+    <published>2016-08-26T13:20:38.000Z</published>
+    <updated>2016-12-23T07:54:20.389Z</updated>
+    
+    <summary type="html">
+    
+      &lt;script src=&quot;/assets/js/DPlayer.min.js&quot;&gt; &lt;/script&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;你他妈有手机号为什么不去打&lt;br&gt;&lt;img src=&quot;http://ww1
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>古墓丽影：鬼畜</title>
+    <link href="http://login926.top/2016/08/23/Tomb/"/>
+    <id>http://login926.top/2016/08/23/Tomb/</id>
+    <published>2016-08-23T08:08:31.000Z</published>
+    <updated>2016-12-25T04:09:51.938Z</updated>
+    
+    <summary type="html">
+    
+      &lt;iframe src=&quot;http://www.bilibili.com/html/html5player.html?cid=9685838&amp;aid=5965429&quot; width=&quot;640&quot; height=&quot;480&quot; frameborder=&quot;0&quot; webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;&lt;/iframe&gt;
+    
+    </summary>
+    
+    
+      <category term="游戏" scheme="http://login926.top/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在 Hexo 博客中跳过渲染，创建自定义网页</title>
+    <link href="http://login926.top/2016/08/17/Hexo_Skip_Generated/"/>
+    <id>http://login926.top/2016/08/17/Hexo_Skip_Generated/</id>
+    <published>2016-08-17T12:56:01.000Z</published>
+    <updated>2016-12-23T09:11:32.771Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Hexo 博客中所见文章都是经由渲染的静态网页，而静态网页的样式都直接由 Hexo 的主题控制，所以 Hexo 博客大部分都呈现出一种高度的统一化与规范化。不过 Hexo 提供了跳过渲染功能，使得我们可以直接在博客中放入自定义网页。&lt;br&gt;比如在博客中放入&lt;a href=&quot;http://login926.github.io/cengfantu/&quot;&gt;蹭饭图&lt;/a&gt;、自定义 404.html 、自定义 About 页面等。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="hexo" scheme="http://login926.top/tags/hexo/"/>
+    
+      <category term="html" scheme="http://login926.top/tags/html/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>蹭饭图</title>
+    <link href="http://login926.top/2016/08/16/cengfantu/"/>
+    <id>http://login926.top/2016/08/16/cengfantu/</id>
+    <published>2016-08-16T05:36:37.000Z</published>
+    <updated>2016-12-25T04:04:43.568Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;哈哈哈哈，花了大半天时间，凭借着渣渣的前端知识做了个线上版的蹭饭图，点左侧导航栏就能看到了&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="生活" scheme="http://login926.top/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+      <category term="html" scheme="http://login926.top/tags/html/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>鬼畜云音乐，哦不，网易云音乐</title>
+    <link href="http://login926.top/2016/08/12/163Music/"/>
+    <id>http://login926.top/2016/08/12/163Music/</id>
+    <published>2016-08-12T05:45:57.000Z</published>
+    <updated>2016-12-25T03:59:34.764Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天正式成为了网易云音乐 9 级用户，&lt;a href=&quot;http://music.163.com/#/m/playlist?id=82908712&amp;amp;userid=9920729&quot;&gt;歌单《River Flows In You 全版本收集》&lt;/a&gt; 收藏数突破 1000 ，播放数达到 1.6 W，所有很有必要水一贴来纪念一下。&lt;br&gt;&lt;img src=&quot;https://ooo.0o0.ooo/2016/08/12/57ad7844c046f.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="生活" scheme="http://login926.top/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+      <category term="音乐" scheme="http://login926.top/tags/%E9%9F%B3%E4%B9%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Newifi 自建 KMS 服务器激活 Windows</title>
+    <link href="http://login926.top/2016/08/03/KMS/"/>
+    <id>http://login926.top/2016/08/03/KMS/</id>
+    <published>2016-08-03T09:19:48.000Z</published>
+    <updated>2016-12-23T09:23:03.693Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;&quot; alt=&quot;KMS&quot;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;大量授权密钥（英语：Volume License Key，简称VLK）是软件公司使用的一个词汇，用户购买批量授权，便会获得一产品密钥，该密钥可安装于多部电脑。&lt;br&gt;来源：维基百科：&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E5%A4%A7%E9%87%8F%E6%8E%88%E6%AC%8A%E9%87%91%E9%91%B0&quot;&gt;大量授权密钥&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="纪念" scheme="http://login926.top/tags/%E7%BA%AA%E5%BF%B5/"/>
+    
+      <category term="Windows" scheme="http://login926.top/tags/Windows/"/>
+    
+      <category term="KMS" scheme="http://login926.top/tags/KMS/"/>
+    
+  </entry>
+  
+</feed>
