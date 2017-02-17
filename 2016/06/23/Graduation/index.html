@@ -694,11 +694,21 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 		<div id="copyright">	<script src="https://cdn.bootcss.com/moment.js/2.17.0/moment.min.js"></script>
+			<script type="text/javascript" src="https://api.lwl12.com/hitokoto/main/get?encode=js&charset=utf-8"></script>
+			<div id="time">
 				<script>
 					var begin = moment([2016,05,15]);
 					var now = moment();
-					setInterval(function (){document.getElementById('copyright').innerHTML ="Raintone 已运行 "+now.diff(begin,'days')+" 天"+"<br>"+moment().format("YYYY-MM-DD HH:mm:ss"),900})
-				</script></div>
+					setInterval(function (){document.getElementById('time').innerHTML ="Raintone 已运行 "+now.diff(begin,'days')+" 天"+"<br>"+moment().format("YYYY-MM-DD HH:mm:ss"),1000})
+				</script>
+				</div>
+				<div id="lwlhitokoto"><script>lwlhitokoto()</script></div>
+			</div>
+
+
+
+
+
 
 
 
@@ -716,7 +726,7 @@ It will not impact the appearance and can give developers a lot of support :)
 			<div>
 				<div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
 				<div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
-				<div class="footer-develop-div">Base on <a href="https://github.com" target="_blank" class="footer-develop-a">Github</a></div>
+				<div class="footer-develop-div">Base on <a href="https://github.com" target="_blank" class="footer-develop-a">Github </a>&<a href="https://coding.net/" target="_blank" class="footer-develop-a"> Coding</a></div>
 			</div>
 		</div>
 	
